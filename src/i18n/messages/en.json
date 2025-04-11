@@ -25,5 +25,12 @@
   "already-have-an-account": "Already have an account?",
   "create-account": "Create Account",
   "send-code": "Send Code",
-  "forget-your-password": "Forget Your Password?"
+  "forget-your-password": "Forget Your Password?",
+  "receive-code": "Didn’t receive a code?",
+  "resend": "Resend",
+  "verfiy": "Verfiy",
+  "verfiy-code": "Verfiy Code",
+  "code": "code",
+  "set-password": "Set a Password",
+  "create-password": "Create Password"
 }

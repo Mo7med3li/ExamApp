@@ -21,8 +21,10 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 export default function SignupForm() {
+  // translation
   const t = useTranslations();
   const router = useRouter();
+  // form
   const form = useForm<RegisterFields>({
     defaultValues: {
       username: "",

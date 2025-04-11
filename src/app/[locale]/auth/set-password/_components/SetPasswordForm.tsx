@@ -20,8 +20,12 @@ import {
 } from "@/lib/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { resetPasswordSubmit } from "../../_actions/auth.action";
+import { useTranslations } from "next-intl";
 
 export default function SetPasswordForm() {
+  // translation
+  const t = useTranslations();
+  // form
   const form = useForm<ResetPasswordField>({
     defaultValues: {
       email: "",
@@ -32,10 +36,9 @@ export default function SetPasswordForm() {
   const onSubmit: SubmitHandler<ResetPasswordField> = (values) => {
     resetPasswordSubmit(values);
   };
-
   return (
     <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-12 py-10">
-      <h2 className="text-2xl font-bold">Set a password</h2>
+      <h2 className="text-2xl font-bold"> {t("set-password")}</h2>
       <Form {...form}>
         <FormProvider {...form}>
           <form
@@ -49,12 +52,12 @@ export default function SetPasswordForm() {
               render={({ field }) => (
                 <FormItem>
                   {/* label */}
-                  <FormLabel className="sr-only">Email</FormLabel>
+                  <FormLabel className="sr-only">{t("email")}</FormLabel>
                   {/* field */}
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="Email"
+                      placeholder={t("email")}
                       className={`${
                         form.formState.errors.email
                           ? "focus-visible:border-red-300"
@@ -68,13 +71,16 @@ export default function SetPasswordForm() {
               )}
             />
             {/* Password */}
-            <PasswordInput name="newPassword" placeholder="Create Password" />
+            <PasswordInput
+              name="newPassword"
+              placeholder={t("create-password")}
+            />
 
             <Button
               className="w-full rounded-2xl h-14 text-lg "
               disabled={form.formState.isSubmitted && !form.formState.isValid}
             >
-              Set Password
+              {t("set-password")}
             </Button>
           </form>
         </FormProvider>

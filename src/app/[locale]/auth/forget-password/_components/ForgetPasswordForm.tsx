@@ -22,7 +22,9 @@ import { submitForgetPassword } from "../../_actions/auth.action";
 import { useTranslations } from "next-intl";
 
 export default function ForgetPasswordForm() {
+  // translation
   const t = useTranslations();
+  // form
   const form = useForm<ForgetPasswordField>({
     defaultValues: { email: "" },
     resolver: zodResolver(forgetPasswordSchema),

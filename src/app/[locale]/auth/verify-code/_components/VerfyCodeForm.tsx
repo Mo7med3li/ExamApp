@@ -16,8 +16,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { submitVerifyCode } from "../../_actions/auth.action";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function VerfyCodeForm() {
+  // translation
+  const t = useTranslations();
+  // form
   const form = useForm<VerifyCodeField>({
     defaultValues: {
       resetCode: "",
@@ -29,7 +33,7 @@ export default function VerfyCodeForm() {
   };
   return (
     <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-12 py-10">
-      <h2 className="text-2xl font-bold">Verfiy Code</h2>
+      <h2 className="text-2xl font-bold">{t("verfiy-code")}</h2>
       <Form {...form}>
         <form
           className="flex flex-col gap-8"
@@ -41,11 +45,11 @@ export default function VerfyCodeForm() {
             render={({ field }) => (
               <FormItem>
                 {/* label */}
-                <FormLabel className="sr-only"></FormLabel>
+                <FormLabel className="sr-only">{t("code")}</FormLabel>
                 {/* field */}
                 <FormControl>
                   <Input
-                    placeholder="code"
+                    placeholder={t("code")}
                     {...field}
                     className={`${
                       form.formState.errors.resetCode
@@ -64,17 +68,17 @@ export default function VerfyCodeForm() {
             className="w-full rounded-2xl h-14 text-lg "
             disabled={form.formState.isSubmitted && !form.formState.isValid}
           >
-            Verfiy
+            {t("verfiy")}
           </Button>
           <div className=" text-end">
             <p className=" text-base">
-              Didn’t receive a code?
+              {t("receive-code")}
               <Link
                 className="text-main text-base px-1"
                 href={""}
                 onClick={form.handleSubmit(onSubmit)}
               >
-                Resend
+                {t("resend")}
               </Link>
             </p>
           </div>

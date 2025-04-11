@@ -24,5 +24,12 @@
   "already-have-an-account": "هل لديك بالفعل حساب؟",
   "create-account": "إنشاء حساب",
   "send-code": "إرسال الرمز",
-  "forget-your-password": "هل نسيت كلمة المرور الخاصة بك؟"
+  "forget-your-password": "هل نسيت كلمة المرور الخاصة بك؟",
+  "receive-code": "لم تتلق رمز؟",
+  "resend": "إعادة الارسال",
+  "verfiy": "تحقق",
+  "verfiy-code": "رمز التحقق",
+  "code": "الرمز",
+  "set-password": "اضبط كلمة المرور",
+  "create-password": "إنشاء كلمة المرور"
 }

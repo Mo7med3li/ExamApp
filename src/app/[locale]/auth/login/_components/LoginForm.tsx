@@ -21,7 +21,9 @@ import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
 
 export function LoginForm() {
+  // translation
   const t = useTranslations();
+  // form
   const form = useForm<loginFields>({
     defaultValues: { email: "", password: "" },
     resolver: zodResolver(loginSchema),
