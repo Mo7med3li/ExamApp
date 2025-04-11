@@ -22,5 +22,7 @@
   "confirm-password": "تأكيد كلمة المرور",
   "phone": "رقم الهاتف",
   "already-have-an-account": "هل لديك بالفعل حساب؟",
-  "create-account": "إنشاء حساب"
+  "create-account": "إنشاء حساب",
+  "send-code": "إرسال الرمز",
+  "forget-your-password": "هل نسيت كلمة المرور الخاصة بك؟"
 }

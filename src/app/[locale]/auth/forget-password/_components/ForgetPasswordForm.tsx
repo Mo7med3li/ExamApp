@@ -19,8 +19,10 @@ import {
   forgetPasswordSchema,
 } from "@/lib/schemas/auth.schema";
 import { submitForgetPassword } from "../../_actions/auth.action";
+import { useTranslations } from "next-intl";
 
 export default function ForgetPasswordForm() {
+  const t = useTranslations();
   const form = useForm<ForgetPasswordField>({
     defaultValues: { email: "" },
     resolver: zodResolver(forgetPasswordSchema),
@@ -32,7 +34,7 @@ export default function ForgetPasswordForm() {
 
   return (
     <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-12 py-10">
-      <h2 className="text-2xl font-bold">Forget Your Password?</h2>
+      <h2 className="text-2xl font-bold">{t("forget-your-password")}</h2>
       <Form {...form}>
         <form
           className="flex flex-col gap-8 "
@@ -44,10 +46,10 @@ export default function ForgetPasswordForm() {
             render={({ field }) => (
               // label
               <FormItem>
-                <FormLabel className="sr-only">Email</FormLabel>
+                <FormLabel className="sr-only">{t("email")}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Email"
+                    placeholder={t("email")}
                     type="email"
                     {...field}
                     className={`${
@@ -67,7 +69,7 @@ export default function ForgetPasswordForm() {
             className="w-full rounded-2xl h-14 text-lg "
             disabled={form.formState.isSubmitted && !form.formState.isValid}
           >
-            Send Code
+            {t("send-code")}
           </Button>
         </form>
       </Form>
