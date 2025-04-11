@@ -20,7 +20,7 @@ import {
 import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
 
-export function LoginForm({ locale }: { locale: string }) {
+export function LoginForm() {
   const t = useTranslations();
   const form = useForm<loginFields>({
     defaultValues: { email: "", password: "" },
@@ -76,11 +76,7 @@ export function LoginForm({ locale }: { locale: string }) {
                 </FormItem>
               )}
             />
-            <PasswordInput
-              name="password"
-              placeholder={t("enter-password")}
-              locale={locale}
-            />
+            <PasswordInput name="password" placeholder={t("enter-password")} />
             <div className=" text-end">
               <Link
                 href={"/auth/forget-password"}

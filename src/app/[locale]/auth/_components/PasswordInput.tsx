@@ -10,19 +10,18 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 
 export default function PasswordInput({
   placeholder,
   name,
-  locale,
 }: {
   placeholder?: string;
   name: string;
-  locale: string;
 }) {
+  const locale = useLocale();
   const t = useTranslations();
   const { control, formState } = useFormContext();
   const [showPassword, setShowPassword] = useState(false);

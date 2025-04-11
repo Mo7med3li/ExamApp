@@ -7,12 +7,20 @@
   "sucess-rate": "معدل النجاح هو {rate,number,rate-base}",
   "sign-in": "تسجيل الدخول",
   "recover-password": "استعادة كلمة المرور؟",
-  "email": "بريد إلكتروني",
+  "email": "البريد الإلكتروني",
   "login-success": "نجاح تسجيل الدخول",
   "password": "كلمة المرور",
   "enter-password": "أدخل كلمة المرور",
-  "register": "انشاء حساب\n",
+  "register": "سجل",
   "continue-with": "أو متابعة",
   "welcome": "مرحبا بكم في",
-  "lorem": "Quidem Autem VolupupatiBus Quierat Aspernatur Architecto Natus"
+  "lorem": "Quidem Autem VolupupatiBus Quierat Aspernatur Architecto Natus",
+  "sign-up": "اشتراك",
+  "user-name": "اسم المستخدم",
+  "first-name": "الاسم الأول",
+  "last-name": "اسم العائلة",
+  "confirm-password": "تأكيد كلمة المرور",
+  "phone": "رقم الهاتف",
+  "already-have-an-account": "هل لديك بالفعل حساب؟",
+  "create-account": "إنشاء حساب"
 }

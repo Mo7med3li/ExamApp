@@ -15,5 +15,13 @@
   "register": "Register",
   "continue-with": "Or Continue With",
   "welcome": "Welcome to",
-  "lorem": "Quidem autem voluptatibus qui quaerat aspernatur architecto natus"
+  "lorem": "Quidem autem voluptatibus qui quaerat aspernatur architecto natus",
+  "sign-up": "Sign up",
+  "user-name": "User name",
+  "first-name": "First Name",
+  "last-name": "Last name",
+  "confirm-password": "Confirm Password",
+  "phone": "Phone",
+  "already-have-an-account": "Already have an account?",
+  "create-account": "Create Account"
 }

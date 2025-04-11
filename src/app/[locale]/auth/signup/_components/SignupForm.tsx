@@ -18,8 +18,10 @@ import { RegisterFields, registerSchema } from "@/lib/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { submitRegister } from "../../_actions/auth.action";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function SignupForm() {
+  const t = useTranslations();
   const router = useRouter();
   const form = useForm<RegisterFields>({
     defaultValues: {
@@ -40,7 +42,7 @@ export default function SignupForm() {
   };
   return (
     <div className="bg-white w-[500px]  rounded-md flex flex-col gap-8">
-      <h2 className="text-2xl font-bold">Sign up</h2>
+      <h2 className="text-2xl font-bold">{t("sign-up")}</h2>
       <Form {...form}>
         <FormProvider {...form}>
           <form
@@ -54,12 +56,12 @@ export default function SignupForm() {
               render={({ field }) => (
                 <FormItem>
                   {/* Label */}
-                  <FormLabel className="sr-only">Username</FormLabel>
+                  <FormLabel className="sr-only">{t("user-name")}</FormLabel>
                   {/* Field*/}
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="User name"
+                      placeholder={t("user-name")}
                       className={`${
                         form.formState.errors.username
                           ? "focus-visible:border-red-300"
@@ -79,12 +81,12 @@ export default function SignupForm() {
               render={({ field }) => (
                 <FormItem>
                   {/* Label */}
-                  <FormLabel className="sr-only">First Name</FormLabel>
+                  <FormLabel className="sr-only">{t("first-name")}</FormLabel>
                   {/* field */}
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="First name"
+                      placeholder={t("first-name")}
                       className={`${
                         form.formState.errors.firstName
                           ? "focus-visible:border-red-300"
@@ -104,12 +106,12 @@ export default function SignupForm() {
               render={({ field }) => (
                 <FormItem>
                   {/* Label */}
-                  <FormLabel className="sr-only">Last name</FormLabel>
+                  <FormLabel className="sr-only">{t("last-name")}</FormLabel>
                   {/* Field*/}
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="Last name"
+                      placeholder={t("last-name")}
                       className={`${
                         form.formState.errors.lastName
                           ? "focus-visible:border-red-300"
@@ -128,11 +130,12 @@ export default function SignupForm() {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="sr-only">Email</FormLabel>
+                  <FormLabel className="sr-only">{t("email")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="email"
+                      placeholder={t("email")}
+                      type="email"
                       className={`${
                         form.formState.errors.email
                           ? "focus-visible:border-red-300"
@@ -145,9 +148,12 @@ export default function SignupForm() {
               )}
             />
             {/* password */}
-            <PasswordInput placeholder="Password" name="password" />
+            <PasswordInput placeholder={t("password")} name="password" />
             {/* rePassword */}
-            <PasswordInput placeholder="Confirm Password" name="rePassword" />
+            <PasswordInput
+              placeholder={t("confirm-password")}
+              name="rePassword"
+            />
             {/* phone */}
             <FormField
               control={form.control}
@@ -155,12 +161,12 @@ export default function SignupForm() {
               render={({ field }) => (
                 // label
                 <FormItem>
-                  <FormLabel className="sr-only">Phone</FormLabel>
+                  <FormLabel className="sr-only">{t("phone")}</FormLabel>
                   {/* field */}
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="Phone"
+                      placeholder={t("phone")}
                       className={`${
                         form.formState.errors.phone
                           ? "focus-visible:border-red-300"
@@ -176,9 +182,9 @@ export default function SignupForm() {
 
             <div className=" text-center">
               <p className=" text-base">
-                Already have an account?
+                {t("already-have-an-account")}
                 <Link className="text-main text-base px-1" href={"/auth/login"}>
-                  Login
+                  {t("sign-in")}
                 </Link>
               </p>
             </div>
@@ -188,7 +194,7 @@ export default function SignupForm() {
               type="submit"
               disabled={form.formState.isSubmitted && !form.formState.isValid}
             >
-              Create Account
+              {t("create-account")}
             </Button>
           </form>
         </FormProvider>
