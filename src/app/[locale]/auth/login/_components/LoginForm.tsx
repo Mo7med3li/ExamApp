@@ -18,8 +18,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 
-export function LoginForm() {
+export function LoginForm({ locale }: { locale: string }) {
+  const t = useTranslations();
   const form = useForm<loginFields>({
     defaultValues: { email: "", password: "" },
     resolver: zodResolver(loginSchema),
@@ -38,14 +40,14 @@ export function LoginForm() {
       setTimeout(() => {
         window.location.href = respone.url || "/";
       }, 1000);
-      toast.success("Login Success");
+      toast.success(`${t("login-success")}`);
       return;
     }
     toast.error(respone?.error!);
   };
   return (
     <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-8">
-      <h2 className="text-2xl font-bold">Sign in</h2>
+      <h2 className="text-2xl font-bold">{t("sign-in")}</h2>
       <Form {...form}>
         <FormProvider {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -56,12 +58,12 @@ export function LoginForm() {
               render={({ field }) => (
                 <FormItem>
                   {/* label */}
-                  <FormLabel className="sr-only">Email</FormLabel>
+                  <FormLabel className="sr-only">{t("email")}</FormLabel>
                   {/* field */}
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder="email"
+                      placeholder={t("email")}
                       className={`${
                         form.formState.errors.email
                           ? "focus-visible:border-red-300"
@@ -74,13 +76,17 @@ export function LoginForm() {
                 </FormItem>
               )}
             />
-            <PasswordInput name="password" placeholder="Enter Password" />
+            <PasswordInput
+              name="password"
+              placeholder={t("enter-password")}
+              locale={locale}
+            />
             <div className=" text-end">
               <Link
                 href={"/auth/forget-password"}
                 className="text-main text-base  "
               >
-                Recover Password ?
+                {t("recover-password")}
               </Link>
             </div>
             <Button
@@ -88,9 +94,9 @@ export function LoginForm() {
               className="w-full rounded-2xl h-14 text-lg "
               disabled={form.formState.isSubmitted && !form.formState.isValid}
             >
-              Sign in
+              {t("sign-in")}
             </Button>
-            <Button
+            {/* <Button
               variant="outline"
               className="w-ful "
               onClick={() => {
@@ -99,7 +105,7 @@ export function LoginForm() {
               type="button"
             >
               Login with Google
-            </Button>
+            </Button> */}
           </form>
         </FormProvider>
       </Form>

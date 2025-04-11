@@ -1,4 +1,18 @@
 {
-  "hello": "مرحبا",
-  "mohamed": "محمد"
+  "hello": "مرحبا!",
+  "mohamed": "محمد",
+  "welcome-user": "مرحبا {name}",
+  "cart-product": " {count,plural,=0{# ليس لديك} =1{ لديك منتج} 2{ لديك# منتجان} other {#منتجات لديك }}  في عربة التسوق الخاصة بك",
+  "product-price": "سعر المنتج هو {price,number,currency-base}",
+  "sucess-rate": "معدل النجاح هو {rate,number,rate-base}",
+  "sign-in": "تسجيل الدخول",
+  "recover-password": "استعادة كلمة المرور؟",
+  "email": "بريد إلكتروني",
+  "login-success": "نجاح تسجيل الدخول",
+  "password": "كلمة المرور",
+  "enter-password": "أدخل كلمة المرور",
+  "register": "انشاء حساب\n",
+  "continue-with": "أو متابعة",
+  "welcome": "مرحبا بكم في",
+  "lorem": "Quidem Autem VolupupatiBus Quierat Aspernatur Architecto Natus"
 }

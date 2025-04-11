@@ -1,4 +1,19 @@
 {
-  "hello": "Hello",
-  "mohamed": "Mohamed"
+  "hello": "Hello!",
+  "mohamed": "Mohamed",
+  "welcome-user": "welcome {name}",
+  "cart-product": "you have {count,plural,=0 {no products} =1{\n# product} other{# products}} in your cart",
+  "product-price": "product price is {price,number,currency-base}",
+  "sucess-rate": "sucess rate is {rate,number,rate-base}",
+  "sign-in": "Sign in",
+  "email": "Email",
+  "recover-password": "Recover Password ?",
+  "login-success": "login success",
+  "password": "Password",
+  "enter-password": "Enter Password",
+  "enter-email": "please enter your email",
+  "register": "Register",
+  "continue-with": "Or Continue With",
+  "welcome": "Welcome to",
+  "lorem": "Quidem autem voluptatibus qui quaerat aspernatur architecto natus"
 }

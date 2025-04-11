@@ -10,16 +10,20 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff } from "lucide-react";
+import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 
 export default function PasswordInput({
   placeholder,
   name,
+  locale,
 }: {
   placeholder?: string;
   name: string;
+  locale: string;
 }) {
+  const t = useTranslations();
   const { control, formState } = useFormContext();
   const [showPassword, setShowPassword] = useState(false);
   return (
@@ -31,7 +35,7 @@ export default function PasswordInput({
           render={({ field }) => (
             // label
             <FormItem>
-              <FormLabel className="sr-only">Password</FormLabel>
+              <FormLabel className="sr-only">{t("password")}</FormLabel>
               {/* field */}
               <FormControl>
                 <Input
@@ -54,7 +58,9 @@ export default function PasswordInput({
           type="button"
           variant="ghost"
           size="icon"
-          className="absolute right-0  top-3  "
+          className={`absolute  top-3 ${
+            locale === "ar" ? "left-0" : "right-0"
+          }  `}
           onClick={() => setShowPassword(!showPassword)}
         >
           {showPassword ? (

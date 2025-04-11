@@ -1,13 +1,15 @@
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React from "react";
 import { FaApple, FaFacebook, FaGoogle, FaTwitter } from "react-icons/fa";
 
 export default function SocialLinks() {
+  const t = useTranslations();
   return (
     <>
       <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
         <span className="relative z-10 bg-background px-2 text-base text-muted-foreground">
-          Or continue with
+          {t("continue-with")}
         </span>
       </div>
       <div className="grid grid-cols-4 gap-4">
