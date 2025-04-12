@@ -27,6 +27,16 @@ export default getRequestConfig(async ({ requestLocale }) => {
           maximumFractionDigits: 0,
         },
       },
+      dateTime: {
+        "date-base": {
+          numberingSystem: locale === "ar" ? "arab" : "latn",
+          year: "2-digit",
+          month: "long",
+          dayPeriod: "narrow",
+          weekday: "long",
+          hour: "2-digit",
+        },
+      },
     },
   };
 });

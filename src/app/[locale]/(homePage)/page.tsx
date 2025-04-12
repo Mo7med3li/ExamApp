@@ -33,6 +33,19 @@ export default function Home({ params: { locale } }: RouteProps) {
       {format.number(1000, {
         style: "decimal",
       })}
+      <p>{format.dateTime(new Date(), "date-base")}</p>
+      <p>
+        {t("birth-date", {
+          date: new Date(2005),
+        })}
+      </p>
+      <p>
+        postes{" "}
+        {format.relativeTime(new Date("2025-4-10"), {
+          unit: "hour",
+        })}
+      </p>
+      <p></p>
     </main>
   );
 }

@@ -32,5 +32,6 @@
   "verfiy-code": "Verfiy Code",
   "code": "code",
   "set-password": "Set a Password",
-  "create-password": "Create Password"
+  "create-password": "Create Password",
+  "birth-date": "your birth date is {date,date,date-base}"
 }

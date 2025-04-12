@@ -1,11 +1,4 @@
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import LocaleToggler from "@/components/header/components/locale-toggler";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React from "react";
@@ -16,17 +9,8 @@ export default function NavbarAuth() {
     <ul className="flex items-center gap-12  py-12 px-20  justify-end">
       <li>
         {" "}
-        <Select>
-          <SelectTrigger>
-            <SelectValue placeholder="English" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              <SelectItem value="Arabic">Arabic</SelectItem>
-              <SelectItem value="English">English</SelectItem>
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+        {/* change language */}
+        <LocaleToggler />
       </li>
       <li>
         <Link href="/auth/login" className="text-main text-xl font-bold">
