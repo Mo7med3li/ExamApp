@@ -39,15 +39,14 @@ export default async function middleware(req: NextRequest) {
   const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
 
   if (isPublicPage) {
-    //
-    // const token = await getToken({ req });
-    // const authPathnameRegex = localeRegex(publicPages);
-    // // Check if the request URL matches any of the auth pages
-    // const isAuthPage = authPathnameRegex.test(req.nextUrl.pathname);
-    // if (token && isAuthPage) {
-    //   const redirctUrl = new URL("/dashboard", req.nextUrl.origin);
-    //   return NextResponse.redirect(redirctUrl);
-    // }
+    const token = await getToken({ req });
+    const authPathnameRegex = localeRegex(publicPages);
+    // Check if the request URL matches any of the auth pages
+    const isAuthPage = authPathnameRegex.test(req.nextUrl.pathname);
+    if (token && isAuthPage) {
+      const redirctUrl = new URL("/dashboard", req.nextUrl.origin);
+      return NextResponse.redirect(redirctUrl);
+    }
     return handleI18nRouting(req);
   } else {
     return (authMiddleware as any)(req);

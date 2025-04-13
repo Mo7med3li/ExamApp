@@ -50,7 +50,7 @@ export function AppSidebar() {
             />
           </SidebarGroupLabel>
           <SidebarGroupContent className="mt-14">
-            <SidebarMenu>
+            <SidebarMenu className="space-y-5">
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild className="py-3">
