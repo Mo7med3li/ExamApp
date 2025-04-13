@@ -5,6 +5,8 @@ import localFont from "next/font/local";
 import { Metadata } from "next";
 
 import Providers from "@/components/providers";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/header/components/AppSidebar";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -36,8 +38,7 @@ export default function LoacaleLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          {/* Main */}
-          {children}
+          <SidebarProvider>{children}</SidebarProvider>
         </Providers>
       </body>
     </html>
