@@ -7,7 +7,7 @@ import profile from "@/assets/imgs/Rectangle 289.png";
 
 export default function Searchbar() {
   return (
-    <section className="flex items-center  gap-4 p-4">
+    <section className="flex items-center  gap-4 py-2">
       <div className="flex-grow">
         {" "}
         <Input
@@ -16,7 +16,7 @@ export default function Searchbar() {
           className="shadow-inputShadow w-full focus-visible:border-main focus-visible:outline-none"
         />
       </div>
-      <Button className="bg-main hover:opacity-70 rounded-lg py-6 px-5 shadow-btnshadow">
+      <Button className="bg-main hover:opacity-70 rounded-lg py-6 px-5 shadow-btnshadow text-xl font-semibold">
         Start Quiz
       </Button>
       <div>

@@ -17,6 +17,7 @@ const config: Config = {
         btnshadow: " 0px 18px 30px 0px #2F1C1C1A",
         inputShadow: "0px 10px 20px 0px #4461F20D",
         cardShadow: "0px 15px 40px 0px #0000000D",
+        cardDiplomaShadow: "0px 15px 40px 0px #2A29290D",
       },
       colors: {
         main: "#4461F2",
