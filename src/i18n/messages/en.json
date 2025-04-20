@@ -35,5 +35,8 @@
   "create-password": "Create Password",
   "birth-date": "your birth date is {date,date,date-base}",
   "sucessfully": "Sucessfully",
-  "account-created-sucessfully": "Account Created Sucessfully"
+  "account-created-sucessfully": "Account Created Sucessfully",
+  "sending-code-to-email": "sending code to email",
+  "going-to-create-password": "going to create password",
+  "password-changed-successfully": "password changed successfully"
 }

@@ -2,7 +2,6 @@
 import type React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import SocialLinks from "../../_components/SocialLinks";
 import PasswordInput from "../../_components/PasswordInput";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,7 +17,7 @@ import {
 } from "@/components/ui/form";
 import { useTranslations } from "next-intl";
 import useLogin from "../_hooks/use-login";
-import toast from "react-hot-toast";
+import { Link } from "@/i18n/navigation";
 
 export function LoginForm() {
   // mutation

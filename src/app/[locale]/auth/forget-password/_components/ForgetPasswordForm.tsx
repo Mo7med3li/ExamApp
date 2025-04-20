@@ -2,7 +2,6 @@
 import React from "react";
 import SocialLinks from "../../_components/SocialLinks";
 import { Input } from "@/components/ui/input";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -18,20 +17,22 @@ import {
   ForgetPasswordField,
   forgetPasswordSchema,
 } from "@/lib/schemas/auth.schema";
-import { submitForgetPassword } from "../../_actions/auth.action";
 import { useTranslations } from "next-intl";
+import useForgetPassword from "../_hooks/use-forgetPassword";
 
 export default function ForgetPasswordForm() {
   // translation
   const t = useTranslations();
+
   // form
   const form = useForm<ForgetPasswordField>({
     defaultValues: { email: "" },
     resolver: zodResolver(forgetPasswordSchema),
   });
-
+  // mutaion
+  const { isPending, error, forgetPasswordFn } = useForgetPassword();
   const onSubmit: SubmitHandler<ForgetPasswordField> = (values) => {
-    submitForgetPassword(values);
+    forgetPasswordFn(values);
   };
 
   return (
@@ -66,10 +67,14 @@ export default function ForgetPasswordForm() {
               </FormItem>
             )}
           />
-
+          {/* error msg */}
+          {error && <p className="text-red-500 italic ">{error.message}</p>}
           <Button
             className="w-full rounded-2xl h-14 text-lg "
-            disabled={form.formState.isSubmitted && !form.formState.isValid}
+            disabled={
+              isPending ||
+              (form.formState.isSubmitted && !form.formState.isValid)
+            }
           >
             {t("send-code")}
           </Button>

@@ -19,12 +19,14 @@ import {
   resetPasswordSchema,
 } from "@/lib/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { resetPasswordSubmit } from "../../_actions/auth.action";
 import { useTranslations } from "next-intl";
+import useResetPassword from "../_hooks/use-setPassword";
 
 export default function SetPasswordForm() {
   // translation
   const t = useTranslations();
+  // mutation
+  const { isPending, error, resetPasswordFn } = useResetPassword();
   // form
   const form = useForm<ResetPasswordField>({
     defaultValues: {
@@ -34,7 +36,7 @@ export default function SetPasswordForm() {
     resolver: zodResolver(resetPasswordSchema),
   });
   const onSubmit: SubmitHandler<ResetPasswordField> = (values) => {
-    resetPasswordSubmit(values);
+    resetPasswordFn(values);
   };
   return (
     <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-12 py-10">
@@ -75,10 +77,13 @@ export default function SetPasswordForm() {
               name="newPassword"
               placeholder={t("create-password")}
             />
-
+            {error && <p className="text-red-500 italic">{error.message}</p>}
             <Button
               className="w-full rounded-2xl h-14 text-lg "
-              disabled={form.formState.isSubmitted && !form.formState.isValid}
+              disabled={
+                isPending ||
+                (form.formState.isSubmitted && !form.formState.isValid)
+              }
             >
               {t("set-password")}
             </Button>

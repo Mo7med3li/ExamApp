@@ -49,7 +49,6 @@ export async function submitForgetPassword(values: ForgetPasswordField) {
     throw new Error(payload.message);
   }
   console.log(payload);
-  redirect("/auth/verify-code");
 }
 
 export async function submitVerifyCode(values: VerifyCodeField) {
@@ -64,7 +63,6 @@ export async function submitVerifyCode(values: VerifyCodeField) {
   }
 
   console.log(payload);
-  redirect("/auth/set-password");
 }
 
 export async function resetPasswordSubmit(values: ResetPasswordField) {

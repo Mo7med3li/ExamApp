@@ -15,12 +15,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { submitVerifyCode } from "../../_actions/auth.action";
-import { useLocale, useTranslations } from "next-intl";
+
+import { useTranslations } from "next-intl";
+import useverifyCode from "../_hooks/use-verifyCode";
 
 export default function VerfyCodeForm() {
   // translation
   const t = useTranslations();
+  // mutation
+  const { isPending, error, verifyCodeFn } = useverifyCode();
   // form
   const form = useForm<VerifyCodeField>({
     defaultValues: {
@@ -29,7 +32,7 @@ export default function VerfyCodeForm() {
     resolver: zodResolver(verifyCodeSchema),
   });
   const onSubmit: SubmitHandler<VerifyCodeField> = (values) => {
-    submitVerifyCode(values);
+    verifyCodeFn(values);
   };
   return (
     <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-12 py-10">
@@ -63,10 +66,15 @@ export default function VerfyCodeForm() {
               </FormItem>
             )}
           />
+          {/* error msg */}
+          {error && <p className="text-red-500 italic">{error.message}</p>}
 
           <Button
             className="w-full rounded-2xl h-14 text-lg "
-            disabled={form.formState.isSubmitted && !form.formState.isValid}
+            disabled={
+              isPending ||
+              (form.formState.isSubmitted && !form.formState.isValid)
+            }
           >
             {t("verfiy")}
           </Button>

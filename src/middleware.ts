@@ -3,8 +3,14 @@ import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
 import { getToken } from "next-auth/jwt";
-const authPages = ["/auth/login", "/auth/signup"];
-const publicPages = [...authPages];
+const authPages = [
+  "/auth/login",
+  "/auth/signup",
+  "/auth/forget-password",
+  "/auth/set-password",
+  "/auth/verify-code",
+];
+const publicPages = [...Array.from(authPages)];
 
 const handleI18nRouting = createMiddleware(routing);
 
