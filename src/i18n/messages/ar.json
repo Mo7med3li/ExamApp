@@ -32,5 +32,7 @@
   "code": "الرمز",
   "set-password": "اضبط كلمة المرور",
   "create-password": "إنشاء كلمة المرور",
-  "birth-date": "تاريخ ميلادك هو {date,date,date-base}"
+  "birth-date": "تاريخ ميلادك هو {date,date,date-base}",
+  "Acount Created Successfully": "",
+  "account-created-sucessfully": "تم انشاع الحساب بنجاح"
 }

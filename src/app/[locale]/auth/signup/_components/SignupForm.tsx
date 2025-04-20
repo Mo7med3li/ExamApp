@@ -19,11 +19,15 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { submitRegister } from "../../_actions/auth.action";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import useRegister from "../_hooks/use-register";
+import toast from "react-hot-toast";
 
 export default function SignupForm() {
+  // mutatuin
+  const { isPending, error, register } = useRegister();
   // translation
   const t = useTranslations();
-  const router = useRouter();
+
   // form
   const form = useForm<RegisterFields>({
     defaultValues: {
@@ -40,8 +44,9 @@ export default function SignupForm() {
   {
   }
   const onSubmit: SubmitHandler<RegisterFields> = async (values) => {
-    await submitRegister(values);
+    await register(values);
   };
+
   return (
     <div className="bg-white w-[500px]  rounded-md flex flex-col gap-8">
       <h2 className="text-2xl font-bold">{t("sign-up")}</h2>
@@ -181,6 +186,10 @@ export default function SignupForm() {
                 </FormItem>
               )}
             />
+            {/* error msg */}
+            {error && (
+              <p className="text-red-500 italic my-2">{error.message}</p>
+            )}
 
             <div className=" text-center">
               <p className=" text-base">
@@ -194,7 +203,10 @@ export default function SignupForm() {
             <Button
               className="w-full rounded-2xl h-14 text-lg "
               type="submit"
-              disabled={form.formState.isSubmitted && !form.formState.isValid}
+              disabled={
+                isPending ||
+                (form.formState.isSubmitted && !form.formState.isValid)
+              }
             >
               {t("create-account")}
             </Button>

@@ -8,22 +8,34 @@ import {
 } from "@/lib/schemas/auth.schema";
 import { redirect } from "next/navigation";
 
-export async function submitRegister(values: RegisterFields) {
-  const respone = await fetch(`${process.env.API}/auth/signup`, {
+export async function submitRegister(RegisterFields: RegisterFields) {
+  // const respone = await fetch(`${process.env.API!}/auth/signup`, {
+  //   method: "POST",
+  //   body: JSON.stringify(values),
+  //   headers: { ...JSON_HEADER },
+  // });
+  // const paylod: APIResponse<SignupResponse> = await respone.json();
+  // console.log(paylod);
+  // if ("code" in paylod) {
+  //   throw new Error(paylod.message);
+  // }
+
+  // return paylod;
+  const response = await fetch(`${process.env.API!}/auth/signup`, {
     method: "POST",
-    body: JSON.stringify(values),
-    headers: { ...JSON_HEADER },
+    body: JSON.stringify(RegisterFields),
+    headers: {
+      ...JSON_HEADER,
+    },
   });
-  const paylod: APIResponse<SignupResponse> = await respone.json();
+  const payload: APIResponse<SignupResponse> = await response.json();
+  console.log(payload);
 
-  console.log(paylod);
-  if ("code" in paylod) {
-    throw new Error(paylod.message);
+  if ("code" in payload) {
+    const errorMessage = payload.message || "Something went wrong.";
+    throw new Error(errorMessage);
   }
-
-  redirect("/auth/login");
-
-  return paylod;
+  return payload;
 }
 
 export async function submitForgetPassword(values: ForgetPasswordField) {

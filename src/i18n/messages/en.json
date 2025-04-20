@@ -33,5 +33,7 @@
   "code": "code",
   "set-password": "Set a Password",
   "create-password": "Create Password",
-  "birth-date": "your birth date is {date,date,date-base}"
+  "birth-date": "your birth date is {date,date,date-base}",
+  "sucessfully": "Sucessfully",
+  "account-created-sucessfully": "Account Created Sucessfully"
 }

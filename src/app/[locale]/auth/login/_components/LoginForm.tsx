@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import SocialLinks from "../../_components/SocialLinks";
 import PasswordInput from "../../_components/PasswordInput";
-import { signIn } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFields, loginSchema } from "@/lib/schemas/auth.schema";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
@@ -17,10 +16,13 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
+import useLogin from "../_hooks/use-login";
+import toast from "react-hot-toast";
 
 export function LoginForm() {
+  // mutation
+  const { isPending, login, error } = useLogin();
   // translation
   const t = useTranslations();
   // form
@@ -30,25 +32,11 @@ export function LoginForm() {
   });
 
   const onSubmit: SubmitHandler<loginFields> = async (values) => {
-    const respone = await signIn("credentials", {
-      callbackUrl: "/",
-      redirect: false,
-      email: values.email,
-      password: values.password,
-    });
-    console.log(respone);
-
-    if (respone?.ok) {
-      setTimeout(() => {
-        window.location.href = respone.url || "/";
-      }, 1000);
-      toast.success(`${t("login-success")}`);
-      return;
-    }
-    toast.error(respone?.error!);
+    login(values);
   };
   return (
     <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-8">
+      {/* Headline */}
       <h2 className="text-2xl font-bold">{t("sign-in")}</h2>
       <Form {...form}>
         <FormProvider {...form}>
@@ -79,6 +67,8 @@ export function LoginForm() {
               )}
             />
             <PasswordInput name="password" placeholder={t("enter-password")} />
+            {error && <p className="text-red-400 "> {error.message}</p>}
+
             <div className=" text-end">
               <Link
                 href={"/auth/forget-password"}
@@ -90,7 +80,10 @@ export function LoginForm() {
             <Button
               type="submit"
               className="w-full rounded-2xl h-14 text-lg "
-              disabled={form.formState.isSubmitted && !form.formState.isValid}
+              disabled={
+                isPending ||
+                (form.formState.isSubmitted && !form.formState.isValid)
+              }
             >
               {t("sign-in")}
             </Button>

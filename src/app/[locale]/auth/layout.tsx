@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
 import Welcome from "./_components/Welcome";
 import NavbarAuth from "./_components/NavbarAuth";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "@/components/ui/sonner";
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <main className="grid grid-cols-5  h-screen">

@@ -3,7 +3,6 @@ import createMiddleware from "next-intl/middleware";
 import { NextRequest, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
 import { getToken } from "next-auth/jwt";
-import { Regex } from "lucide-react";
 const authPages = ["/auth/login", "/auth/signup"];
 const publicPages = [...authPages];
 
@@ -43,6 +42,7 @@ export default async function middleware(req: NextRequest) {
     const authPathnameRegex = localeRegex(publicPages);
     // Check if the request URL matches any of the auth pages
     const isAuthPage = authPathnameRegex.test(req.nextUrl.pathname);
+
     if (token && isAuthPage) {
       const redirctUrl = new URL("/dashboard", req.nextUrl.origin);
       return NextResponse.redirect(redirctUrl);

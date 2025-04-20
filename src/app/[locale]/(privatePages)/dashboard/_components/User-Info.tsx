@@ -3,8 +3,11 @@ import Image from "next/image";
 import React from "react";
 import { FaCheckCircle, FaClock, FaFlag } from "react-icons/fa";
 import profile from "@/assets/imgs/Frame 40.png";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/auth";
 
-export default function UserInfo() {
+export default async function UserInfo() {
+  const session = await getServerSession(authOptions);
   return (
     <section className=" flex gap-14 bg-white shadow-xl rounded-3xl">
       {/* user image */}
@@ -19,8 +22,13 @@ export default function UserInfo() {
       </section>
       {/* user profile */}
       <section className="bg-white w-full flex flex-col justify-between p-4 ">
-        <h1 className="text-main font-bold text-3xl">Mohamed Ali </h1>
-        <p className="text-slate-400 text-xl ">This is user profile</p>
+        <h1 className="text-main font-bold text-3xl">
+          {" "}
+          {session?.user.firstName}
+        </h1>
+        <p className="text-slate-400 text-xl ">
+          This is {session?.user.role} profile
+        </p>
         <Progress value={80} />
         <section className="flex ">
           <div className="flex items-center gap-10 flex-grow">

@@ -6,6 +6,7 @@ import {
   useTimeZone,
 } from "next-intl";
 import NextAuthProvider from "./components/next-auth.provider";
+import ReactQueryProvider from "./components/react-query-provider";
 
 type ProvidersProps = {
   children: React.ReactNode;
@@ -18,15 +19,17 @@ export default function Providers({ children }: ProvidersProps) {
   const now = useNow();
   const timezone = useTimeZone();
   return (
-    <NextAuthProvider>
-      <NextIntlClientProvider
-        locale={locale}
-        messages={messages}
-        now={now}
-        timeZone={timezone}
-      >
-        {children}
-      </NextIntlClientProvider>
-    </NextAuthProvider>
+    <ReactQueryProvider>
+      <NextAuthProvider>
+        <NextIntlClientProvider
+          locale={locale}
+          messages={messages}
+          now={now}
+          timeZone={timezone}
+        >
+          {children}
+        </NextIntlClientProvider>
+      </NextAuthProvider>
+    </ReactQueryProvider>
   );
 }
