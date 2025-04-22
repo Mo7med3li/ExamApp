@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
 
-import DiplomaQuizStartCard from "./_components/DiplomaQuizStartCard";
+import DiplomaQuizStartCard from "./_components/diplomaQuizStartCard";
 
 export default function Page({ params }: { params: { subjectId: string } }) {
   console.log(params.subjectId);
@@ -9,7 +9,9 @@ export default function Page({ params }: { params: { subjectId: string } }) {
     <section>
       <h2 className="font-medium text-lg mb-8">Front-End Quiz</h2>
       {/* Start Quiz */}
-      <DiplomaQuizStartCard examId={params.subjectId} />
+      <Suspense fallback="loading....">
+        <DiplomaQuizStartCard examId={params.subjectId} />
+      </Suspense>
     </section>
   );
 }

@@ -25,7 +25,23 @@ declare type Exam = {
   active: boolean;
   createdAt: string;
 };
-declare type ExamRespone = {
+declare type ExamResponse = {
   metadata: Metadata;
   exams: Exam[];
+};
+
+type QuestionResponse = {
+  _id: string;
+  question: string;
+  answers: Answer[];
+  type: "single_choice";
+  correct: string;
+  subject: Subject;
+  exam: Exam;
+  createdAt: string;
+};
+
+type Answer = {
+  answer: string;
+  key: string;
 };
