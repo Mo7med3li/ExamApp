@@ -8,26 +8,32 @@ import {
 } from "@/components/ui/dialog";
 import React from "react";
 import QuestionForm from "./questions-form";
+import { getQuestions } from "../_apis/examQuestion.api";
 
 type QuestionDialogProps = {
   exam: string;
 };
-export default function QuestionDialog({ exam }: QuestionDialogProps) {
+export default async function QuestionDialog({ exam }: QuestionDialogProps) {
+  const payload = await getQuestions(exam);
+  console.log(payload);
+
   return (
     <Dialog>
       <DialogTrigger className="bg-main py-1 px-6 rounded-xl text-white">
         Start
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="min-h-[700px] w-[690px] ">
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?{exam}</DialogTitle>
+          <DialogTitle className="">
+            {/* Are you absolutely sure?{exam} */}
+          </DialogTitle>
           <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            {/* This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers. */}
           </DialogDescription>
         </DialogHeader>
-        {/* content */}
-        <QuestionForm />
+        {/* Form */}
+        {payload?.questions && <QuestionForm questions={payload.questions} />}
       </DialogContent>
     </Dialog>
   );

@@ -1,13 +1,17 @@
 // import getAuthHeader from "@/lib/utils/get-authHeader";
 
-// export async function fetchQuestionOnExam(searchParam: string) {
-//   const respone = await fetch(`${process.env.API}/questions?${searchParam}`, {
-//     headers: {
-//       ...(await getAuthHeader()),
-//     },
-//   });
-//   const payload: APIResponse<{ qusestions: QuestionResponse[] }> =
-//     await respone.json();
+import getAuthHeader from "@/lib/utils/get-authHeader";
 
-//   return payload;
-// }
+export async function getQuestions(id: string) {
+  const respone = await fetch(`${process.env.API}/questions?exam=${id}`, {
+    headers: {
+      ...(await getAuthHeader()),
+    },
+  });
+  const payload: APIResponse<{ questions: QuestionResponse[] }> =
+    await respone.json();
+  if ("code" in payload) {
+    throw new Error(payload.message);
+  }
+  return payload;
+}

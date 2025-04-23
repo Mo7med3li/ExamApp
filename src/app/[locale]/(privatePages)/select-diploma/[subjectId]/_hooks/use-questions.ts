@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 export default function useQuestion() {
   // navigation
   const searchParam = useSearchParams();
-  console.log("search", searchParam.toString());
 
   // Queries
   const { isLoading, error, data } = useQuery({

@@ -1,7 +1,7 @@
 import { authOptions } from "@/auth";
 import { getServerSession } from "next-auth";
 
-import { useFormatter, useTranslations } from "next-intl";
+import { useFormatter, useNow, useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 export default function Home({ params: { locale } }: RouteProps) {
@@ -9,6 +9,9 @@ export default function Home({ params: { locale } }: RouteProps) {
   // translation
   const t = useTranslations();
   const format = useFormatter();
+  const now = useNow({
+    updateInterval: 1000,
+  });
   // const session = await getServerSession(authOptions); // server side
   //* getSession client and server side
   //^ useSession client side return
@@ -45,6 +48,7 @@ export default function Home({ params: { locale } }: RouteProps) {
           unit: "hour",
         })}
       </p>
+      <p>{format.relativeTime(new Date("2025-7-20T10:36:01.516Z"), now)}</p>
       <p></p>
     </main>
   );
