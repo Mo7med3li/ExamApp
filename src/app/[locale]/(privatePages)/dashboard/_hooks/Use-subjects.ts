@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import getSubjects from "../_apis/subject.api";
+import { fetchSubjects } from "../_apis/subject.api";
 
 export default function UseSubjects() {
   const {
@@ -9,7 +9,7 @@ export default function UseSubjects() {
     data: payload,
   } = useQuery({
     queryKey: ["subjects"],
-    queryFn: getSubjects,
+    queryFn: fetchSubjects,
   });
   return {
     isLoading,

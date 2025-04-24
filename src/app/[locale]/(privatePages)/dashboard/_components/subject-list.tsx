@@ -1,7 +1,6 @@
 import React from "react";
 import { fetchSubjects } from "../_apis/subject.api";
-import SubjectCard from "./SubjectCard";
-
+import SubjectCard from "./subjectCard";
 export default async function SubjectList() {
   const payload = await fetchSubjects();
 

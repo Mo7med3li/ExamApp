@@ -38,14 +38,8 @@ export default function Searchbar() {
           className="shadow-inputShadow w-full focus-visible:border-main focus-visible:outline-none"
         />
       </div>
-      {session?.data?.user?.role === "admin" ? (
-        <Button className="bg-main hover:opacity-70 rounded-lg py-6 px-5 shadow-btnshadow text-xl font-semibold">
-          Add Quiz
-        </Button>
-      ) : (
-        ""
-      )}
-      <AddQuiz />
+      {session?.data?.user?.role === "admin" ? <AddQuiz /> : ""}
+
       {/* Image profile */}
       <div>
         <Image
