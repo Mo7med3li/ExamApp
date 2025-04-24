@@ -1,8 +1,6 @@
-import { authOptions } from "@/auth";
-import { getServerSession } from "next-auth";
+import { redirect } from "@/i18n/navigation";
 
 import { useFormatter, useNow, useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
 
 export default function Home({ params: { locale } }: RouteProps) {
   console.log(locale);
@@ -15,7 +13,7 @@ export default function Home({ params: { locale } }: RouteProps) {
   // const session = await getServerSession(authOptions); // server side
   //* getSession client and server side
   //^ useSession client side return
-
+  redirect({ href: "/dashboard", locale });
   return (
     <main>
       {/* { t("welcome-user", 

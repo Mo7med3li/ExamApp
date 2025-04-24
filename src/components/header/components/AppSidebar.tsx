@@ -27,7 +27,12 @@ export function AppSidebar() {
       icon: LayoutDashboard,
     },
     {
-      title: `${session?.user.role === "admin" ? null : "Quizes History"}`,
+      title: "All Exams",
+      url: "/all-exams",
+      icon: History,
+    },
+    {
+      title: `${session?.user.role === "admin" ? null : "Quiz History"}`,
       url: `${session?.user.role === "admin" ? null : "/"}`,
       icon: session?.user.role === "admin" ? null : History,
     },

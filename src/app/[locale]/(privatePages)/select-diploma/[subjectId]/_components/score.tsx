@@ -24,7 +24,11 @@ export default function Score({ result, setShowResult }: Result) {
       <h2 className="text-2xl font-medium">Your Score</h2>
       <div className="flex items-center justify-center gap-8">
         {/* Score */}
-        <div className="size-40 rounded-full border-2 border-slate-400 flex items-center justify-center">
+        <div
+          className={`size-40 rounded-full border-2 ${
+            result.total === "100%" ? "border-green-600" : "border-red-600"
+          } border-2 flex items-center justify-center`}
+        >
           {result.total}
         </div>
         <div>

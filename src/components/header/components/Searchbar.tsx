@@ -1,24 +1,52 @@
+"use client";
 import React from "react";
 import LocaleToggler from "./locale-toggler";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import profile from "@/assets/imgs/Rectangle 289.png";
+import { AddQuiz } from "@/app/[locale]/(privatePages)/dashboard/_components/add-quiz";
+import { useExamContext } from "@/components/providers/components/exam.provider";
+import { useForm } from "react-hook-form";
+import { useSession } from "next-auth/react";
 
 export default function Searchbar() {
+  // context
+  const { searchExam } = useExamContext();
+  // form
+  const form = useForm({
+    defaultValues: {
+      searchValue: "",
+    },
+  });
+
+  // session
+  const session = useSession();
   return (
     <section className="flex items-center  gap-4 py-2">
       <div className="flex-grow">
         {" "}
         <Input
+          {...form.register("searchValue")}
+          onChange={(e) => {
+            console.log("search", e.target.value);
+
+            searchExam(e.target.value);
+          }}
           placeholder="Search Quiz "
           type="search"
           className="shadow-inputShadow w-full focus-visible:border-main focus-visible:outline-none"
         />
       </div>
-      <Button className="bg-main hover:opacity-70 rounded-lg py-6 px-5 shadow-btnshadow text-xl font-semibold">
-        Start Quiz
-      </Button>
+      {session?.data?.user?.role === "admin" ? (
+        <Button className="bg-main hover:opacity-70 rounded-lg py-6 px-5 shadow-btnshadow text-xl font-semibold">
+          Add Quiz
+        </Button>
+      ) : (
+        ""
+      )}
+      <AddQuiz />
+      {/* Image profile */}
       <div>
         <Image
           alt="profile image"
@@ -28,6 +56,7 @@ export default function Searchbar() {
           className="w-16"
         />
       </div>
+      {/* Translation */}
       <LocaleToggler />
     </section>
   );

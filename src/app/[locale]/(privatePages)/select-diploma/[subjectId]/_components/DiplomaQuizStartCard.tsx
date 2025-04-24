@@ -1,11 +1,10 @@
-// "use client";
 import Image from "next/image";
 import React from "react";
 import HtmlLogo from "@/assets/imgs/skill-icons_html.png";
-import { Button } from "@/components/ui/button";
 
 import QuestionDialog from "./question-dialog";
-import { fetchExams } from "../_apis/Exam.api";
+import { fetchExams } from "../_apis/exam.api";
+import SearchResult from "./search-result";
 
 export default async function DiplomaQuizStartCard({
   examId,
@@ -13,7 +12,6 @@ export default async function DiplomaQuizStartCard({
   examId: string;
 }) {
   const payload = await fetchExams(examId);
-  console.log(payload);
 
   return (
     <>

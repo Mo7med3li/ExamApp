@@ -1,3 +1,4 @@
+"use client";
 import {
   Dialog,
   DialogContent,
@@ -9,20 +10,25 @@ import {
 import React from "react";
 import QuestionForm from "./questions-form";
 import { getQuestions } from "../_apis/examQuestion.api";
+import useQuestion from "../_hooks/use-questions";
 
 type QuestionDialogProps = {
   exam: string;
 };
-export default async function QuestionDialog({ exam }: QuestionDialogProps) {
-  const payload = await getQuestions(exam);
-  console.log(payload);
+export default function QuestionDialog({ exam }: QuestionDialogProps) {
+  // const payload = await getQuestions(exam);
+  // console.log(payload);
+  const { payload, isLoading } = useQuestion(exam);
+  if (isLoading) {
+    return <p>loading....</p>;
+  }
 
   return (
     <Dialog>
       <DialogTrigger className="bg-main py-1 px-6 rounded-xl text-white">
         Start
       </DialogTrigger>
-      <DialogContent className="w-[690px] ">
+      <DialogContent className="w-[690px] max-h-[100vh] overflow-y-auto ">
         <DialogHeader>
           <DialogTitle className="">
             {/* Are you absolutely sure?{exam} */}
