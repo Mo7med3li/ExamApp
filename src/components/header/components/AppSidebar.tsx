@@ -12,29 +12,31 @@ import {
 } from "@/components/ui/sidebar";
 import Image from "next/image";
 import logo from "@/assets/imgs/Final Logo 1.png";
-import Link from "next/link";
-import { usePathname } from "@/i18n/navigation";
 
-// Menu items.
-const items = [
-  {
-    title: "dashboard",
-    url: "/dashboard",
-    icon: LayoutDashboard,
-  },
-  {
-    title: "Quizes History",
-    url: "/",
-    icon: History,
-  },
-  {
-    title: "Logout",
-    url: "#",
-    icon: LogOut,
-  },
-];
+import { Link, usePathname } from "@/i18n/navigation";
+import { signOut, useSession } from "next-auth/react";
 
 export function AppSidebar() {
+  // session
+  const { data: session } = useSession();
+  // Menu items.
+  const items = [
+    {
+      title: "dashboard",
+      url: "/dashboard",
+      icon: LayoutDashboard,
+    },
+    {
+      title: `${session?.user.role === "admin" ? null : "Quizes History"}`,
+      url: `${session?.user.role === "admin" ? null : "/"}`,
+      icon: session?.user.role === "admin" ? null : History,
+    },
+    {
+      title: "Logout",
+      url: "",
+      icon: LogOut,
+    },
+  ];
   const pathName = usePathname();
   return (
     <Sidebar>
@@ -54,17 +56,25 @@ export function AppSidebar() {
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild className="py-3">
+                    {/* Navigation */}
                     <Link
                       className={`text-xl  w-48 flex justify-between  ${
                         pathName === item.url ? "bg-main text-white" : ""
                       } `}
+                      onClick={() => {
+                        if (item.title === "Logout") {
+                          signOut();
+                        }
+                      }}
                       href={item.url}
                     >
-                      <item.icon
-                        className={`${
-                          pathName === item.url ? " text-white" : "text-main"
-                        }`}
-                      />
+                      {item.icon && (
+                        <item.icon
+                          className={`${
+                            pathName === item.url ? " text-white" : "text-main"
+                          }`}
+                        />
+                      )}
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
