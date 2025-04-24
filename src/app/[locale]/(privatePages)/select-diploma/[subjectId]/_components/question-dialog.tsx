@@ -22,7 +22,7 @@ export default async function QuestionDialog({ exam }: QuestionDialogProps) {
       <DialogTrigger className="bg-main py-1 px-6 rounded-xl text-white">
         Start
       </DialogTrigger>
-      <DialogContent className="min-h-[700px] w-[690px] ">
+      <DialogContent className="w-[690px] ">
         <DialogHeader>
           <DialogTitle className="">
             {/* Are you absolutely sure?{exam} */}

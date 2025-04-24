@@ -15,6 +15,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Examduration from "./exam-duration";
+import useCheckQuestion from "../_hooks/use-checkQuesstion";
+import Score from "./score";
 // types
 type QuestionsFormProps = {
   questions: QuestionResponse[];
@@ -29,6 +31,12 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
   // state
   const [step, setStep] = useState(0);
   const [answer, setAnswer] = useState("");
+  const [result, setResult] =
+    useState<SuccessfullRespone<CheckResponse> | null>(null);
+  const [showResult, setShowResult] = useState(false);
+
+  // Mutation
+  const { isPending, checkQuestios } = useCheckQuestion();
 
   // variable
   const currentQuestion = questions[step];
@@ -36,10 +44,36 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
   // Functions
   const onSubmit: SubmitHandler<AnswersFields> = (values) => {
     console.log("values", values);
+    checkQuestios(values, {
+      onSuccess: (data) => {
+        setResult(data);
+        setShowResult(true);
+        data.WrongQuestions.forEach((question) => {
+          let questionIndex: number | null = null;
+          // find wrong questions id
+          form.getValues("answers").find((answer, j) => {
+            if (answer.questionId === question.QID) {
+              questionIndex = j;
+              return true;
+            } else {
+              return false;
+            }
+          });
+          if (questionIndex) {
+            form.setError(`answers.${questionIndex}`, {
+              message: question.correctAnswer,
+            });
+          }
+        });
+      },
+    });
   };
-
+  if (result && showResult === true) {
+    return <Score result={result} setShowResult={setShowResult} />;
+  }
   return (
     <div className="flex flex-col gap-14">
+      {/* {result && <p>Your result is {result.total}</p>} */}
       {/* Header */}
       <header className="flex justify-between items-center ">
         {/* Question Number */}
@@ -47,7 +81,10 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
           Question {step + 1} of {questions.length}
         </p>
         {/* Exam duration */}
-        <Examduration duration={questions[0]?.exam.duration ?? 0} />
+        <Examduration
+          duration={questions[0]?.exam.duration ?? 0}
+          onTimeChange={(date) => form.setValue("time", date.getMinutes())}
+        />
       </header>
       {/* Steps */}
       <ul className="flex justify-between">
@@ -74,12 +111,13 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
             render={({ field }) => (
               <FormItem>
                 {/* label */}
-                <FormLabel className="text-xl font-bold mt-12 mb-5 ">
+                <FormLabel className="text-xl font-bold py-2">
                   {currentQuestion?.question}
                 </FormLabel>
                 {/* options */}
-                <FormControl className="">
+                <FormControl className="my-2">
                   <RadioGroup
+                    disabled={isPending}
                     value={answer}
                     onValueChange={(value) => {
                       setAnswer(value);
@@ -117,9 +155,9 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
             )}
           />
           {/* footer */}
-          <div className="grid grid-cols-2 gap-12 mt-auto">
+          <div className="grid grid-cols-2 gap-12 mt-12 ">
             <Button
-              disabled={step == 0}
+              disabled={step == 0 || isPending}
               type="button"
               className="text-main bg-white border border-main rounded-[100px] font-medium text-2xl"
               onClick={() => {
@@ -142,17 +180,18 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
                 step < (questions.length ?? 0) - 1 ? "button" : "submit"
               }`}
               disabled={(() => {
+                if (isPending) return true;
                 const currentAnswer = form.getValues(`answers.${step}`);
                 if (currentAnswer?.correct) return false;
                 return true;
               })()}
               onClick={() => {
                 if (step === (questions.length ?? 0) - 1) return;
-                const nextAmswer = form.getValues(`answers.${step + 1}`);
-                if (!nextAmswer?.correct) {
+                const nextAnswer = form.getValues(`answers.${step + 1}`);
+                if (!nextAnswer?.correct) {
                   setAnswer("");
                 } else {
-                  setAnswer(nextAmswer.correct);
+                  setAnswer(nextAnswer.correct);
                 }
                 setStep((prev) => prev + 1);
               }}

@@ -18,6 +18,7 @@ const config: Config = {
         inputShadow: "0px 10px 20px 0px #4461F20D",
         cardShadow: "0px 15px 40px 0px #0000000D",
         cardDiplomaShadow: "0px 15px 40px 0px #2A29290D",
+        questionCardShadow: "0px 0px 8px 0px #2A292940",
       },
       colors: {
         main: "#4461F2",

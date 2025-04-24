@@ -45,3 +45,23 @@ type Answer = {
   answer: string;
   key: string;
 };
+
+declare type CheckResponse = {
+  correct: number;
+  wrong: number;
+  total: string;
+  WrongQuestions: {
+    QID: string;
+    Question: string;
+    inCorrectAnswer: string;
+    correctAnswer: string;
+    // answers: {};
+  }[];
+  correctQuestions: {
+    QID: string;
+    Question: string;
+    inCorrectAnswer: string;
+    correctAnswer: string;
+    // answers: {};
+  }[];
+};

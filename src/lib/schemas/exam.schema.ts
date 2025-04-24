@@ -1,3 +1,4 @@
+import { time } from "console";
 import z from "zod";
 export const ExamSchema = z.object({
   answers: z.array(
@@ -6,6 +7,7 @@ export const ExamSchema = z.object({
       correct: z.string(),
     })
   ),
+  time: z.number(),
 });
 
 export type AnswersFields = z.infer<typeof ExamSchema>;
