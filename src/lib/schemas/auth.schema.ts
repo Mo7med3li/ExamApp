@@ -1,5 +1,4 @@
 import z from "zod";
-import { isValidPhoneNumber } from "libphonenumber-js";
 export const loginSchema = z.object({
   email: z
     .string()

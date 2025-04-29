@@ -16,11 +16,8 @@ import {
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { RegisterFields, registerSchema } from "@/lib/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { submitRegister } from "../../_actions/auth.action";
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import useRegister from "../_hooks/use-register";
-import toast from "react-hot-toast";
 
 export default function SignupForm() {
   // mutatuin

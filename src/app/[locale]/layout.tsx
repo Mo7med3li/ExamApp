@@ -1,12 +1,12 @@
-import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import localFont from "next/font/local";
 import { Metadata } from "next";
 
 import Providers from "@/components/providers";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/header/components/AppSidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
+
 import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = localFont({

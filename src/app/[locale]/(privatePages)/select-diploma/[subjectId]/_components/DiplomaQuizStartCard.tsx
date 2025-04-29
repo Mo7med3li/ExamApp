@@ -4,7 +4,6 @@ import HtmlLogo from "@/assets/imgs/skill-icons_html.png";
 
 import QuestionDialog from "./question-dialog";
 import { fetchExams } from "../_apis/exam.api";
-import SearchResult from "./search-result";
 
 export default async function DiplomaQuizStartCard({
   examId,

@@ -11,7 +11,9 @@ export default async function getAuthHeader() {
       secret: process.env.NEXTAUTH_SECRET!,
       token: authCookie,
     });
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
   console.log("token", jwt?.token);
 
   return {

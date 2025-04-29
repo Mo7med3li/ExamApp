@@ -1,7 +1,6 @@
 import React from "react";
-import Welcome from "../_components/Welcome";
-import NavbarAuth from "../_components/NavbarAuth";
-import SignupForm from "./_components/SignupForm";
+import SignupForm from "./_components/signupForm";
+
 export default function page() {
   return (
     // form

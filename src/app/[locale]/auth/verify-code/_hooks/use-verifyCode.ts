@@ -7,7 +7,7 @@ import { submitVerifyCode } from "../../_actions/auth.action";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 
-export default function useverifyCode() {
+export default function useVerifyCode() {
   // translation
   const t = useTranslations();
   // navigation

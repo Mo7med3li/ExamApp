@@ -42,7 +42,7 @@ export const authOptions: NextAuthOptions = {
   events: {},
   callbacks: {
     //* Jwt take data br ready to encrypt
-    jwt: ({ token, user, profile }) => {
+    jwt: ({ token, user }) => {
       //* user is return data from login
       // *put data i want to encrypt in token
 

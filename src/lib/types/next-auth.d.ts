@@ -1,5 +1,4 @@
-import NextAuth, { User } from "next-auth";
-import { JWT } from "next-auth/jwt";
+import { User } from "next-auth";
 
 declare module "next-auth" {
   /**
@@ -10,14 +9,14 @@ declare module "next-auth" {
     token: string;
     user: AppUser;
   }
-  interface Profile {
-    // email: string;
-    // email_verfied: boolean;
-    // name: string;
-    // picture: string;
-    // given_name: string;
-    // family_name: string;
-  }
+  // interface Profile {
+  //   // email: string;
+  //   // email_verfied: boolean;
+  //   // name: string;
+  //   // picture: string;
+  //   // given_name: string;
+  //   // family_name: string;
+  // }
   interface Session {
     user: AppUser;
   }

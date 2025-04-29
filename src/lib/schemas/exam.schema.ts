@@ -1,4 +1,3 @@
-import { time } from "console";
 import z from "zod";
 export const ExamSchema = z.object({
   answers: z.array(

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import LocaleToggler from "./locale-toggler";
-import { Button } from "@/components/ui/button";
+
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import profile from "@/assets/imgs/Rectangle 289.png";
