@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 
 import SubjectList from "./_components/subject-list";
 import UserInfo from "./_components/user-Info";
-import SearchResult from "../select-diploma/[subjectId]/_components/search-result";
 
 export default function page() {
   // async function subjectList() {

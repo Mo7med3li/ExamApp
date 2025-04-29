@@ -1,5 +1,4 @@
 "use client";
-import { AnswersFields } from "@/lib/schemas/exam.schema";
 import React, { useEffect, useState } from "react";
 import { LuAlarmClock } from "react-icons/lu";
 type ExamDuration = {
@@ -33,6 +32,9 @@ export default function Examduration({
         return currentDate.setSeconds(currentDate.getSeconds() - 1);
       });
     }, 1000);
+    return () => {
+      window.clearInterval(timerId);
+    };
   }, [onTimerEnd, onTimeChange]);
   return (
     <div className="flex items-center gap-2 leading-none ">

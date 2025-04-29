@@ -14,6 +14,9 @@ export default function AllExams() {
   if (isPending) {
     return <p>isLoading</p>;
   }
+  if (error) {
+    return <p>{error.message}</p>;
+  }
 
   return (
     <div>

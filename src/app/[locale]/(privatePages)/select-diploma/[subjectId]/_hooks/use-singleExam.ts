@@ -1,6 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useSearchParams } from "next/navigation";
-
 export default function useSingleExam(id: string) {
   // navigation
 

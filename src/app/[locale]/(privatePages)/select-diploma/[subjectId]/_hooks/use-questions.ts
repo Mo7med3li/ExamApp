@@ -1,7 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { useSearchParams } from "next/navigation";
-
 export default function useQuestion(id: string) {
   // Queries
   const { isLoading, error, data } = useQuery({

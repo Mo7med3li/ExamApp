@@ -1,6 +1,5 @@
 import { AppSidebar } from "@/components/header/components/AppSidebar";
 import Searchbar from "@/components/header/components/Searchbar";
-import SearchResult from "./select-diploma/[subjectId]/_components/search-result";
 import React from "react";
 export default function dashboardLayout({
   children,

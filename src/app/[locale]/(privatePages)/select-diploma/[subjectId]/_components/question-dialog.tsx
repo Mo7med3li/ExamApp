@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/dialog";
 import React from "react";
 import QuestionForm from "./questions-form";
-import { getQuestions } from "../_apis/examQuestion.api";
 import useQuestion from "../_hooks/use-questions";
 
 type QuestionDialogProps = {

@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import { fetchSubjects } from "../_apis/subject.api";
 
 export default function UseSubjects() {
