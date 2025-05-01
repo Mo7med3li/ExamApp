@@ -1,16 +1,21 @@
 import React, { Suspense } from "react";
 
 import DiplomaQuizStartCard from "./_components/diplomaQuizStartCard";
+import { fetchExams } from "./_apis/exam.api";
 
-export default function Page({ params }: { params: { subjectId: string } }) {
+export default async function Page({
+  params,
+}: {
+  params: { subjectId: string };
+}) {
   console.log(params.subjectId);
-
+  const payload = await fetchExams(params.subjectId);
   return (
     <section>
       <h2 className="font-medium text-lg mb-8">Front-End Quiz</h2>
       {/* Start Quiz */}
       <Suspense fallback="loading....">
-        <DiplomaQuizStartCard examId={params.subjectId} />
+        <DiplomaQuizStartCard Exams={payload.exams} />
       </Suspense>
     </section>
   );

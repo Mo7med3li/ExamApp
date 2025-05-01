@@ -1,20 +1,16 @@
 import Image from "next/image";
 import React from "react";
 import HtmlLogo from "@/assets/imgs/skill-icons_html.png";
-
 import QuestionDialog from "./question-dialog";
-import { fetchExams } from "../_apis/exam.api";
 
-export default async function DiplomaQuizStartCard({
-  examId,
+export default function DiplomaQuizStartCard({
+  Exams,
 }: {
-  examId: string;
+  Exams: Exam[] | undefined;
 }) {
-  const payload = await fetchExams(examId);
-
   return (
     <>
-      {payload?.exams.map((exam) => {
+      {Exams?.map((exam) => {
         return (
           <section
             key={exam._id}
