@@ -1,11 +1,14 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { LuAlarmClock } from "react-icons/lu";
+
 type ExamDuration = {
   duration: number;
   onTimerEnd?: () => void;
   onTimeChange?: (date: Date) => void;
 };
+
 export default function Examduration({
   duration,
   onTimerEnd,
@@ -13,6 +16,7 @@ export default function Examduration({
 }: ExamDuration) {
   // State
   const [date, setDate] = useState(new Date(0).setMinutes(duration));
+
   // effects
   useEffect(() => {
     const timerId = setInterval(() => {
@@ -36,6 +40,7 @@ export default function Examduration({
       window.clearInterval(timerId);
     };
   }, [onTimerEnd, onTimeChange]);
+
   return (
     <div className="flex items-center gap-2 leading-none ">
       <LuAlarmClock />

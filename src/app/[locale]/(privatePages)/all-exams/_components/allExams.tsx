@@ -3,13 +3,15 @@ import React from "react";
 import { useExamContext } from "@/components/providers/components/exam.provider";
 import SearchResult from "../../select-diploma/[subjectId]/_components/search-result";
 import { useAllExams } from "../../select-diploma/[subjectId]/_hooks/use-allExams";
-import DiplomaQuizStartCard from "../../select-diploma/[subjectId]/_components/diplomaQuizStartCard";
+import DiplomaQuizStartCard from "../../select-diploma/[subjectId]/_components/diploma-auizStart-card";
 
 export default function AllExams() {
   // Hooks
   const { isPending, error, Exams } = useAllExams();
+
   // Context
   const { searchExamsList } = useExamContext();
+  
   if (isPending) {
     return <p>isLoading</p>;
   }

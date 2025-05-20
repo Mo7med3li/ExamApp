@@ -4,11 +4,7 @@ import SubjectList from "./_components/subject-list";
 import UserInfo from "./_components/user-Info";
 
 export default function page() {
-  // async function subjectList() {
-  //   const respone = await fetch(`${process.env.NEXT_PUBLIC_API}/get-subjects`);
-  //   const payload = await respone.json();
-  //   console.log(payload);
-  // }
+
   return (
     <>
       {/* User info */}

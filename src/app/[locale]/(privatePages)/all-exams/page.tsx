@@ -1,6 +1,7 @@
 import React from "react";
 import AllExams from "./_components/allExams";
-export default function pages() {
+
+export default function page() {
   return (
     <section>
       {/* Exams */}

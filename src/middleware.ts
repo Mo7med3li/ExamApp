@@ -10,7 +10,7 @@ const authPages = [
   "/auth/set-password",
   "/auth/verify-code",
 ];
-const publicPages = [...Array.from(authPages)];
+const publicPages = [...authPages];
 
 const handleI18nRouting = createMiddleware(routing);
 
@@ -55,6 +55,7 @@ export default async function middleware(req: NextRequest) {
     }
     return handleI18nRouting(req);
   } else {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (authMiddleware as any)(req);
   }
 }

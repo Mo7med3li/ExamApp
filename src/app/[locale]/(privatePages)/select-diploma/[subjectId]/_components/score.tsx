@@ -10,6 +10,7 @@ type Result = {
 export default function Score({ result, setShowResult }: Result) {
   // state
   const [showDetailedResult, setShowDetailedResult] = useState(false);
+  
   if (showDetailedResult) {
     return (
       <DetailedResult
@@ -18,6 +19,7 @@ export default function Score({ result, setShowResult }: Result) {
       />
     );
   }
+
   return (
     <section className="flex flex-col gap-7">
       {/* Header */}

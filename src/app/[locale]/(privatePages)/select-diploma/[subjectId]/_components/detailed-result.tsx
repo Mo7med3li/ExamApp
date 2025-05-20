@@ -7,10 +7,12 @@ type Result = {
   result: CheckResponse;
   setShowDetailedResult: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
 export default function DetailedResult({
   result,
   setShowDetailedResult,
 }: Result) {
+
   return (
     <section className="grid grid-cols-2 items-center gap-4   ">
       {result.WrongQuestions.map((question) => {

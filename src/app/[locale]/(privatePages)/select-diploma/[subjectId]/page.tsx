@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import DiplomaQuizStartCard from "./_components/diplomaQuizStartCard";
+import DiplomaQuizStartCard from "./_components/diploma-auizStart-card";
 import { fetchExams } from "./_apis/exam.api";
 
 export default async function Page({
@@ -8,7 +8,6 @@ export default async function Page({
 }: {
   params: { subjectId: string };
 }) {
-  console.log(params.subjectId);
   const payload = await fetchExams(params.subjectId);
   return (
     <section>

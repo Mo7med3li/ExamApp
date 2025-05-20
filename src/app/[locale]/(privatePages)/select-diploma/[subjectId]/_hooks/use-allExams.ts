@@ -10,7 +10,6 @@ export function useAllExams() {
       if ("code" in payload) {
         throw new Error(payload.message);
       }
-      console.log("search exam", payload);
 
       return payload;
     },

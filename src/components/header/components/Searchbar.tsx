@@ -29,8 +29,6 @@ export default function Searchbar() {
         <Input
           {...form.register("searchValue")}
           onChange={(e) => {
-            console.log("search", e.target.value);
-
             searchExam(e.target.value);
           }}
           placeholder="Search Quiz "

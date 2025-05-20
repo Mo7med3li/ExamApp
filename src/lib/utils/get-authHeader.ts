@@ -12,9 +12,8 @@ export default async function getAuthHeader() {
       token: authCookie,
     });
   } catch (error) {
-    console.log(error);
+    void error;
   }
-  console.log("token", jwt?.token);
 
   return {
     token: jwt?.token || "",

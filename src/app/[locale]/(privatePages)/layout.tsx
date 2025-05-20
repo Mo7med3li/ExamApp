@@ -1,6 +1,7 @@
-import { AppSidebar } from "@/components/header/components/AppSidebar";
+import { AppSidebar } from "@/components/header/components/app-sidebar";
 import Searchbar from "@/components/header/components/Searchbar";
 import React from "react";
+
 export default function dashboardLayout({
   children,
 }: {

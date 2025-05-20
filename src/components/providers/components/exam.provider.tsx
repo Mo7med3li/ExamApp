@@ -1,4 +1,5 @@
 "use client";
+
 import { useAllExams } from "@/app/[locale]/(privatePages)/select-diploma/[subjectId]/_hooks/use-allExams";
 // context/ExamContext.tsx
 
@@ -16,14 +17,13 @@ export const ExamProvider = ({ children }: { children: ReactNode }) => {
   // state
   const [searchExamsList, setSearchExamsList] = useState<Exam[]>([]);
   const { Exams } = useAllExams();
+
   // functions
   async function searchExam(searchValue: string): Promise<Exam[]> {
     const examFilter = Exams?.exams.filter((exam) => {
       return exam.title.toLowerCase().includes(searchValue.toLowerCase());
     });
     setSearchExamsList(examFilter || []);
-    console.log(searchExamsList);
-
     return examFilter || [];
   }
 
