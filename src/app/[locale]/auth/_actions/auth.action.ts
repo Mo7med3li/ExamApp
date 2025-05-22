@@ -1,4 +1,5 @@
 "use server";
+
 import { JSON_HEADER } from "@/lib/Constants/api.constant";
 import {
   ForgetPasswordField,
@@ -9,17 +10,6 @@ import {
 import { redirect } from "next/navigation";
 
 export async function submitRegister(RegisterFields: RegisterFields) {
-  // const respone = await fetch(`${process.env.API!}/auth/signup`, {
-  //   method: "POST",
-  //   body: JSON.stringify(values),
-  //   headers: { ...JSON_HEADER },
-  // });
-  // const paylod: APIResponse<SignupResponse> = await respone.json();
-  // console.log(paylod);
-  // if ("code" in paylod) {
-  //   throw new Error(paylod.message);
-  // }
-
   // return paylod;
   const response = await fetch(`${process.env.API!}/auth/signup`, {
     method: "POST",
@@ -29,7 +19,6 @@ export async function submitRegister(RegisterFields: RegisterFields) {
     },
   });
   const payload: APIResponse<SignupResponse> = await response.json();
-  console.log(payload);
 
   if ("code" in payload) {
     const errorMessage = payload.message || "Something went wrong.";
@@ -48,7 +37,6 @@ export async function submitForgetPassword(values: ForgetPasswordField) {
   if ("code" in payload) {
     throw new Error(payload.message);
   }
-  console.log(payload);
 }
 
 export async function submitVerifyCode(values: VerifyCodeField) {
@@ -62,7 +50,6 @@ export async function submitVerifyCode(values: VerifyCodeField) {
     throw new Error(payload.message);
   }
 
-  console.log(payload);
 }
 
 export async function resetPasswordSubmit(values: ResetPasswordField) {
@@ -75,7 +62,6 @@ export async function resetPasswordSubmit(values: ResetPasswordField) {
   if ("code" in payload) {
     throw new Error(payload.message);
   }
-  console.log(payload);
 
   redirect("/auth/login");
 }

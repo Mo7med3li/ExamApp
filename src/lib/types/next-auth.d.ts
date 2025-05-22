@@ -1,4 +1,7 @@
-import { User } from "next-auth";
+/* eslint-disable @typescript-eslint/no-empty-object-type */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import NextAuth, { DefaultSession, User } from "next-auth";
+import { JWT } from "next-auth/jwt";
 
 declare module "next-auth" {
   /**
@@ -9,14 +12,7 @@ declare module "next-auth" {
     token: string;
     user: AppUser;
   }
-  // interface Profile {
-  //   // email: string;
-  //   // email_verfied: boolean;
-  //   // name: string;
-  //   // picture: string;
-  //   // given_name: string;
-  //   // family_name: string;
-  // }
+
   interface Session {
     user: AppUser;
   }

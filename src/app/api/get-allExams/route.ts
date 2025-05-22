@@ -15,7 +15,6 @@ export async function GET(req: NextRequest) {
   if ("code" in payload) {
     throw new Error(payload.message);
   }
-  console.log("all exams _______________", payload);
 
   return NextResponse.json(payload);
 }

@@ -3,7 +3,6 @@ import { redirect } from "@/i18n/navigation";
 import { useFormatter, useNow, useTranslations } from "next-intl";
 
 export default function Home({ params: { locale } }: RouteProps) {
-  console.log(locale);
   // translation
   const t = useTranslations();
   const format = useFormatter();

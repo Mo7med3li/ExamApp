@@ -14,9 +14,8 @@ import useQuestion from "../_hooks/use-questions";
 type QuestionDialogProps = {
   exam: string;
 };
+
 export default function QuestionDialog({ exam }: QuestionDialogProps) {
-  // const payload = await getQuestions(exam);
-  // console.log(payload);
   const { payload, isLoading } = useQuestion(exam);
   if (isLoading) {
     return <p>loading....</p>;

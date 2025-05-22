@@ -43,7 +43,6 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
 
   // Functions
   const onSubmit: SubmitHandler<AnswersFields> = (values) => {
-    console.log("values", values);
     checkQuestios(values, {
       onSuccess: (data) => {
         setResult(data);
@@ -68,9 +67,11 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
       },
     });
   };
+
   if (result && showResult === true) {
     return <Score result={result} setShowResult={setShowResult} />;
   }
+
   return (
     <div className="flex flex-col gap-14">
       {/* {result && <p>Your result is {result.total}</p>} */}

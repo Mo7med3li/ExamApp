@@ -13,6 +13,8 @@ export async function checkQuestionAction(fields: AnswersFields) {
       ...JSON_HEADER,
     },
   });
+
   const payload: APIResponse<CheckResponse> = await respone.json();
+
   return payload;
 }
