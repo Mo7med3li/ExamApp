@@ -1,9 +1,10 @@
 "use client";
+
 import type React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import SocialLinks from "../../_components/SocialLinks";
-import PasswordInput from "../../_components/PasswordInput";
+import SocialLinks from "../../_components/social-links";
+import PasswordInput from "../../_components/password-input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFields, loginSchema } from "@/lib/schemas/auth.schema";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
@@ -22,8 +23,10 @@ import { Link } from "@/i18n/navigation";
 export function LoginForm() {
   // mutation
   const { isPending, login, error } = useLogin();
+
   // translation
   const t = useTranslations();
+
   // form
   const form = useForm<loginFields>({
     defaultValues: { email: "", password: "" },
@@ -33,6 +36,7 @@ export function LoginForm() {
   const onSubmit: SubmitHandler<loginFields> = async (values) => {
     login(values);
   };
+
   return (
     <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-8">
       {/* Headline */}

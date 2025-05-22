@@ -2,7 +2,6 @@
 
 import { Link } from "@/i18n/navigation";
 import Image from "next/image";
-
 import React from "react";
 
 export default function SubjectCard({ subject }: { subject: Subject }) {

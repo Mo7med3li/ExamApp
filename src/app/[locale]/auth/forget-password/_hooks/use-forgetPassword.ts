@@ -2,10 +2,10 @@
 
 import { ForgetPasswordField } from "@/lib/schemas/auth.schema";
 import { useMutation } from "@tanstack/react-query";
-import { submitForgetPassword } from "../../_actions/auth.action";
 import { toast } from "sonner";
 import { useRouter } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
+import { submitForgetPassword } from "../_actions/forget-password.action";
 
 export default function useForgetPassword() {
   // translation

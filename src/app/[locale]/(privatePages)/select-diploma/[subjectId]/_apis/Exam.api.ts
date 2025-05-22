@@ -5,7 +5,9 @@ export async function fetchExams(examId: string) {
       ...(await getAuthHeader()),
     },
   });
+
   const payload: APIResponse<ExamResponse> = await respone.json();
+
   if ("code" in payload) {
     throw new Error(payload.message);
   }

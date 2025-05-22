@@ -10,6 +10,7 @@ export default function UseSubjects() {
     queryKey: ["subjects"],
     queryFn: fetchSubjects,
   });
+
   return {
     isLoading,
     error,

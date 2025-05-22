@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { useExamContext } from "@/components/providers/components/exam.provider";
 import SearchResult from "../../select-diploma/[subjectId]/_components/search-result";
@@ -15,6 +16,7 @@ export default function AllExams() {
   if (isPending) {
     return <p>isLoading</p>;
   }
+  // Error handling
   if (error) {
     return <p>{error.message}</p>;
   }

@@ -1,8 +1,9 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import React from "react";
-import SocialLinks from "../../_components/SocialLinks";
+import SocialLinks from "../../_components/social-links";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { VerifyCodeField, verifyCodeSchema } from "@/lib/schemas/auth.schema";
@@ -22,8 +23,10 @@ import useverifyCode from "../_hooks/use-verifyCode";
 export default function VerfyCodeForm() {
   // translation
   const t = useTranslations();
+
   // mutation
   const { isPending, error, verifyCodeFn } = useverifyCode();
+
   // form
   const form = useForm<VerifyCodeField>({
     defaultValues: {
@@ -31,9 +34,11 @@ export default function VerfyCodeForm() {
     },
     resolver: zodResolver(verifyCodeSchema),
   });
+
   const onSubmit: SubmitHandler<VerifyCodeField> = (values) => {
     verifyCodeFn(values);
   };
+
   return (
     <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-12 py-10">
       <h2 className="text-2xl font-bold">{t("verfiy-code")}</h2>
@@ -68,7 +73,6 @@ export default function VerfyCodeForm() {
           />
           {/* error msg */}
           {error && <p className="text-red-500 italic">{error.message}</p>}
-
           <Button
             className="w-full rounded-2xl h-14 text-lg "
             disabled={

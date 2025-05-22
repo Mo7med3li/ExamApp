@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import Welcome from "./_components/Welcome";
-import NavbarAuth from "./_components/NavbarAuth";
+import Welcome from "./_components/welcome";
+import NavbarAuth from "./_components/navbar-auth";
 import { Toaster } from "@/components/ui/sonner";
 
 export default function RootLayout({ children }: { children: ReactNode }) {

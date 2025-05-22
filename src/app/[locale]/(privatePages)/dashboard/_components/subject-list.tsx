@@ -3,6 +3,7 @@ import { fetchSubjects } from "../_apis/subject.api";
 import SubjectCard from "./subject-card";
 
 export default async function SubjectList() {
+  // fetch data
   const payload = await fetchSubjects();
 
   return payload?.subjects.map((subject) => {

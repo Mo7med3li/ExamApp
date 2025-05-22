@@ -8,8 +8,10 @@ export async function getQuestions(id: string) {
       ...(await getAuthHeader()),
     },
   });
+
   const payload: APIResponse<{ questions: QuestionResponse[] }> =
     await respone.json();
+
   if ("code" in payload) {
     throw new Error(payload.message);
   }

@@ -7,7 +7,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth";
 
 export default async function UserInfo() {
+  // Session
   const session = await getServerSession(authOptions);
+
   return (
     <section className=" flex gap-14 bg-white shadow-xl rounded-3xl">
       {/* user image */}

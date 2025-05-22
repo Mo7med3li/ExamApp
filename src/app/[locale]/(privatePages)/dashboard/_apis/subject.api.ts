@@ -6,7 +6,9 @@ export async function fetchSubjects() {
       ...(await getAuthHeader()),
     },
   });
+
   const payload: APIResponse<SubjectsResponse> = await respone.json();
+
   if ("code" in payload) {
     throw new Error(payload.message);
   }

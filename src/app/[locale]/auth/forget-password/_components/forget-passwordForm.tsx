@@ -1,6 +1,7 @@
 "use client";
+
 import React from "react";
-import SocialLinks from "../../_components/SocialLinks";
+import SocialLinks from "../../_components/social-links";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,6 +30,7 @@ export default function ForgetPasswordForm() {
     defaultValues: { email: "" },
     resolver: zodResolver(forgetPasswordSchema),
   });
+
   // mutaion
   const { isPending, error, forgetPasswordFn } = useForgetPassword();
   const onSubmit: SubmitHandler<ForgetPasswordField> = (values) => {

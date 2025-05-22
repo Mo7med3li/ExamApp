@@ -1,10 +1,11 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import React from "react";
-import SocialLinks from "../../_components/SocialLinks";
-import PasswordInput from "../../_components/PasswordInput";
+import SocialLinks from "../../_components/social-links";
+import PasswordInput from "../../_components/password-input";
 import {
   Form,
   FormControl,
@@ -22,6 +23,7 @@ import useRegister from "../_hooks/use-register";
 export default function SignupForm() {
   // mutatuin
   const { isPending, error, register } = useRegister();
+
   // translation
   const t = useTranslations();
 
