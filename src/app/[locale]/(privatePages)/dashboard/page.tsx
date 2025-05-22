@@ -1,10 +1,9 @@
 import React, { Suspense } from "react";
 
 import SubjectList from "./_components/subject-list";
-import UserInfo from "./_components/user-Info";
+import UserInfo from "./_components/user-info";
 
 export default function page() {
-
   return (
     <>
       {/* User info */}

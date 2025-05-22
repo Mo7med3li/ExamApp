@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import DiplomaQuizStartCard from "./_components/diploma-auizStart-card";
+import DiplomaQuizStartCard from "./_components/diploma-quizStart-card";
 import { fetchExams } from "./_apis/exam.api";
 
 export default async function Page({
