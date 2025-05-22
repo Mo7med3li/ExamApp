@@ -18,7 +18,7 @@ export default function useResetPassword() {
     onSuccess: () => {
       toast.success(t("password-changed-successfully"));
       setTimeout(() => {
-        router.push("auth/login");
+        router.push("/auth/login");
       }, 1000);
     },
     onError: (error) => {

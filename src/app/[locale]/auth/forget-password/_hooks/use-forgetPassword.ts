@@ -20,7 +20,7 @@ export default function useForgetPassword() {
     onSuccess: () => {
       toast.success(t("sending-code-to-email"));
       setTimeout(() => {
-        router.push("auth/verify-code");
+        router.push("/auth/verify-code");
       }, 1000);
     },
     onError: (error) => {

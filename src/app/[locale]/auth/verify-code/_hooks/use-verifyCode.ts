@@ -20,7 +20,7 @@ export default function useVerifyCode() {
     onSuccess: () => {
       toast.success(t("going-to-create-password"));
       setTimeout(() => {
-        router.push("auth/set-password");
+        router.push("/auth/set-password");
       }, 1000);
     },
     onError: (error) => {
