@@ -11,17 +11,19 @@ import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
 
 export default function Searchbar() {
-  // context
+  // Context
   const { searchExam } = useExamContext();
-  // form
+
+  // Form
   const form = useForm({
     defaultValues: {
       searchValue: "",
     },
   });
 
-  // session
+  // Session
   const session = useSession();
+
   return (
     <section className="flex items-center  gap-4 py-2">
       <div className="flex-grow">

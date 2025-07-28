@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import SubjectList from "./_components/subject-list";
-import UserInfo from "./_components/user-info";
+import UserInfo from "./_components/user-Info";
 
 export default function page() {
   return (
