@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 
 export default function Searchbar() {
   // Context
-  const { searchExam } = useExamContext();
+  const { searchExam, setSearchValue } = useExamContext();
 
   // Form
   const form = useForm({
@@ -32,6 +32,7 @@ export default function Searchbar() {
           {...form.register("searchValue")}
           onChange={(e) => {
             searchExam(e.target.value);
+            setSearchValue(e.target.value);
           }}
           placeholder="Search Quiz "
           type="search"

@@ -9,6 +9,8 @@ type ExamContextType = {
   searchExamsList: Exam[];
   setSearchExamsList: (exams: Exam[]) => void;
   searchExam: (searchValue: string) => Promise<Exam[]>;
+  searchValue: string | null;
+  setSearchValue: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 const ExamContext = createContext<ExamContextType | undefined>(undefined);
@@ -16,6 +18,7 @@ const ExamContext = createContext<ExamContextType | undefined>(undefined);
 export const ExamProvider = ({ children }: { children: ReactNode }) => {
   // state
   const [searchExamsList, setSearchExamsList] = useState<Exam[]>([]);
+  const [searchValue, setSearchValue] = useState<string | null>(null);
   const { Exams } = useAllExams();
 
   // functions
@@ -29,7 +32,13 @@ export const ExamProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ExamContext.Provider
-      value={{ searchExamsList, setSearchExamsList, searchExam }}
+      value={{
+        searchExamsList,
+        setSearchExamsList,
+        searchExam,
+        searchValue,
+        setSearchValue,
+      }}
     >
       {children}
     </ExamContext.Provider>

@@ -11,7 +11,7 @@ export default function AllExams() {
   const { isPending, error, Exams } = useAllExams();
 
   // Context
-  const { searchExamsList } = useExamContext();
+  const { searchExamsList, searchValue } = useExamContext();
 
   if (isPending) {
     return <p>isLoading</p>;
@@ -23,10 +23,17 @@ export default function AllExams() {
 
   return (
     <div>
-      {searchExamsList.length === 0 ? null : <SearchResult />}
-      {searchExamsList.length === 0 ? (
+      {searchValue ? (
+        searchExamsList.length > 0 ? (
+          <SearchResult />
+        ) : (
+          <p className="text-center py-4">No exams found</p>
+        )
+      ) : Array.isArray(Exams?.exams) && Exams.exams.length > 0 ? (
         <DiplomaQuizStartCard Exams={Exams?.exams} />
-      ) : null}
+      ) : (
+        <p className="text-center py-4">No exams available</p>
+      )}
     </div>
   );
 }
