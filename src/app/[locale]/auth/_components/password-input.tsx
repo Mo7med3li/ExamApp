@@ -20,9 +20,14 @@ export default function PasswordInput({
   placeholder?: string;
   name: string;
 }) {
+  // Translations
   const locale = useLocale();
   const t = useTranslations();
+
+  // Forms
   const { control, formState } = useFormContext();
+
+  // States
   const [showPassword, setShowPassword] = useState(false);
   return (
     <>
@@ -54,9 +59,8 @@ export default function PasswordInput({
         />
         <Button
           type="button"
-          variant="ghost"
           size="icon"
-          className={`absolute  top-3 ${
+          className={`absolute  bottom-0  bg-none shadow-none ${
             locale === "ar" ? "left-0" : "right-0"
           }  `}
           onClick={() => setShowPassword(!showPassword)}

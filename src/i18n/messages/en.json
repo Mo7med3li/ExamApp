@@ -38,5 +38,11 @@
   "account-created-sucessfully": "Account Created Sucessfully",
   "sending-code-to-email": "sending code to email",
   "going-to-create-password": "going to create password",
-  "password-changed-successfully": "password changed successfully"
+  "password-changed-successfully": "password changed successfully",
+  "dashboard": "dashboard",
+  "all-exams": "All Exams",
+  "quiz-history": "Quiz History",
+  "logout": "Logout",
+  "quizes": "Quizzes",
+  "search-quiz": "Exam search...."
 }

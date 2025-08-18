@@ -37,5 +37,11 @@
   "account-created-sucessfully": "تم انشاع الحساب بنجاح",
   "sending-code-to-email": "إرسال رمز إلى البريد الإلكتروني",
   "going-to-create-password": "ذاهب لإنشاء كلمة المرور",
-  "password-changed-successfully": "تم تغيير كلمة المرور بنجاح"
+  "password-changed-successfully": "تم تغيير كلمة المرور بنجاح",
+  "dashboard": "لوحة القيادة",
+  "all-exams": "جميع الامتحانات",
+  "quiz-history": "تاريخ مسابقة",
+  "logout": "تسجيل الخروج",
+  "quizes": "الاختبارات",
+  "search-quiz": "بحث الامتحان ...."
 }

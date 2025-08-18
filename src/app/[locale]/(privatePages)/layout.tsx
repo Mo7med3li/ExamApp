@@ -11,7 +11,7 @@ export default function dashboardLayout({
     <main className="w-full flex">
       <AppSidebar />
       <section className=" w-full">
-        <section className=" container">
+        <section className="container">
           <Searchbar />
           {children}
         </section>

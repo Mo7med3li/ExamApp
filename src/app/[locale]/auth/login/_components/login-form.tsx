@@ -33,6 +33,7 @@ export function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
+  // Submit handler
   const onSubmit: SubmitHandler<loginFields> = async (values) => {
     login(values);
   };
@@ -90,16 +91,6 @@ export function LoginForm() {
             >
               {t("sign-in")}
             </Button>
-            {/* <Button
-              variant="outline"
-              className="w-ful "
-              onClick={() => {
-                signIn("google", { callbackUrl: "/" });
-              }}
-              type="button"
-            >
-              Login with Google
-            </Button> */}
           </form>
         </FormProvider>
       </Form>

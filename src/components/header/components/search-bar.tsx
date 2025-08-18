@@ -1,7 +1,7 @@
 "use client";
+
 import React from "react";
 import LocaleToggler from "./locale-toggler";
-
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import profile from "@/assets/imgs/Rectangle 289.png";
@@ -9,8 +9,11 @@ import { AddQuiz } from "@/app/[locale]/(privatePages)/dashboard/_components/add
 import { useExamContext } from "@/components/providers/components/exam.provider";
 import { useForm } from "react-hook-form";
 import { useSession } from "next-auth/react";
+import { useTranslations } from "next-intl";
 
 export default function Searchbar() {
+  // Translations
+  const t = useTranslations();
   // Context
   const { searchExam, setSearchValue } = useExamContext();
 
@@ -25,7 +28,7 @@ export default function Searchbar() {
   const session = useSession();
 
   return (
-    <section className="flex items-center  gap-4 py-2">
+    <section className="flex items-center gap-4 py-2">
       <div className="flex-grow">
         {" "}
         <Input
@@ -34,7 +37,7 @@ export default function Searchbar() {
             searchExam(e.target.value);
             setSearchValue(e.target.value);
           }}
-          placeholder="Search Quiz "
+          placeholder={t("search-quiz")}
           type="search"
           className="shadow-inputShadow w-full focus-visible:border-main focus-visible:outline-none"
         />

@@ -15,39 +15,53 @@ import logo from "@/assets/imgs/Final Logo 1.png";
 
 import { Link, usePathname } from "@/i18n/navigation";
 import { signOut, useSession } from "next-auth/react";
+import { useLocale } from "next-intl";
+import { useTranslations } from "use-intl";
+import { cn } from "@/lib/utils";
 
 export function AppSidebar() {
+  // Translations
+  const t = useTranslations();
+  const locale = useLocale();
   // session
   const { data: session } = useSession();
+
   // Menu items.
   const items = [
     {
-      title: "dashboard",
+      title: t("dashboard"),
       url: "/dashboard",
       icon: LayoutDashboard,
     },
     {
-      title: "All Exams",
+      title: t("all-exams"),
       url: "/all-exams",
       icon: History,
     },
+    ...(session?.user.role === "user"
+      ? [
+          {
+            title: t("quiz-history"),
+            url: "/",
+            icon: History,
+          },
+        ]
+      : []),
     {
-      title: `${session?.user.role === "admin" ? null : "Quiz History"}`,
-      url: `${session?.user.role === "admin" ? null : "/"}`,
-      icon: session?.user.role === "admin" ? null : History,
-    },
-    {
-      title: "Logout",
+      title: t("logout"),
       url: "",
       icon: LogOut,
     },
   ];
+
+  // Navigation
   const pathName = usePathname();
   return (
-    <Sidebar>
+    <Sidebar side={locale === "ar" ? "right" : "left"}>
       <SidebarContent className="pt-10 ps-8">
         <SidebarGroup>
           <SidebarGroupLabel>
+            {/* Logo */}
             <Image
               alt="Elevate logog"
               src={logo}
@@ -63,9 +77,11 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild className="py-3">
                     {/* Navigation */}
                     <Link
-                      className={`text-xl  w-48 flex justify-between  ${
-                        pathName === item.url ? "bg-main text-white" : ""
-                      } `}
+                      className={cn(
+                        `text-xl w-48 flex justify-between`,
+                        pathName === item.url ? "bg-main text-white" : "",
+                        locale === "ar" ? "flex-row-reverse" : ""
+                      )}
                       onClick={() => {
                         if (item.title === "Logout") {
                           signOut();
