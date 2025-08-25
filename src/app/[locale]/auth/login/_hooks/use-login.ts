@@ -4,12 +4,10 @@ import { useMutation } from "@tanstack/react-query";
 import { signIn } from "next-auth/react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { useRouter } from "@/i18n/navigation";
 
 export default function useLogin() {
   // translation
   const t = useTranslations();
-  const router = useRouter();
   const { isPending, error, mutate } = useMutation({
     mutationFn: async (loginFields: loginFields) => {
       const respone = await signIn("credentials", {
@@ -24,11 +22,11 @@ export default function useLogin() {
       }
       return respone;
     },
-    onSuccess: () => {
-      toast.success(`${t("login-success")}`);
+    onSuccess: (data) => {
       setTimeout(() => {
-        router.push("/dashboard");
+        window.location.href = data?.url || "/dashboard";
       }, 1000);
+      toast.success(`${t("login-success")}`);
     },
     onError: (error) => {
       toast.error(error.message);
