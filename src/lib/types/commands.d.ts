@@ -1,3 +1,4 @@
+declare type Locale = "en" | "ar";
 declare type SearchParams = string | string[] | undefined;
 declare type RouteProps = {
   params: { locale: Locale };
