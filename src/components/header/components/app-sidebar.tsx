@@ -38,7 +38,7 @@ export function AppSidebar() {
       url: "/all-exams",
       icon: History,
     },
-    ...(session?.user.role === "user"
+    ...(session?.user.role === "admin"
       ? [
           {
             title: t("quiz-history"),

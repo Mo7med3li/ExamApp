@@ -1,31 +1,62 @@
-import Image from "next/image";
 import React from "react";
-import loginImage from "@/assets/imgs/background-simple.png";
+
 import { useTranslations } from "next-intl";
+import {
+  BookOpenCheck,
+  Brain,
+  FolderCode,
+  RectangleEllipsis,
+} from "lucide-react";
 
 export default function Welcome() {
+  // Translatiions
   const t = useTranslations();
-  return (
-    <section className="bg-second flex justify-center col-span-2  gap-4 p-4 rounded-r-[100px] ">
-      <div className="w-4/5   flex flex-col gap-24 p-14  ">
-        <div className="flex flex-col gap-4">
-          <h1 className="text-5xl font-bold">{t("welcome")}</h1>
-          <h1 className="text-5xl text-main font-bold">Elevate</h1>
-          <div className=" ">
-            <p className=" text-lg ">{t("lorem")}</p>
-          </div>
-        </div>
 
-        <div className="w-[410px]">
-          <Image
-            src={loginImage}
-            width={500}
-            height={0}
-            className="w-full object-contain "
-            alt=""
-          />
+  // variables
+  const slugs = [
+    {
+      title: t("tailored-diplomas"),
+      description: t("Diplomas"),
+      icon: Brain,
+    },
+    {
+      title: t("focused-exams"),
+      description: t("topics"),
+      icon: BookOpenCheck,
+    },
+    {
+      title: t("smart-multi-step-forms"),
+      description: t("Diplomas"),
+      icon: RectangleEllipsis,
+    },
+  ];
+  return (
+    <section className="bg-[#EFF6FF] backdrop-blur-[200px] flex justify-center lg:col-span-1 flex-col items-center">
+      <section className="w-[470px]">
+        <div className="flex items-center text-blue-600 gap-3 rtl:flex-row-reverse w-fit">
+          <FolderCode size={40} className="text-blue-600" />
+          <p className="font-semibold text-xl">{t("exam-app")}</p>
         </div>
-      </div>
+        <section className="flex flex-col justify-around h-full gap-16 py-28">
+          <p className="text-gray-800 font-bold text-3xl">{t("slug")}</p>
+          <section className="flex flex-col gap-9">
+            {slugs.map((slug) => (
+              <div className="flex gap-5 rtl:flex-row-reverse" key={slug.title}>
+                <slug.icon
+                  className="border border-blue-600 text-blue-600 p-1"
+                  size={36}
+                />
+                <div className="flex flex-col gap-3">
+                  <h3 className="font-semibold text-xl text-blue-600">
+                    {slug.title}
+                  </h3>
+                  <p className="text-gray-700">{slug.description}</p>
+                </div>
+              </div>
+            ))}
+          </section>
+        </section>
+      </section>
     </section>
   );
 }

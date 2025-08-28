@@ -44,5 +44,12 @@
   "quiz-history": "Quiz History",
   "logout": "Logout",
   "quizes": "Quizzes",
-  "search-quiz": "Exam search...."
+  "search-quiz": "Exam search....",
+  "exam-app": "Exam App",
+  "slug": "Empower your learning journey with our smart exam platform.",
+  "tailored-diplomas": "Tailored Diplomas",
+  "Diplomas": "Choose from specialized tracks like Frontend, Backend, and Mobile Development.",
+  "focused-exams": "Focused Exams",
+  "topics": "Access topic-specific tests including HTML, CSS, JavaScript, and more.",
+  "smart-multi-step-forms": "Smart Multi-Step Forms"
 }
