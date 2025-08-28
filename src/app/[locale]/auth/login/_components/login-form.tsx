@@ -3,7 +3,6 @@
 import type React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import SocialLinks from "../../_components/social-links";
 import PasswordInput from "../../_components/password-input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFields, loginSchema } from "@/lib/schemas/auth.schema";
@@ -37,11 +36,13 @@ export function LoginForm() {
   const onSubmit: SubmitHandler<loginFields> = async (values) => {
     login(values);
   };
+  // variables
+  const signupText = t("dont-have-an-account");
 
   return (
-    <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-8">
+    <div className="bg-white w-[500px] rounded-md  flex flex-col gap-8">
       {/* Headline */}
-      <h2 className="text-2xl font-bold">{t("sign-in")}</h2>
+      <h2 className="text-3xl font-bold">{t("sign-in")}</h2>
       <Form {...form}>
         <FormProvider {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -71,19 +72,19 @@ export function LoginForm() {
               )}
             />
             <PasswordInput name="password" placeholder={t("enter-password")} />
-            {error && <p className="text-red-400 "> {error.message}</p>}
+            {error && <p className="text-red-400"> {error.message}</p>}
 
             <div className=" text-end">
               <Link
                 href={"/auth/forget-password"}
-                className="text-main text-base  "
+                className="text-main text-base"
               >
                 {t("recover-password")}
               </Link>
             </div>
             <Button
               type="submit"
-              className="w-full rounded-2xl h-14 text-lg "
+              className="w-full py-6 text-sm bg-blue-600 font-medium hover:bg-blue-700 "
               disabled={
                 isPending ||
                 (form.formState.isSubmitted && !form.formState.isValid)
@@ -91,10 +92,15 @@ export function LoginForm() {
             >
               {t("sign-in")}
             </Button>
+            <p className="text-center text-sm text-gray-500">
+              {signupText}
+              <Link prefetch href="/auth/signup" className="text-blue-600">
+                {t("create-yours")}
+              </Link>
+            </p>
           </form>
         </FormProvider>
       </Form>
-      <SocialLinks />
     </div>
   );
 }

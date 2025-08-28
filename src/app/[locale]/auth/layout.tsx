@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import Welcome from "./_components/welcome";
-import NavbarAuth from "./_components/navbar-auth";
 import { Toaster } from "@/components/ui/sonner";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -9,11 +8,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       {/* Welcome section */}
       <Welcome />
       <section className="lg:col-span-1">
-        <div>
-          {/* Header */}
-          <NavbarAuth />
-        </div>
-        <div className="  flex items-center justify-center  p-10  ">
+        <div className="  flex items-center justify-center p-10 h-full ">
           {/* form */}
           {children}
           <Toaster />

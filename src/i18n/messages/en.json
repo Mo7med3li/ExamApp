@@ -5,12 +5,12 @@
   "cart-product": "you have {count,plural,=0 {no products} =1{\n# product} other{# products}} in your cart",
   "product-price": "product price is {price,number,currency-base}",
   "sucess-rate": "sucess rate is {rate,number,rate-base}",
-  "sign-in": "Sign in",
-  "email": "Email",
-  "recover-password": "Recover Password ?",
+  "sign-in": "Login",
+  "email": "user@example.com",
+  "recover-password": "Forget your password?",
   "login-success": "login success",
   "password": "Password",
-  "enter-password": "Enter Password",
+  "enter-password": "***********",
   "enter-email": "please enter your email",
   "register": "Register",
   "continue-with": "Or Continue With",
@@ -51,5 +51,7 @@
   "Diplomas": "Choose from specialized tracks like Frontend, Backend, and Mobile Development.",
   "focused-exams": "Focused Exams",
   "topics": "Access topic-specific tests including HTML, CSS, JavaScript, and more.",
-  "smart-multi-step-forms": "Smart Multi-Step Forms"
+  "smart-multi-step-forms": "Smart Multi-Step Forms",
+  "dont-have-an-account": "Don't have an account?",
+  "create-yours": "Create Yours"
 }
