@@ -16,7 +16,7 @@
   "continue-with": "Or Continue With",
   "welcome": "Welcome to",
   "lorem": "Quidem autem voluptatibus qui quaerat aspernatur architecto natus",
-  "sign-up": "Sign up",
+  "sign-up": "Create Account",
   "user-name": "User name",
   "first-name": "First Name",
   "last-name": "Last name",
@@ -53,5 +53,7 @@
   "topics": "Access topic-specific tests including HTML, CSS, JavaScript, and more.",
   "smart-multi-step-forms": "Smart Multi-Step Forms",
   "dont-have-an-account": "Don't have an account?",
-  "create-yours": "Create Yours"
+  "create-yours": "Create Yours",
+  "phone-number": "Phone Number",
+  "email-0": "Email"
 }

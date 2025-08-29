@@ -3,7 +3,6 @@
 import type React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import PasswordInput from "../../_components/password-input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginFields, loginSchema } from "@/lib/schemas/auth.schema";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
@@ -53,7 +52,7 @@ export function LoginForm() {
               render={({ field }) => (
                 <FormItem>
                   {/* label */}
-                  <FormLabel className="sr-only">{t("email")}</FormLabel>
+                  <FormLabel>{t("email-0")}</FormLabel>
                   {/* field */}
                   <FormControl>
                     <Input
@@ -71,10 +70,36 @@ export function LoginForm() {
                 </FormItem>
               )}
             />
-            <PasswordInput name="password" placeholder={t("enter-password")} />
+            <FormField
+              name="password"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem>
+                  {/* label */}
+                  <FormLabel>{t("password")}</FormLabel>
+                  {/* field */}
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder={t("password")}
+                      type="password"
+                      className={`${
+                        form.formState.errors.password
+                          ? "focus-visible:border-red-300"
+                          : ""
+                      }`}
+                    />
+                  </FormControl>
+                  {/* feedback */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* Error */}
             {error && <p className="text-red-400"> {error.message}</p>}
 
             <div className=" text-end">
+              {/* Forget Password */}
               <Link
                 href={"/auth/forget-password"}
                 className="text-main text-base"
@@ -82,6 +107,7 @@ export function LoginForm() {
                 {t("recover-password")}
               </Link>
             </div>
+            {/* Submit Button */}
             <Button
               type="submit"
               className="w-full py-6 text-sm bg-blue-600 font-medium hover:bg-blue-700 "
@@ -93,6 +119,7 @@ export function LoginForm() {
               {t("sign-in")}
             </Button>
             <p className="text-center text-sm text-gray-500">
+              {/* Register */}
               {signupText}
               <Link prefetch href="/auth/signup" className="text-blue-600">
                 {t("create-yours")}

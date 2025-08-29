@@ -1,21 +1,19 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-
 import { cn } from "@/lib/utils";
+import { LoaderCircle } from "lucide-react";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-btnshadow",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:bg-gray-200 disabled:text-gray-400 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-btnshadow",
   {
     variants: {
       variant: {
-        default: "bg-main text-primary-foreground ",
-        destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        default: "bg-blue-600 text-primary-foreground hover:bg-blue-700 ",
+        destructive: "bg-red-600 text-white hover:bg-red-700",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "border border-blue-600 text-gray-800 bg-blue-50 hover:bg-blue-100",
+        secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },
@@ -39,18 +37,39 @@ export interface ButtonProps
   asChild?: boolean;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+const Button = React.forwardRef<
+  HTMLButtonElement,
+  ButtonProps & { icon?: () => React.ReactNode; spinner?: boolean }
+>(
+  (
+    { className, variant, size, icon, spinner, asChild = false, ...props },
+    ref
+  ) => {
     const Comp = asChild ? Slot : "button";
+
+    const content = (
+      <>
+        {props.children}
+        {spinner ? (
+          <LoaderCircle className="mt-[2px] size-[18px] animate-spin-fast" />
+        ) : (
+          icon?.()
+        )}
+      </>
+    );
+
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
         {...props}
-      />
+      >
+        {asChild ? props.children : content}
+      </Comp>
     );
   }
 );
+
 Button.displayName = "Button";
 
 export { Button, buttonVariants };

@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Eye, EyeOff } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 
@@ -22,7 +22,6 @@ export default function PasswordInput({
 }) {
   // Translations
   const locale = useLocale();
-  const t = useTranslations();
 
   // Forms
   const { control, formState } = useFormContext();
@@ -38,7 +37,7 @@ export default function PasswordInput({
           render={({ field }) => (
             // label
             <FormItem>
-              <FormLabel className="sr-only">{t("password")}</FormLabel>
+              <FormLabel>{placeholder}</FormLabel>
               {/* field */}
               <FormControl>
                 <Input

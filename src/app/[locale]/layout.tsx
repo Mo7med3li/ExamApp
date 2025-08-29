@@ -1,24 +1,12 @@
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import localFont from "next/font/local";
 import { Metadata } from "next";
-
+import { GeistMono } from "geist/font/mono";
 import Providers from "@/components/providers";
 import { SidebarProvider } from "@/components/ui/sidebar";
-
 import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = localFont({
-  src: "../fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "../fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -35,9 +23,7 @@ export default function LoacaleLayout({
   if (!hasLocale(routing.locales, locale)) return notFound();
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${GeistMono.className} antialiased`}>
         <Providers>
           <SidebarProvider>{children}</SidebarProvider>
           <Toaster />

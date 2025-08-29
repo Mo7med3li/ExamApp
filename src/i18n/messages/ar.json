@@ -15,7 +15,7 @@
   "continue-with": "أو متابعة",
   "welcome": "مرحبا بكم في",
   "lorem": "Quidem Autem VolupupatiBus Quierat Aspernatur Architecto Natus",
-  "sign-up": "اشتراك",
+  "sign-up": "إنشاء حساب",
   "user-name": "اسم المستخدم",
   "first-name": "الاسم الأول",
   "last-name": "اسم العائلة",
@@ -52,5 +52,7 @@
   "topics": "اختبارات الوصول الخاصة بالموضوع بما في ذلك HTML و CSS و JavaScript والمزيد.",
   "smart-multi-step-forms": "نماذج ذكية متعددة الخطوات",
   "dont-have-an-account": "ليس لديك حساب؟",
-  "create-yours": "إنشيء حسابك"
+  "create-yours": "إنشيء حسابك",
+  "phone-number": "رقم التليفون",
+  "email-0": "بريد إلكتروني"
 }

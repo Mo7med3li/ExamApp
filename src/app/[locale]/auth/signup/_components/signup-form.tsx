@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import React from "react";
-import SocialLinks from "../../_components/social-links";
-import PasswordInput from "../../_components/password-input";
 import {
   Form,
   FormControl,
@@ -47,14 +45,66 @@ export default function SignupForm() {
   };
 
   return (
-    <div className="bg-white w-[500px]  rounded-md flex flex-col gap-8">
+    <div className="bg-white w-[500px] rounded-md flex flex-col gap-4">
       <h2 className="text-2xl font-bold">{t("sign-up")}</h2>
       <Form {...form}>
         <FormProvider {...form}>
           <form
-            className="flex flex-col gap-8  "
+            className="flex flex-col gap-4"
             onSubmit={form.handleSubmit(onSubmit)}
           >
+            <div className=" items-center gap-3 grid lg:grid-cols-2">
+              {/* first name */}
+              <FormField
+                control={form.control}
+                name="firstName"
+                render={({ field }) => (
+                  <FormItem className="lg:col-span-1">
+                    {/* Label */}
+                    <FormLabel>{t("first-name")}</FormLabel>
+                    {/* field */}
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder={t("first-name")}
+                        className={`${
+                          form.formState.errors.firstName
+                            ? "focus-visible:border-red-300"
+                            : ""
+                        }`}
+                      />
+                    </FormControl>
+                    {/* feedback */}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {/* last name */}
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem className="lg:col-span-1">
+                    {/* Label */}
+                    <FormLabel>{t("last-name")}</FormLabel>
+                    {/* Field*/}
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder={t("last-name")}
+                        className={`${
+                          form.formState.errors.lastName
+                            ? "focus-visible:border-red-300"
+                            : ""
+                        }`}
+                      />
+                    </FormControl>
+                    {/* Feedback */}
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             {/* username */}
             <FormField
               control={form.control}
@@ -62,7 +112,7 @@ export default function SignupForm() {
               render={({ field }) => (
                 <FormItem>
                   {/* Label */}
-                  <FormLabel className="sr-only">{t("user-name")}</FormLabel>
+                  <FormLabel>{t("user-name")}</FormLabel>
                   {/* Field*/}
                   <FormControl>
                     <Input
@@ -80,63 +130,13 @@ export default function SignupForm() {
                 </FormItem>
               )}
             />
-            {/* first name */}
-            <FormField
-              control={form.control}
-              name="firstName"
-              render={({ field }) => (
-                <FormItem>
-                  {/* Label */}
-                  <FormLabel className="sr-only">{t("first-name")}</FormLabel>
-                  {/* field */}
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder={t("first-name")}
-                      className={`${
-                        form.formState.errors.firstName
-                          ? "focus-visible:border-red-300"
-                          : ""
-                      }`}
-                    />
-                  </FormControl>
-                  {/* feedback */}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            {/* last name */}
-            <FormField
-              control={form.control}
-              name="lastName"
-              render={({ field }) => (
-                <FormItem>
-                  {/* Label */}
-                  <FormLabel className="sr-only">{t("last-name")}</FormLabel>
-                  {/* Field*/}
-                  <FormControl>
-                    <Input
-                      {...field}
-                      placeholder={t("last-name")}
-                      className={`${
-                        form.formState.errors.lastName
-                          ? "focus-visible:border-red-300"
-                          : ""
-                      }`}
-                    />
-                  </FormControl>
-                  {/* Feedback */}
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             {/* email */}
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="sr-only">{t("email")}</FormLabel>
+                  <FormLabel>{t("email-0")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
@@ -153,51 +153,76 @@ export default function SignupForm() {
                 </FormItem>
               )}
             />
-            {/* password */}
-            <PasswordInput placeholder={t("password")} name="password" />
-            {/* rePassword */}
-            <PasswordInput
-              placeholder={t("confirm-password")}
-              name="rePassword"
-            />
             {/* phone */}
+            <div className="mt-3">
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col items-start">
+                    <FormLabel className="mb-1 text-sm font-semibold text-zinc-800 dark:text-zinc-50">
+                      {t("phone-number")}
+                    </FormLabel>
+                    <FormControl className="w-full">
+                      <Input placeholder="01012345678" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+
+            {/* password */}
             <FormField
               control={form.control}
-              name="phone"
+              name="password"
               render={({ field }) => (
-                // label
                 <FormItem>
-                  <FormLabel className="sr-only">{t("phone")}</FormLabel>
-                  {/* field */}
+                  <FormLabel>{t("password")}</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder={t("phone")}
+                      placeholder={t("password")}
+                      type="password"
                       className={`${
-                        form.formState.errors.phone
+                        form.formState.errors.email
                           ? "focus-visible:border-red-300"
                           : ""
                       }`}
                     />
                   </FormControl>
-                  {/* feedback */}
                   <FormMessage />
                 </FormItem>
               )}
             />
+            {/* Confirm password */}
+            <FormField
+              control={form.control}
+              name="rePassword"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("confirm-password")}</FormLabel>
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder={t("confirm-password")}
+                      type="password"
+                      className={`${
+                        form.formState.errors.email
+                          ? "focus-visible:border-red-300"
+                          : ""
+                      }`}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             {/* error msg */}
             {error && (
               <p className="text-red-500 italic my-2">{error.message}</p>
             )}
-
-            <div className=" text-center">
-              <p className=" text-base">
-                {t("already-have-an-account")}
-                <Link className="text-main text-base px-1" href={"/auth/login"}>
-                  {t("sign-in")}
-                </Link>
-              </p>
-            </div>
             {/* submit */}
             <Button
               className="w-full rounded-2xl h-14 text-lg "
@@ -209,11 +234,20 @@ export default function SignupForm() {
             >
               {t("create-account")}
             </Button>
+            <div className=" text-center">
+              <p className=" text-sm text-gray-500">
+                {t("already-have-an-account")}
+                <Link
+                  className="text-blue-600 text-sm px-1"
+                  href={"/auth/login"}
+                >
+                  {t("sign-in")}
+                </Link>
+              </p>
+            </div>
           </form>
         </FormProvider>
       </Form>
-
-      <SocialLinks />
     </div>
   );
 }
