@@ -17,6 +17,8 @@ import {
 import { useTranslations } from "next-intl";
 import useLogin from "../_hooks/use-login";
 import { Link } from "@/i18n/navigation";
+import RegisterLink from "../../_components/register";
+import { cn } from "@/lib/utils";
 
 export function LoginForm() {
   // mutation
@@ -35,8 +37,6 @@ export function LoginForm() {
   const onSubmit: SubmitHandler<loginFields> = async (values) => {
     login(values);
   };
-  // variables
-  const signupText = t("dont-have-an-account");
 
   return (
     <div className="bg-white w-[500px] rounded-md  flex flex-col gap-8">
@@ -58,11 +58,10 @@ export function LoginForm() {
                     <Input
                       {...field}
                       placeholder={t("email")}
-                      className={`${
-                        form.formState.errors.email
-                          ? "focus-visible:border-red-300"
-                          : ""
-                      }`}
+                      className={cn(
+                        form.formState.errors.email &&
+                          "focus-visible:border-red-300"
+                      )}
                     />
                   </FormControl>
                   {/* feedback */}
@@ -70,6 +69,7 @@ export function LoginForm() {
                 </FormItem>
               )}
             />
+            {/* Password */}
             <FormField
               name="password"
               control={form.control}
@@ -83,11 +83,10 @@ export function LoginForm() {
                       {...field}
                       placeholder={t("password")}
                       type="password"
-                      className={`${
-                        form.formState.errors.password
-                          ? "focus-visible:border-red-300"
-                          : ""
-                      }`}
+                      className={cn(
+                        form.formState.errors.password &&
+                          "focus-visible:border-red-300"
+                      )}
                     />
                   </FormControl>
                   {/* feedback */}
@@ -97,7 +96,6 @@ export function LoginForm() {
             />
             {/* Error */}
             {error && <p className="text-red-400"> {error.message}</p>}
-
             <div className=" text-end">
               {/* Forget Password */}
               <Link
@@ -118,13 +116,8 @@ export function LoginForm() {
             >
               {t("sign-in")}
             </Button>
-            <p className="text-center text-sm text-gray-500">
-              {/* Register */}
-              {signupText}
-              <Link prefetch href="/auth/signup" className="text-blue-600">
-                {t("create-yours")}
-              </Link>
-            </p>
+            {/* Register Link */}
+            <RegisterLink />{" "}
           </form>
         </FormProvider>
       </Form>

@@ -32,7 +32,7 @@ export default function Welcome() {
   ];
   return (
     <section className="bg-[#EFF6FF] backdrop-blur-[200px] flex justify-center lg:col-span-1 flex-col items-center">
-      <section className="w-[500px]">
+      <section className="w-[550px]">
         <div className="flex items-center text-blue-600 gap-3 rtl:flex-row-reverse w-fit">
           <FolderCode size={40} className="text-blue-600" />
           <p className="font-semibold text-xl">{t("exam-app")}</p>

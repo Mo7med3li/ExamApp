@@ -23,14 +23,14 @@
   "phone": "رقم الهاتف",
   "already-have-an-account": "هل لديك بالفعل حساب؟",
   "create-account": "إنشاء حساب",
-  "send-code": "إرسال الرمز",
+  "send-code": "اكمل",
   "forget-your-password": "هل نسيت كلمة المرور الخاصة بك؟",
   "receive-code": "لم تتلق رمز؟",
   "resend": "إعادة الارسال",
   "verfiy": "تحقق",
-  "verfiy-code": "رمز التحقق",
+  "verfiy-code": "تحقق من OTP",
   "code": "الرمز",
-  "set-password": "اضبط كلمة المرور",
+  "set-password": "تحديث كلمة المرور",
   "create-password": "إنشاء كلمة المرور",
   "birth-date": "تاريخ ميلادك هو {date,date,date-base}",
   "Acount Created Successfully": "",
@@ -54,5 +54,7 @@
   "dont-have-an-account": "ليس لديك حساب؟",
   "create-yours": "إنشيء حسابك",
   "phone-number": "رقم التليفون",
-  "email-0": "بريد إلكتروني"
+  "email-0": "بريد إلكتروني",
+  "code-otp": "الرجاء إدخال رمز المكون من 6 أرقام التي أرسلناها إلى:",
+  "edit": "تعديل"
 }

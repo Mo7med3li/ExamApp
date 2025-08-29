@@ -3,8 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import React from "react";
-import SocialLinks from "../../_components/social-links";
-import PasswordInput from "../../_components/password-input";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import {
   Form,
@@ -21,12 +19,15 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import useResetPassword from "../_hooks/use-setPassword";
+import { cn } from "@/lib/utils";
 
 export default function SetPasswordForm() {
   // translation
   const t = useTranslations();
+
   // mutation
   const { isPending, error, resetPasswordFn } = useResetPassword();
+
   // form
   const form = useForm<ResetPasswordField>({
     defaultValues: {
@@ -35,11 +36,13 @@ export default function SetPasswordForm() {
     },
     resolver: zodResolver(resetPasswordSchema),
   });
+
+  // submit handler
   const onSubmit: SubmitHandler<ResetPasswordField> = (values) => {
     resetPasswordFn(values);
   };
   return (
-    <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-12 py-10">
+    <div className="bg-white w-[500px] rounded-md flex flex-col gap-12 py-10">
       <h2 className="text-2xl font-bold"> {t("set-password")}</h2>
       <Form {...form}>
         <FormProvider {...form}>
@@ -54,17 +57,16 @@ export default function SetPasswordForm() {
               render={({ field }) => (
                 <FormItem>
                   {/* label */}
-                  <FormLabel className="sr-only">{t("email")}</FormLabel>
+                  <FormLabel>{t("email-0")}</FormLabel>
                   {/* field */}
                   <FormControl>
                     <Input
                       {...field}
                       placeholder={t("email")}
-                      className={`${
-                        form.formState.errors.email
-                          ? "focus-visible:border-red-300"
-                          : ""
-                      }`}
+                      className={cn(
+                        form.formState.errors.email &&
+                          "focus-visible:border-red-300"
+                      )}
                     />
                   </FormControl>
                   {/* feedback */}
@@ -73,13 +75,33 @@ export default function SetPasswordForm() {
               )}
             />
             {/* Password */}
-            <PasswordInput
+            <FormField
+              control={form.control}
               name="newPassword"
-              placeholder={t("create-password")}
+              render={({ field }) => (
+                <FormItem>
+                  {/* label */}
+                  <FormLabel>{t("password")}</FormLabel>
+                  {/* field */}
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder={t("create-password")}
+                      type="password"
+                      className={cn(
+                        form.formState.errors.newPassword &&
+                          "focus-visible:border-red-300"
+                      )}
+                    />
+                  </FormControl>
+                  {/* feedback */}
+                  <FormMessage />
+                </FormItem>
+              )}
             />
             {error && <p className="text-red-500 italic">{error.message}</p>}
             <Button
-              className="w-full rounded-2xl h-14 text-lg "
+              className="w-full h-14 text-lg "
               disabled={
                 isPending ||
                 (form.formState.isSubmitted && !form.formState.isValid)
@@ -90,7 +112,6 @@ export default function SetPasswordForm() {
           </form>
         </FormProvider>
       </Form>
-      <SocialLinks />
     </div>
   );
 }

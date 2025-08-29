@@ -1,9 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import React from "react";
-import SocialLinks from "../../_components/social-links";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { VerifyCodeField, verifyCodeSchema } from "@/lib/schemas/auth.schema";
@@ -16,16 +14,23 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-
 import { useTranslations } from "next-intl";
 import useverifyCode from "../_hooks/use-verifyCode";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
+import RegisterLink from "../../_components/register";
+import useForgetPassword from "../../forget-password/_hooks/use-forgetPassword";
 
-export default function VerfyCodeForm() {
+export default function VerfyCodeForm({ email }: { email: string }) {
   // translation
   const t = useTranslations();
 
   // mutation
   const { isPending, error, verifyCodeFn } = useverifyCode();
+  const { forgetPasswordFn } = useForgetPassword();
 
   // form
   const form = useForm<VerifyCodeField>({
@@ -41,40 +46,49 @@ export default function VerfyCodeForm() {
 
   return (
     <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-12 py-10">
-      <h2 className="text-2xl font-bold">{t("verfiy-code")}</h2>
+      <div className="space-y-3">
+        <h2 className="text-2xl font-bold">{t("verfiy-code")}</h2>
+        <p className="text-gray-500">{t("code-otp")}</p>
+        <div className="flex items-center gap-2">
+          <p className="text-gray-500">{email}.</p>
+          <Link
+            className="text-blue-600 font-medium"
+            href={"/auth/forget-password"}
+          >
+            {t("edit")}
+          </Link>
+        </div>
+      </div>
       <Form {...form}>
         <form
           className="flex flex-col gap-8"
           onSubmit={form.handleSubmit(onSubmit)}
         >
-          <FormField
-            name="resetCode"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                {/* label */}
-                <FormLabel className="sr-only">{t("code")}</FormLabel>
-                {/* field */}
-                <FormControl>
-                  <Input
-                    placeholder={t("code")}
-                    {...field}
-                    className={`${
-                      form.formState.errors.resetCode
-                        ? "focus-visible:border-red-300"
-                        : ""
-                    }`}
-                  />
-                </FormControl>
-                {/* feedback */}
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          <div className="flex items-center justify-center">
+            <FormField
+              control={form.control}
+              name="resetCode"
+              render={({ field }) => (
+                <FormItem dir="ltr">
+                  <FormLabel className="sr-only">One-Time Password</FormLabel>
+                  <FormControl>
+                    <InputOTP maxLength={6} {...field}>
+                      <InputOTPGroup className="space-x-4">
+                        {Array.from({ length: 6 }).map((_, i) => (
+                          <InputOTPSlot key={i} index={i} />
+                        ))}
+                      </InputOTPGroup>
+                    </InputOTP>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
           {/* error msg */}
           {error && <p className="text-red-500 italic">{error.message}</p>}
           <Button
-            className="w-full rounded-2xl h-14 text-lg "
+            className="w-full h-14 text-lg "
             disabled={
               isPending ||
               (form.formState.isSubmitted && !form.formState.isValid)
@@ -82,21 +96,23 @@ export default function VerfyCodeForm() {
           >
             {t("verfiy")}
           </Button>
-          <div className=" text-end">
-            <p className=" text-base">
+          <div className="text-end">
+            <p className="text-base">
               {t("receive-code")}
               <Link
                 className="text-main text-base px-1"
                 href={""}
-                onClick={form.handleSubmit(onSubmit)}
+                onClick={() => {
+                  forgetPasswordFn({ email });
+                }}
               >
                 {t("resend")}
               </Link>
             </p>
           </div>
+          <RegisterLink />
         </form>
       </Form>
-      <SocialLinks />
     </div>
   );
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import SocialLinks from "../../_components/social-links";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +19,9 @@ import {
 } from "@/lib/schemas/auth.schema";
 import { useTranslations } from "next-intl";
 import useForgetPassword from "../_hooks/use-forgetPassword";
+import { MoveRight } from "lucide-react";
+import RegisterLink from "../../_components/register";
+import { cn } from "@/lib/utils";
 
 export default function ForgetPasswordForm() {
   // translation
@@ -38,8 +40,13 @@ export default function ForgetPasswordForm() {
   };
 
   return (
-    <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-12 py-10">
-      <h2 className="text-2xl font-bold">{t("forget-your-password")}</h2>
+    <div className="bg-white w-[500px] rounded-md flex flex-col gap-4 py-10">
+      <div className="space-y-3">
+        <h2 className="text-2xl font-bold">{t("forget-your-password")}</h2>
+        <p className="text-gray-500">
+          Don’t worry, we will help you recover your account.
+        </p>
+      </div>
       <Form {...form}>
         <form
           className="flex flex-col gap-8 "
@@ -51,17 +58,16 @@ export default function ForgetPasswordForm() {
             render={({ field }) => (
               // label
               <FormItem>
-                <FormLabel className="sr-only">{t("email")}</FormLabel>
+                <FormLabel>{t("email-0")}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder={t("email")}
                     type="email"
                     {...field}
-                    className={`${
-                      form.formState.errors.email
-                        ? "focus-visible:border-red-300"
-                        : ""
-                    }`}
+                    className={cn(
+                      form.formState.errors.email &&
+                        "focus-visible:border-red-300"
+                    )}
                   />
                 </FormControl>
                 {/* feedback */}
@@ -72,17 +78,19 @@ export default function ForgetPasswordForm() {
           {/* error msg */}
           {error && <p className="text-red-500 italic ">{error.message}</p>}
           <Button
-            className="w-full rounded-2xl h-14 text-lg "
+            className="w-full h-14 text-lg "
             disabled={
               isPending ||
               (form.formState.isSubmitted && !form.formState.isValid)
             }
+            icon={() => <MoveRight />}
           >
             {t("send-code")}
           </Button>
+          {/* Register Link */}
+          <RegisterLink />
         </form>
       </Form>
-      <SocialLinks />
     </div>
   );
 }

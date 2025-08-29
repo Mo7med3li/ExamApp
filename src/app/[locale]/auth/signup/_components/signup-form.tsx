@@ -17,6 +17,7 @@ import { RegisterFields, registerSchema } from "@/lib/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import useRegister from "../_hooks/use-register";
+import { cn } from "@/lib/utils";
 
 export default function SignupForm() {
   // mutatuin
@@ -38,8 +39,8 @@ export default function SignupForm() {
     },
     resolver: zodResolver(registerSchema),
   });
-  {
-  }
+
+  // submit handler
   const onSubmit: SubmitHandler<RegisterFields> = async (values) => {
     await register(values);
   };
@@ -67,11 +68,10 @@ export default function SignupForm() {
                       <Input
                         {...field}
                         placeholder={t("first-name")}
-                        className={`${
-                          form.formState.errors.firstName
-                            ? "focus-visible:border-red-300"
-                            : ""
-                        }`}
+                        className={cn(
+                          form.formState.errors.firstName &&
+                            "focus-visible:border-red-300"
+                        )}
                       />
                     </FormControl>
                     {/* feedback */}
@@ -79,6 +79,7 @@ export default function SignupForm() {
                   </FormItem>
                 )}
               />
+
               {/* last name */}
               <FormField
                 control={form.control}
@@ -92,11 +93,10 @@ export default function SignupForm() {
                       <Input
                         {...field}
                         placeholder={t("last-name")}
-                        className={`${
-                          form.formState.errors.lastName
-                            ? "focus-visible:border-red-300"
-                            : ""
-                        }`}
+                        className={cn(
+                          form.formState.errors.lastName &&
+                            "focus-visible:border-red-300"
+                        )}
                       />
                     </FormControl>
                     {/* Feedback */}
@@ -105,6 +105,7 @@ export default function SignupForm() {
                 )}
               />
             </div>
+
             {/* username */}
             <FormField
               control={form.control}
@@ -118,11 +119,10 @@ export default function SignupForm() {
                     <Input
                       {...field}
                       placeholder={t("user-name")}
-                      className={`${
-                        form.formState.errors.username
-                          ? "focus-visible:border-red-300"
-                          : ""
-                      }`}
+                      className={cn(
+                        form.formState.errors.username &&
+                          "focus-visible:border-red-300"
+                      )}
                     />
                   </FormControl>
                   {/* Feedback */}
@@ -130,6 +130,7 @@ export default function SignupForm() {
                 </FormItem>
               )}
             />
+
             {/* email */}
             <FormField
               control={form.control}
@@ -142,17 +143,17 @@ export default function SignupForm() {
                       {...field}
                       placeholder={t("email")}
                       type="email"
-                      className={`${
-                        form.formState.errors.email
-                          ? "focus-visible:border-red-300"
-                          : ""
-                      }`}
+                      className={cn(
+                        form.formState.errors.email &&
+                          "focus-visible:border-red-300"
+                      )}
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             {/* phone */}
             <div className="mt-3">
               <FormField
@@ -184,17 +185,17 @@ export default function SignupForm() {
                       {...field}
                       placeholder={t("password")}
                       type="password"
-                      className={`${
-                        form.formState.errors.email
-                          ? "focus-visible:border-red-300"
-                          : ""
-                      }`}
+                      className={cn(
+                        form.formState.errors.password &&
+                          "focus-visible:border-red-300"
+                      )}
                     />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
+
             {/* Confirm password */}
             <FormField
               control={form.control}
@@ -207,11 +208,10 @@ export default function SignupForm() {
                       {...field}
                       placeholder={t("confirm-password")}
                       type="password"
-                      className={`${
-                        form.formState.errors.email
-                          ? "focus-visible:border-red-300"
-                          : ""
-                      }`}
+                      className={cn(
+                        form.formState.errors.rePassword &&
+                          "focus-visible:border-red-300"
+                      )}
                     />
                   </FormControl>
                   <FormMessage />
@@ -223,6 +223,7 @@ export default function SignupForm() {
             {error && (
               <p className="text-red-500 italic my-2">{error.message}</p>
             )}
+
             {/* submit */}
             <Button
               className="w-full rounded-2xl h-14 text-lg "
