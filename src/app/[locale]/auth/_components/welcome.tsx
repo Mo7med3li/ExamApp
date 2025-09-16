@@ -1,12 +1,8 @@
 import React from "react";
 
 import { useTranslations } from "next-intl";
-import {
-  BookOpenCheck,
-  Brain,
-  FolderCode,
-  RectangleEllipsis,
-} from "lucide-react";
+import { BookOpenCheck, Brain, RectangleEllipsis } from "lucide-react";
+import Logo from "./logo";
 
 export default function Welcome() {
   // Translatiions
@@ -33,11 +29,8 @@ export default function Welcome() {
   return (
     <section className="bg-[#EFF6FF] backdrop-blur-[200px] flex justify-center lg:col-span-1 flex-col items-center">
       <section className="w-[550px]">
-        <div className="flex items-center text-blue-600 gap-3 rtl:flex-row-reverse w-fit">
-          <FolderCode size={40} className="text-blue-600" />
-          <p className="font-semibold text-xl">{t("exam-app")}</p>
-        </div>
-        <section className="flex flex-col justify-around  gap-20 py-28">
+        <Logo />
+        <section className="flex flex-col justify-around  gap-20 py-20">
           <p className="text-gray-800 font-bold text-3xl">{t("slug")}</p>
           <section className="flex flex-col gap-9">
             {slugs.map((slug) => (

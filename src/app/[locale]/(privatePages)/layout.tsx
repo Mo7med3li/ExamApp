@@ -1,5 +1,4 @@
 import { AppSidebar } from "@/components/header/components/app-sidebar";
-import Searchbar from "@/components/header/components/search-bar";
 import React from "react";
 
 export default function dashboardLayout({
@@ -10,11 +9,8 @@ export default function dashboardLayout({
   return (
     <main className="w-full flex">
       <AppSidebar />
-      <section className=" w-full">
-        <section className="container">
-          <Searchbar />
-          {children}
-        </section>
+      <section className="w-full">
+        <section className="pe-6 ps-12">{children}</section>
       </section>
     </main>
   );

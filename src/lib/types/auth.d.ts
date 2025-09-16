@@ -6,7 +6,7 @@ declare type AppUser = {
   email: string;
   phone: string;
   role: string;
-  isVerfied: boolean;
+  isVerified: boolean;
 };
 declare type LoginResponse = {
   token: string;

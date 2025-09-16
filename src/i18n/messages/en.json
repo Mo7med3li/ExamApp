@@ -39,7 +39,7 @@
   "sending-code-to-email": "sending code to email",
   "going-to-create-password": "going to create password",
   "password-changed-successfully": "password changed successfully",
-  "dashboard": "dashboard",
+  "dashboard": "Diplomas",
   "all-exams": "All Exams",
   "quiz-history": "Quiz History",
   "logout": "Logout",
@@ -57,5 +57,10 @@
   "phone-number": "Phone Number",
   "email-0": "Email",
   "code-otp": "Please enter the 6-digits code we have sent to:",
-  "edit": "Edit"
+  "edit": "Edit",
+  "account": "Account",
+  "log-out": "Logout",
+  "account-settings": "Account settings",
+  "profile": "Profile",
+  "change-password": "Change Password"
 }

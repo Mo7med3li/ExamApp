@@ -1,28 +1,30 @@
 "use client";
-import { History, LayoutDashboard, LogOut } from "lucide-react";
+import { GraduationCap, History, User } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
-  SidebarGroup,
+  SidebarFooter,
   SidebarGroupContent,
-  SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
 import logo from "@/assets/imgs/Final Logo 1.png";
-
 import { Link, usePathname } from "@/i18n/navigation";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useLocale } from "next-intl";
 import { useTranslations } from "use-intl";
 import { cn } from "@/lib/utils";
+import Logo from "@/app/[locale]/auth/_components/logo";
+import FooterSidebar from "./footer-sidebar";
 
 export function AppSidebar() {
   // Translations
   const t = useTranslations();
   const locale = useLocale();
+
   // session
   const { data: session } = useSession();
 
@@ -31,13 +33,9 @@ export function AppSidebar() {
     {
       title: t("dashboard"),
       url: "/dashboard",
-      icon: LayoutDashboard,
+      icon: GraduationCap,
     },
-    {
-      title: t("all-exams"),
-      url: "/all-exams",
-      icon: History,
-    },
+
     ...(session?.user.role === "admin"
       ? [
           {
@@ -48,63 +46,70 @@ export function AppSidebar() {
         ]
       : []),
     {
-      title: t("logout"),
-      url: "",
-      icon: LogOut,
+      title: t("account-settings"),
+      url: "/profile-settings",
+      icon: User,
     },
   ];
 
   // Navigation
   const pathName = usePathname();
+
   return (
-    <Sidebar side={locale === "ar" ? "right" : "left"}>
-      <SidebarContent className="pt-10 ps-8">
-        <SidebarGroup>
-          <SidebarGroupLabel>
-            {/* Logo */}
-            <Image
-              alt="Elevate logog"
-              src={logo}
-              width={500}
-              height={0}
-              className="w-36"
-            />
-          </SidebarGroupLabel>
-          <SidebarGroupContent className="mt-14">
-            <SidebarMenu className="space-y-5">
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild className="py-3">
-                    {/* Navigation */}
-                    <Link
-                      className={cn(
-                        `text-xl w-48 flex justify-between`,
-                        pathName === item.url ? "bg-main text-white" : "",
-                        locale === "ar" ? "flex-row-reverse" : ""
-                      )}
-                      onClick={() => {
-                        if (item.title === "Logout") {
-                          signOut();
-                        }
-                      }}
-                      href={item.url}
-                    >
-                      {item.icon && (
-                        <item.icon
-                          className={`${
-                            pathName === item.url ? " text-white" : "text-main"
-                          }`}
-                        />
-                      )}
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+    <Sidebar
+      side={locale === "ar" ? "right" : "left"}
+      className="w-[300px] bg-blue-50"
+    >
+      <SidebarContent className="pt-5 px-6">
+        {/* Header */}
+        <SidebarHeader className="flex flex-col gap-3 items-start">
+          {/* Logo */}
+          <Image
+            alt="Elevate logog"
+            src={logo}
+            width={500}
+            height={0}
+            className="w-40 object-cover"
+          />
+          <Logo />
+        </SidebarHeader>
+
+        <SidebarGroupContent className="mt-10">
+          <SidebarMenu className="space-y-5">
+            {items.map((item) => (
+              <SidebarMenuItem key={item.title}>
+                <SidebarMenuButton asChild className="py-3">
+                  {/* Navigation */}
+                  <Link
+                    className={cn(
+                      `flex items-center`,
+                      pathName === item.url
+                        ? "bg-blue-100  text-blue-600"
+                        : "text-gray-500",
+                      locale === "ar" ? "flex-row-reverse" : ""
+                    )}
+                    href={item.url}
+                  >
+                    {item.icon && (
+                      <item.icon
+                        className={cn(
+                          pathName === item.url
+                            ? " text-blue-600"
+                            : "text-gray-500"
+                        )}
+                      />
+                    )}
+                    <span>{item.title}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+        </SidebarGroupContent>
       </SidebarContent>
+      <SidebarFooter className="py-10 px-6">
+        <FooterSidebar />
+      </SidebarFooter>
     </Sidebar>
   );
 }

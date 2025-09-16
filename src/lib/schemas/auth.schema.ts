@@ -15,20 +15,20 @@ export const registerSchema = z
     username: z
       .string({ required_error: "Username is required" })
       .min(1, "Username is required")
-      .min(2, "Username must be more than two charcters ")
-      .max(10, "Username must be atmost 10 charchters"),
+      .min(2, "Username must be more than two characters ")
+      .max(10, "Username must be at most 10 characters"),
 
     firstName: z
       .string({ required_error: "First Name is required" })
       .min(1, "First Name is required")
-      .min(2, "First Name must be more than two charcters ")
-      .max(10, "First Name must be atmost 10 charchters"),
+      .min(2, "First Name must be more than two characters ")
+      .max(10, "First Name must be at most 10 characters"),
 
     lastName: z
       .string({ required_error: "Last Name is required" })
       .min(1, "Last Name is required")
-      .min(2, "Last Name must be more than two charcters ")
-      .max(10, "Last Name must be atmost 10 charchters"),
+      .min(2, "Last Name must be more than two characters ")
+      .max(10, "Last Name must be at most 10 characters"),
 
     email: z
       .string({ required_error: "Email is required" })
