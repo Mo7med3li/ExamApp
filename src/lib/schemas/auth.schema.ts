@@ -92,3 +92,30 @@ export const resetPasswordSchema = z.object({
 });
 
 export type ResetPasswordField = z.infer<typeof resetPasswordSchema>;
+
+export const changePasswordSchema = z
+  .object({
+    currentPassword: z
+      .string({ required_error: "Current password is required" })
+      .min(1, "Current password is required"),
+    newPassword: z
+      .string({ required_error: "New password is required" })
+      .min(1, "New password is required")
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{9,}$/,
+        "Password must be at least 8 characters include at least 1 upper, 1 lower, and number."
+      ),
+    confirmNewPassword: z
+      .string({ required_error: "Please confirm your new password" })
+      .min(1, "Please confirm your new password"),
+  })
+  .refine((values) => values.newPassword === values.confirmNewPassword, {
+    message: "New passwords do not match",
+    path: ["confirmNewPassword"],
+  })
+  .refine((values) => values.currentPassword !== values.newPassword, {
+    message: "New password must be different from current password",
+    path: ["newPassword"],
+  });
+
+export type ChangePasswordField = z.infer<typeof changePasswordSchema>;
