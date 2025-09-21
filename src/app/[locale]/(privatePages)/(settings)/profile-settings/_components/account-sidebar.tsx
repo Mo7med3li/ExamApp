@@ -24,6 +24,11 @@ const AccountSidebar = () => {
       url: "/change-password",
       icon: Lock,
     },
+    {
+      title: "Account Info",
+      url: "/account",
+      icon: User2,
+    },
   ];
 
   // Navigation
