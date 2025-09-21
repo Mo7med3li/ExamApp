@@ -16,31 +16,32 @@ import {
   changePasswordSchema,
   ChangePasswordField,
 } from "@/lib/schemas/auth.schema";
+import useChangePassword from "../_hooks/use-change-password";
 const ChangePasswordForm = () => {
   // Form
   const form = useForm<ChangePasswordField>({
     resolver: zodResolver(changePasswordSchema),
     defaultValues: {
-      currentPassword: "",
-      newPassword: "",
-      confirmNewPassword: "",
+      oldPassword: "",
+      password: "",
+      rePassword: "",
     },
   });
 
+  // Hooks
+  const { changePasswordMutate, isPending } = useChangePassword();
+
   // Submit Handler
-  const onSubmit = async (data: ChangePasswordField) => {
-    try {
-      console.log("Change password data:", data);
-    } catch (error) {
-      console.error("Error changing password:", error);
-    }
+  const onSubmit = async (values: ChangePasswordField) => {
+    await changePasswordMutate(values);
+    console.log(values);
   };
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
-          name="currentPassword"
+          name="oldPassword"
           render={({ field }) => (
             <FormItem>
               {/* Field */}
@@ -61,7 +62,7 @@ const ChangePasswordForm = () => {
 
         <FormField
           control={form.control}
-          name="newPassword"
+          name="password"
           render={({ field }) => (
             <FormItem>
               {/* Label */}
@@ -82,7 +83,7 @@ const ChangePasswordForm = () => {
 
         <FormField
           control={form.control}
-          name="confirmNewPassword"
+          name="rePassword"
           render={({ field }) => (
             <FormItem>
               {/* Label */}
@@ -104,8 +105,8 @@ const ChangePasswordForm = () => {
         <Button
           type="submit"
           className="w-full"
-          disabled={form.formState.isSubmitting}
-          spinner={form.formState.isSubmitting}
+          disabled={form.formState.isSubmitting || !form.formState.isValid}
+          spinner={form.formState.isSubmitting || isPending}
         >
           Update Password
         </Button>
