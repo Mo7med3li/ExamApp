@@ -81,11 +81,6 @@ export function UserProfileForm() {
                       </FormItem>
                     )}
                   />
-                  {form.formState.errors.firstName && (
-                    <p className="text-sm text-destructive">
-                      {form.formState.errors.firstName.message}
-                    </p>
-                  )}
                 </div>
                 <div className="space-y-2">
                   <FormField
@@ -104,11 +99,6 @@ export function UserProfileForm() {
                       </FormItem>
                     )}
                   />
-                  {form.formState.errors.lastName && (
-                    <p className="text-sm text-destructive">
-                      {form.formState.errors.lastName.message}
-                    </p>
-                  )}
                 </div>
               </div>
 
@@ -129,11 +119,6 @@ export function UserProfileForm() {
                     </FormItem>
                   )}
                 />
-                {form.formState.errors.username && (
-                  <p className="text-sm text-destructive">
-                    {form.formState.errors.username.message}
-                  </p>
-                )}
               </div>
 
               <div className="space-y-2">
@@ -159,11 +144,6 @@ export function UserProfileForm() {
                     </FormItem>
                   )}
                 />
-                {form.formState.errors.phone && (
-                  <p className="text-sm text-destructive">
-                    {form.formState.errors.phone.message}
-                  </p>
-                )}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-6">
