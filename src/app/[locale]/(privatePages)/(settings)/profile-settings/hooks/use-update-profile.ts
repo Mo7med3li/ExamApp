@@ -1,11 +1,11 @@
 import { UpdateProfileFields } from "@/lib/schemas/update-profile.schema";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateAccount } from "../actions/update-account.action";
 import { toast } from "sonner";
 
 export default function useUpdateProfile() {
-  // // translation
-  // const t = useTranslations();
+  // Query
+  const queryClient = useQueryClient();
 
   // mutation
   const {
@@ -19,6 +19,7 @@ export default function useUpdateProfile() {
 
     onSuccess: () => {
       toast.success("Account Updated successfully");
+      queryClient.invalidateQueries({ queryKey: ["User Data"] });
     },
 
     onError: (error) => {

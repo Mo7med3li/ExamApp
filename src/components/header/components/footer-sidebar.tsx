@@ -1,5 +1,6 @@
 import React from "react";
 import MenuItem from "./sidebar-menu";
+import useFetchUserData from "@/app/[locale]/(privatePages)/(settings)/profile-settings/hooks/use-fetch-user-data";
 import { useSession } from "next-auth/react";
 
 // Functions
@@ -16,9 +17,32 @@ function stringToHslColor(str: string) {
 
   return `hsl(${h}, ${s}%, ${l}%)`;
 }
+
 export default function FooterSidebar() {
   // Sessions
   const { data: session } = useSession();
+
+  // Hooks
+  const { userData, isLoading } = useFetchUserData();
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          {/* Loading skeleton for user avatar */}
+          <div className="size-14 bg-gray-200 animate-pulse rounded"></div>
+          <div className="flex flex-col gap-1">
+            {/* Loading skeleton for name */}
+            <div className="h-4 w-20 bg-gray-200 animate-pulse rounded"></div>
+            {/* Loading skeleton for email */}
+            <div className="h-3 w-32 bg-gray-200 animate-pulse rounded"></div>
+          </div>
+        </div>
+        {/* Menu */}
+        <MenuItem />
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center justify-between">
@@ -32,14 +56,14 @@ export default function FooterSidebar() {
             ),
           }}
         >
-          {session?.user.firstName.slice(0, 1)}
+          {userData?.user.firstName.slice(0, 1)}
         </div>
 
         <div className="flex flex-col">
           <div className="space-x-1">
             {/* User Name */}
             <span className="font-medium text-blue-600">
-              {session?.user.firstName}
+              {userData?.user.firstName}
             </span>
           </div>
           {/* User Email */}

@@ -31,7 +31,7 @@ export default function MenuItem() {
         <DropdownMenuItem className="flex cursor-pointer gap-2 p-[5px] border-b">
           {/* Go to Account Page */}
           <Link
-            href={"/dashboard/account"}
+            href={"/profile-settings"}
             className="flex items-center py-2 px-[6px] justify-center gap-2 font-medium"
           >
             <User width={18} height={18} /> {t("account")}

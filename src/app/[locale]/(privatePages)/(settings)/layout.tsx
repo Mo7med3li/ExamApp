@@ -12,9 +12,11 @@ export default function ProfileSettingsLayout({
   return (
     <main className="flex w-full h-screen bg-gray-50 p-6 shadow-lg">
       {/* Content */}
-      <div className="flex-1 flex flex-col gap-6">
+      <div className="flex-1 flex flex-col">
+        <div className="rounded-3xl">
+          <PageHeader title="Account Settings" icon={User2} />
+        </div>
         {/* Header */}
-        <PageHeader title="Account Settings" icon={User2} />
         <section className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-[800px]">
           {/* Sidebar */}
           <AccountSidebar />
@@ -22,7 +24,6 @@ export default function ProfileSettingsLayout({
             {children}
           </section>
         </section>
-        {/* Page Content */}
       </div>
     </main>
   );

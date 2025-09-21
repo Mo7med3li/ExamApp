@@ -9,14 +9,7 @@ export default function Page() {
       <div className="max-w-7xl mx-auto">
         <section className="bg-white/80 backdrop-blur-sm shadow-2xl border border-white/20 rounded-3xl overflow-hidden">
           {/* Header */}
-          <div className="relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600"></div>
-            <div className="relative z-10">
-              <PageHeader title="Diplomas" icon={GraduationCap} />
-            </div>
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-12 -translate-x-12"></div>
-          </div>
+          <PageHeader title="Diplomas" icon={GraduationCap} />
 
           {/* Content */}
           <div className="p-6 md:p-8 lg:p-10">

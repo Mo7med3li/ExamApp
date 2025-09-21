@@ -65,3 +65,8 @@ declare type CheckResponse = {
     // answers: {};
   }[];
 };
+
+declare type UserDataResponse = {
+  message: string;
+  user: AppUser;
+};

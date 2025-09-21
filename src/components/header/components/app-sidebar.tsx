@@ -1,5 +1,5 @@
 "use client";
-import { GraduationCap, History, User } from "lucide-react";
+import { GraduationCap, User } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -13,7 +13,6 @@ import {
 import Image from "next/image";
 import logo from "@/assets/imgs/Final Logo 1.png";
 import { Link, usePathname } from "@/i18n/navigation";
-import { useSession } from "next-auth/react";
 import { useLocale } from "next-intl";
 import { useTranslations } from "use-intl";
 import { cn } from "@/lib/utils";
@@ -25,9 +24,6 @@ export function AppSidebar() {
   const t = useTranslations();
   const locale = useLocale();
 
-  // session
-  const { data: session } = useSession();
-
   // Menu items.
   const items = [
     {
@@ -35,16 +31,6 @@ export function AppSidebar() {
       url: "/dashboard",
       icon: GraduationCap,
     },
-
-    ...(session?.user.role === "admin"
-      ? [
-          {
-            title: t("quiz-history"),
-            url: "/",
-            icon: History,
-          },
-        ]
-      : []),
     {
       title: t("account-settings"),
       url: "/profile-settings",
@@ -65,7 +51,7 @@ export function AppSidebar() {
         <SidebarHeader className="flex flex-col gap-3 items-start">
           {/* Logo */}
           <Image
-            alt="Elevate logog"
+            alt="Elevate logo"
             src={logo}
             width={500}
             height={0}
