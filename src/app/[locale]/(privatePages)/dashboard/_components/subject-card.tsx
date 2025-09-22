@@ -6,7 +6,7 @@ import React from "react";
 
 export default function SubjectCard({ subject }: { subject: Subject }) {
   return (
-    <Link key={subject._id} href={`/select-diploma/${subject._id}`}>
+    <Link key={subject._id} href={`/all-exams`}>
       <div className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 hover:scale-105">
         {/* Image Container */}
         <div className="relative h-[280px] overflow-hidden">

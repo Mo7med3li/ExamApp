@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Dialog,
   DialogContent,
@@ -17,28 +18,30 @@ type QuestionDialogProps = {
 
 export default function QuestionDialog({ exam }: QuestionDialogProps) {
   const { payload, isLoading } = useQuestion(exam);
+
   if (isLoading) {
-    return <p>loading....</p>;
+    return (
+      <div className="space-y-4 w-full h-10 bg-blue-100 shadow-lg rounded-lg"></div>
+    );
   }
 
-  return (
+  return payload?.questions[0] !== undefined ? (
     <Dialog>
       <DialogTrigger className="bg-main py-1 px-6 rounded-xl text-white">
-        Start
+        start
       </DialogTrigger>
-      <DialogContent className="w-[690px] max-h-[100vh] overflow-y-auto ">
+
+      <DialogContent className="w-[690px] max-h-[100vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="">
-            {/* Are you absolutely sure?{exam} */}
-          </DialogTitle>
-          <DialogDescription>
-            {/* This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers. */}
-          </DialogDescription>
+          <DialogTitle className=""></DialogTitle>
+          <DialogDescription></DialogDescription>
         </DialogHeader>
+
         {/* Form */}
-        {payload?.questions && <QuestionForm questions={payload.questions} />}
+        <QuestionForm questions={payload.questions} />
       </DialogContent>
     </Dialog>
+  ) : (
+    "No Exam for this subject"
   );
 }

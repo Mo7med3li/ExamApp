@@ -11,7 +11,6 @@ export default async function Page({
   const payload = await fetchExams(params.subjectId);
   return (
     <section>
-      <h2 className="font-medium text-lg mb-8">Front-End Quiz</h2>
       {/* Start Quiz */}
       <Suspense fallback="loading....">
         <DiplomaQuizStartCard Exams={payload.exams} />
