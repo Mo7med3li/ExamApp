@@ -10,21 +10,26 @@ export default function ProfileSettingsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex w-full h-screen bg-gray-50 p-6 shadow-lg">
-      {/* Content */}
-      <div className="flex-1 flex flex-col">
-        <div className="rounded-3xl">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 p-4 md:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto">
+        <section className="bg-white/80 backdrop-blur-sm shadow-2xl border border-white/20 rounded-3xl overflow-hidden">
+          {/* Header */}
           <PageHeader title="Account Settings" icon={User2} />
-        </div>
-        {/* Header */}
-        <section className="grid grid-cols-1 lg:grid-cols-4 gap-6 h-[800px]">
-          {/* Sidebar */}
-          <AccountSidebar />
-          <section className="p-6 bg-white col-span-3 h-full">
-            {children}
-          </section>
+
+          {/* Content */}
+          <div className="p-6 md:p-8 lg:p-10">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+              {/* Sidebar */}
+              <div className="lg:col-span-1">
+                <AccountSidebar />
+              </div>
+
+              {/* Main Content */}
+              <div className="lg:col-span-3">{children}</div>
+            </div>
+          </div>
         </section>
       </div>
-    </main>
+    </div>
   );
 }

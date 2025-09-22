@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import SubjectCard from "./subject-card";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Loader2 } from "lucide-react";
+import { SubjectCardSkeleton } from "@/components/skeleton/diploma/diplomas.skeleton";
 
 export default function SubjectList() {
   // States
@@ -41,7 +42,6 @@ export default function SubjectList() {
 
   const handleLoadMore = () => {
     setLoadingMore(true);
-    // Simulate loading delay for better UX
     setTimeout(() => {
       setVisibleCount((prev) => Math.min(prev + 4, subjects.length));
       setLoadingMore(false);
@@ -53,7 +53,7 @@ export default function SubjectList() {
       <div className="col-span-full flex items-center justify-center py-12">
         <div className="flex items-center gap-3 text-slate-600">
           <Loader2 className="h-6 w-6 animate-spin text-blue-600" />
-          <span className="text-lg font-medium">Loading diplomas...</span>
+          <SubjectCardSkeleton />
         </div>
       </div>
     );
