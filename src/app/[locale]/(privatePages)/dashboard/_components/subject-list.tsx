@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import SubjectCard from "./subject-card";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Loader2 } from "lucide-react";
-import { SubjectCardSkeleton } from "@/components/skeleton/diploma/diplomas.skeleton";
 
 export default function SubjectList() {
   // States

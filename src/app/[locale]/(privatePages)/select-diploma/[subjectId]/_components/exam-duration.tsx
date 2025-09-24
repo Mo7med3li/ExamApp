@@ -30,7 +30,7 @@ export default function Examduration({
         setIsWarning(minutes <= 5 && minutes > 0);
 
         // check if the time end
-        if (currentDate.getMinutes() === 0 && currentDate.getSeconds() === 0) {
+        if (currentDate.getMinutes() === 0 && seconds === 0) {
           onTimerEnd?.();
           // destroy date
           window.clearInterval(timerId);
@@ -39,7 +39,7 @@ export default function Examduration({
         // Invoke time handler on each iteration
         onTimeChange?.(currentDate);
         // decrease one second from the time
-        return currentDate.setSeconds(currentDate.getSeconds() - 1);
+        return currentDate.setSeconds(seconds - 1);
       });
     }, 1000);
     return () => {
