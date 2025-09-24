@@ -39,22 +39,19 @@ export default function SignupForm() {
     },
     resolver: zodResolver(registerSchema),
   });
-
-  // submit handler
   const onSubmit: SubmitHandler<RegisterFields> = async (values) => {
     await register(values);
   };
-
   return (
-    <div className="bg-white w-[500px] rounded-md flex flex-col gap-4">
-      <h2 className="text-2xl font-bold">{t("sign-up")}</h2>
+    <div className=" w-full max-w-md sm:max-w-lg rounded-md flex flex-col gap-4 p-4 sm:p-6 shadow-cardShadow">
+      <h2 className="text-2xl font-bold text-foreground">{t("sign-up")}</h2>
       <Form {...form}>
         <FormProvider {...form}>
           <form
             className="flex flex-col gap-4"
             onSubmit={form.handleSubmit(onSubmit)}
           >
-            <div className=" items-center gap-3 grid lg:grid-cols-2">
+            <div className="items-center gap-3 grid lg:grid-cols-2">
               {/* first name */}
               <FormField
                 control={form.control}
@@ -67,7 +64,6 @@ export default function SignupForm() {
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder={t("first-name")}
                         className={cn(
                           form.formState.errors.firstName &&
                             "focus-visible:border-red-300"
@@ -92,7 +88,6 @@ export default function SignupForm() {
                     <FormControl>
                       <Input
                         {...field}
-                        placeholder={t("last-name")}
                         className={cn(
                           form.formState.errors.lastName &&
                             "focus-visible:border-red-300"
@@ -118,7 +113,6 @@ export default function SignupForm() {
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder={t("user-name")}
                       className={cn(
                         form.formState.errors.username &&
                           "focus-visible:border-red-300"
@@ -141,7 +135,6 @@ export default function SignupForm() {
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder={t("email")}
                       type="email"
                       className={cn(
                         form.formState.errors.email &&
@@ -161,11 +154,11 @@ export default function SignupForm() {
                 name="phone"
                 render={({ field }) => (
                   <FormItem className="flex flex-col items-start">
-                    <FormLabel className="mb-1 text-sm font-semibold text-zinc-800 dark:text-zinc-50">
+                    <FormLabel className="mb-1 text-sm font-semibold text-muted-foreground">
                       {t("phone-number")}
                     </FormLabel>
                     <FormControl className="w-full">
-                      <Input placeholder="01012345678" {...field} />
+                      <Input {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -183,7 +176,6 @@ export default function SignupForm() {
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder={t("password")}
                       type="password"
                       className={cn(
                         form.formState.errors.password &&
@@ -206,7 +198,6 @@ export default function SignupForm() {
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder={t("confirm-password")}
                       type="password"
                       className={cn(
                         form.formState.errors.rePassword &&
@@ -221,12 +212,12 @@ export default function SignupForm() {
 
             {/* error msg */}
             {error && (
-              <p className="text-red-500 italic my-2">{error.message}</p>
+              <p className="text-destructive italic my-2">{error.message}</p>
             )}
 
             {/* submit */}
             <Button
-              className="w-full rounded-2xl h-14 text-lg "
+              className="w-full h-14 text-lg "
               type="submit"
               disabled={
                 isPending ||
@@ -235,11 +226,11 @@ export default function SignupForm() {
             >
               {t("create-account")}
             </Button>
-            <div className=" text-center">
-              <p className=" text-sm text-gray-500">
+            <div className="text-center">
+              <p className="text-sm text-muted-foreground">
                 {t("already-have-an-account")}
                 <Link
-                  className="text-blue-600 text-sm px-1"
+                  className="text-primary text-sm px-1"
                   href={"/auth/login"}
                 >
                   {t("sign-in")}

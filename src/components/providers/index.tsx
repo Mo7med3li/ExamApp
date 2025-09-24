@@ -8,6 +8,7 @@ import {
 import NextAuthProvider from "./components/next-auth.provider";
 import ReactQueryProvider from "./components/react-query.provider";
 import { ExamProvider } from "./components/exam.provider";
+import { ThemeProvider } from "./components/theme-provider";
 
 type ProvidersProps = {
   children: React.ReactNode;
@@ -23,16 +24,23 @@ export default function Providers({ children }: ProvidersProps) {
   return (
     <ReactQueryProvider>
       <NextAuthProvider>
-        <ExamProvider>
-          <NextIntlClientProvider
-            locale={locale}
-            messages={messages}
-            now={now}
-            timeZone={timezone}
-          >
-            {children}
-          </NextIntlClientProvider>
-        </ExamProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ExamProvider>
+            <NextIntlClientProvider
+              locale={locale}
+              messages={messages}
+              now={now}
+              timeZone={timezone}
+            >
+              {children}
+            </NextIntlClientProvider>
+          </ExamProvider>
+        </ThemeProvider>
       </NextAuthProvider>
     </ReactQueryProvider>
   );

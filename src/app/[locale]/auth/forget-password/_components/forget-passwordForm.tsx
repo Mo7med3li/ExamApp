@@ -33,17 +33,17 @@ export default function ForgetPasswordForm() {
     resolver: zodResolver(forgetPasswordSchema),
   });
 
-  // mutaion
+  // mutation
   const { isPending, error, forgetPasswordFn } = useForgetPassword();
   const onSubmit: SubmitHandler<ForgetPasswordField> = (values) => {
     forgetPasswordFn(values);
   };
 
   return (
-    <div className="bg-white w-[500px] rounded-md flex flex-col gap-4 py-10">
+    <div className="w-full max-w-md sm:max-w-lg rounded-md flex flex-col gap-4 py-8 px-4 sm:px-6 shadow-cardShadow">
       <div className="space-y-3">
         <h2 className="text-2xl font-bold">{t("forget-your-password")}</h2>
-        <p className="text-gray-500">
+        <p className="text-muted-foreground">
           Don’t worry, we will help you recover your account.
         </p>
       </div>
@@ -76,7 +76,7 @@ export default function ForgetPasswordForm() {
             )}
           />
           {/* error msg */}
-          {error && <p className="text-red-500 italic ">{error.message}</p>}
+          {error && <p className="text-destructive italic ">{error.message}</p>}
           <Button
             className="w-full h-14 text-lg "
             disabled={

@@ -42,7 +42,7 @@ export default function SetPasswordForm() {
     resetPasswordFn(values);
   };
   return (
-    <div className="bg-white w-[500px] rounded-md flex flex-col gap-12 py-10">
+    <div className="w-full max-w-md sm:max-w-lg rounded-md flex flex-col gap-12 py-8 px-4 sm:px-6 shadow-cardShadow">
       <h2 className="text-2xl font-bold"> {t("set-password")}</h2>
       <Form {...form}>
         <FormProvider {...form}>
@@ -99,7 +99,9 @@ export default function SetPasswordForm() {
                 </FormItem>
               )}
             />
-            {error && <p className="text-red-500 italic">{error.message}</p>}
+            {error && (
+              <p className="text-destructive italic">{error.message}</p>
+            )}
             <Button
               className="w-full h-14 text-lg "
               disabled={

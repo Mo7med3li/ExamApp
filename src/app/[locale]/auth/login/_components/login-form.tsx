@@ -39,12 +39,17 @@ export function LoginForm() {
   };
 
   return (
-    <div className="bg-white w-[500px] rounded-md  flex flex-col gap-8">
+    <div className="w-full  sm:max-w-lg rounded-md flex flex-col gap-8 p-4 sm:p-6 shadow-cardShadow">
       {/* Headline */}
-      <h2 className="text-3xl font-bold">{t("sign-in")}</h2>
+      <h2 className="text-2xl sm:text-3xl font-bold text-foreground">
+        {t("sign-in")}
+      </h2>
       <Form {...form}>
         <FormProvider {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-6 sm:space-y-8"
+          >
             {/* email */}
             <FormField
               name="email"
@@ -95,12 +100,12 @@ export function LoginForm() {
               )}
             />
             {/* Error */}
-            {error && <p className="text-red-400"> {error.message}</p>}
+            {error && <p className="text-destructive"> {error.message}</p>}
             <div className=" text-end">
               {/* Forget Password */}
               <Link
                 href={"/auth/forget-password"}
-                className="text-main text-base"
+                className="text-primary text-base"
               >
                 {t("recover-password")}
               </Link>
@@ -108,7 +113,7 @@ export function LoginForm() {
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full py-6 text-sm bg-blue-600 font-medium hover:bg-blue-700 "
+              className="w-full py-6 text-sm  font-medium"
               disabled={
                 isPending ||
                 (form.formState.isSubmitted && !form.formState.isValid)
@@ -117,7 +122,7 @@ export function LoginForm() {
               {t("sign-in")}
             </Button>
             {/* Register Link */}
-            <RegisterLink />{" "}
+            <RegisterLink />
           </form>
         </FormProvider>
       </Form>

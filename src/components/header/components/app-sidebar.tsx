@@ -1,25 +1,19 @@
 "use client";
-import { GraduationCap, User } from "lucide-react";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroupContent,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
-import Image from "next/image";
-import logo from "@/assets/imgs/Final Logo 1.png";
+import { GraduationCap, BookOpen, Settings, LogOut } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
 import { useTranslations } from "use-intl";
 import { cn } from "@/lib/utils";
-import Logo from "@/app/[locale]/auth/_components/logo";
-import FooterSidebar from "./footer-sidebar";
+import { signOut } from "next-auth/react";
+import Image from "next/image";
+import logo from "@/assets/imgs/Final Logo 1.png";
+// import { ModeToggle } from "@/components/common/mode-toggle";
 
-export function AppSidebar() {
+interface AppSidebarProps {
+  onMobileClose?: () => void;
+}
+
+export function AppSidebar({ onMobileClose }: AppSidebarProps) {
   // Translations
   const t = useTranslations();
   const locale = useLocale();
@@ -30,72 +24,136 @@ export function AppSidebar() {
       title: t("dashboard"),
       url: "/dashboard",
       icon: GraduationCap,
+      description: "Browse diplomas",
+    },
+    {
+      title: "All Exams",
+      url: "/all-exams",
+      icon: BookOpen,
+      description: "View all exams",
     },
     {
       title: t("account-settings"),
       url: "/profile-settings",
-      icon: User,
+      icon: Settings,
+      description: "Manage account",
     },
   ];
 
   // Navigation
   const pathName = usePathname();
 
-  return (
-    <Sidebar
-      side={locale === "ar" ? "right" : "left"}
-      className="w-[300px] bg-blue-50"
-    >
-      <SidebarContent className="pt-5 px-6">
-        {/* Header */}
-        <SidebarHeader className="flex flex-col gap-3 items-start">
-          {/* Logo */}
-          <Image
-            alt="Elevate logo"
-            src={logo}
-            width={500}
-            height={0}
-            className="w-40 object-cover"
-          />
-          <Logo />
-        </SidebarHeader>
+  const handleLinkClick = () => {
+    // Close mobile menu when link is clicked
+    if (onMobileClose) {
+      onMobileClose();
+    }
+  };
 
-        <SidebarGroupContent className="mt-10">
-          <SidebarMenu className="space-y-5">
-            {items.map((item) => (
-              <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild className="py-3">
-                  {/* Navigation */}
-                  <Link
-                    className={cn(
-                      `flex items-center`,
-                      pathName === item.url
-                        ? "bg-blue-100  text-blue-600"
-                        : "text-gray-500",
-                      locale === "ar" ? "flex-row-reverse" : ""
-                    )}
-                    href={item.url}
-                  >
-                    {item.icon && (
-                      <item.icon
-                        className={cn(
-                          pathName === item.url
-                            ? " text-blue-600"
-                            : "text-gray-500"
-                        )}
-                      />
-                    )}
-                    <span>{item.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-        </SidebarGroupContent>
-      </SidebarContent>
-      <SidebarFooter className="py-10 px-6">
-        <FooterSidebar />
-      </SidebarFooter>
-    </Sidebar>
+  return (
+    <div className="w-80 bg-white dark:bg-stone-500 border-r border-slate-200/60 dark:border-slate-700/60 flex flex-col h-full transition-colors duration-300">
+      {/* Header */}
+      <div className="p-6 border-b border-slate-200/60 dark:border-slate-700/60">
+        <div className="flex items-center space-x-3">
+          <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg dark:bg-stone-500">
+            <Image
+              alt="Elevate logo"
+              src={logo}
+              width={32}
+              height={32}
+              className="object-contain"
+            />
+          </div>
+          <div className="flex-1">
+            <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">
+              Exam Platform
+            </h2>
+            <p className="text-sm text-slate-500 dark:text-slate-400">
+              Learning Dashboard
+            </p>
+          </div>
+          {/* <ModeToggle /> */}
+        </div>
+      </div>
+
+      {/* Navigation */}
+      <nav className="flex-1 p-6">
+        <div className="space-y-2">
+          {items.map((item) => (
+            <Link
+              key={item.title}
+              href={item.url}
+              onClick={handleLinkClick}
+              className={cn(
+                "group flex items-center p-4 rounded-xl transition-all duration-200",
+                pathName === item.url
+                  ? "bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200/60 dark:border-blue-700/60 shadow-sm"
+                  : "hover:bg-slate-50 dark:hover:bg-slate-700/50 hover:shadow-sm",
+                locale === "ar" ? "flex-row-reverse" : ""
+              )}
+            >
+              <div
+                className={cn(
+                  "w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200",
+                  pathName === item.url
+                    ? "bg-gradient-to-br from-blue-600 to-indigo-600 text-white shadow-lg"
+                    : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 group-hover:text-blue-600 dark:group-hover:text-blue-400"
+                )}
+              >
+                <item.icon className="w-5 h-5" />
+              </div>
+              <div
+                className={cn(
+                  "ml-3 flex-1",
+                  locale === "ar" ? "ml-0 mr-3 text-right" : ""
+                )}
+              >
+                <div
+                  className={cn(
+                    "font-medium transition-colors duration-200",
+                    pathName === item.url
+                      ? "text-blue-900 dark:text-blue-100"
+                      : "text-slate-900 dark:text-slate-100 group-hover:text-slate-900 dark:group-hover:text-slate-100"
+                  )}
+                >
+                  {item.title}
+                </div>
+                <div className="text-sm text-slate-500 dark:text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300">
+                  {item.description}
+                </div>
+              </div>
+              {pathName === item.url && (
+                <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full animate-pulse"></div>
+              )}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
+      {/* Footer */}
+      <div className="p-6 border-t border-slate-200/60 dark:border-slate-700/60">
+        <button
+          onClick={() => signOut()}
+          className="w-full flex items-center p-4 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 hover:shadow-sm transition-all duration-200 group"
+        >
+          <div className="w-10 h-10 rounded-lg bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-400 flex items-center justify-center group-hover:bg-red-600 dark:group-hover:bg-red-600 group-hover:text-white transition-all duration-200">
+            <LogOut className="w-5 h-5" />
+          </div>
+          <div
+            className={cn(
+              "ml-3 flex-1 text-left",
+              locale === "ar" ? "ml-0 mr-3 text-right" : ""
+            )}
+          >
+            <div className="font-medium text-slate-900 dark:text-slate-100 group-hover:text-red-900 dark:group-hover:text-red-100">
+              {t("logout")}
+            </div>
+            <div className="text-sm text-slate-500 dark:text-slate-400 group-hover:text-red-600 dark:group-hover:text-red-400">
+              Sign out of your account
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
   );
 }

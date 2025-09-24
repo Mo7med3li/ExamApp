@@ -45,14 +45,14 @@ export default function VerfyCodeForm({ email }: { email: string }) {
   };
 
   return (
-    <div className="bg-white w-[500px]  rounded-md  flex flex-col gap-12 py-10">
+    <div className="w-full max-w-md sm:max-w-lg rounded-md flex flex-col gap-12 py-8 px-4 sm:px-6 shadow-cardShadow">
       <div className="space-y-3">
         <h2 className="text-2xl font-bold">{t("verfiy-code")}</h2>
-        <p className="text-gray-500">{t("code-otp")}</p>
+        <p className="text-muted-foreground">{t("code-otp")}</p>
         <div className="flex items-center gap-2">
-          <p className="text-gray-500">{email}.</p>
+          <p className="text-muted-foreground">{email}.</p>
           <Link
-            className="text-blue-600 font-medium"
+            className="text-primary font-medium"
             href={"/auth/forget-password"}
           >
             {t("edit")}
@@ -86,7 +86,7 @@ export default function VerfyCodeForm({ email }: { email: string }) {
             />
           </div>
           {/* error msg */}
-          {error && <p className="text-red-500 italic">{error.message}</p>}
+          {error && <p className="text-destructive italic">{error.message}</p>}
           <Button
             className="w-full h-14 text-lg "
             disabled={
@@ -97,10 +97,10 @@ export default function VerfyCodeForm({ email }: { email: string }) {
             {t("verfiy")}
           </Button>
           <div className="text-end">
-            <p className="text-base">
+            <p className="text-base text-muted-foreground">
               {t("receive-code")}
               <Link
-                className="text-main text-base px-1"
+                className="text-primary text-base px-1"
                 href={""}
                 onClick={() => {
                   forgetPasswordFn({ email });

@@ -55,7 +55,7 @@ export function UserProfileForm() {
   }, [userData, form]);
 
   return (
-    <Card className="w-full max-w-2xl mt-8">
+    <Card className="w-full dark:bg-stone-500">
       <CardHeader>
         <h2 className="text-2xl font-semibold">Profile Settings</h2>
       </CardHeader>

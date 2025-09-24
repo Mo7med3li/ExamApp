@@ -1,24 +1,29 @@
 const PageHeader = async ({
   title,
   icon: Icon,
+  subtitle,
 }: {
   title: string;
   icon: React.ElementType<{ className?: string }>;
+  subtitle?: string;
 }) => {
   return (
-    <>
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600"></div>
-        <div className="relative z-10">
-          <div className="flex items-center gap-4 bg-blue-600 p-4">
-            <Icon className="text-white size-11" />
-            <span className="text-3xl font-semibold text-white">{title}</span>
-          </div>
+    <div className="mb-8">
+      <div className="flex items-center space-x-4">
+        <div className="w-14 h-14 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
+          <Icon className="w-7 h-7 text-white" />
         </div>
-        <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
-        <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/5 rounded-full translate-y-12 -translate-x-12"></div>
+        <div>
+          <h1 className="text-3xl font-bold text-slate-900 tracking-tight">
+            {title}
+          </h1>
+          {subtitle && <p className="text-slate-600 mt-1">{subtitle}</p>}
+        </div>
       </div>
-    </>
+
+      {/* Decorative line */}
+      <div className="mt-6 h-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 rounded-full w-24"></div>
+    </div>
   );
 };
 

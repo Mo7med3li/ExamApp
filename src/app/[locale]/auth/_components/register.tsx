@@ -8,10 +8,10 @@ const RegisterLink = () => {
   // variables
   const signupText = t("dont-have-an-account");
   return (
-    <p className="text-center text-sm text-gray-500">
+    <p className="text-center text-sm text-muted-foreground">
       {/* Register */}
       {signupText}
-      <Link prefetch href="/auth/signup" className="text-blue-600">
+      <Link prefetch href="/auth/signup" className="text-primary px-1">
         {t("create-yours")}
       </Link>
     </p>

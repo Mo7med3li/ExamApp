@@ -5,9 +5,9 @@ const Logo = () => {
   // Translations
   const t = useTranslations();
   return (
-    <div className="flex items-center text-blue-600 gap-3 rtl:flex-row-reverse w-fit">
+    <div className="flex items-center text-primary gap-3 rtl:flex-row-reverse w-fit">
       <FolderCode size={30} className="text-blue-600" />
-      <p className="font-semibold text-xl">{t("exam-app")}</p>
+      <p className="font-semibold text-xl text-blue-600">{t("exam-app")}</p>
     </div>
   );
 };

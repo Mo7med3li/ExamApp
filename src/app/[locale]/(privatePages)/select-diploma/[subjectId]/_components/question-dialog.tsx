@@ -11,6 +11,7 @@ import {
 import React from "react";
 import QuestionForm from "./questions-form";
 import useQuestion from "../_hooks/use-questions";
+import { Play, Loader2 } from "lucide-react";
 
 type QuestionDialogProps = {
   exam: string;
@@ -21,27 +22,38 @@ export default function QuestionDialog({ exam }: QuestionDialogProps) {
 
   if (isLoading) {
     return (
-      <div className="space-y-4 w-full h-10 bg-blue-100 shadow-lg rounded-lg"></div>
+      <div className="flex items-center justify-center w-full h-10 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-xl shadow-sm">
+        <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
+      </div>
     );
   }
 
   return payload?.questions[0] !== undefined ? (
     <Dialog>
-      <DialogTrigger className="bg-main py-1 px-6 rounded-xl text-white">
-        start
+      <DialogTrigger className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white py-2 px-4 rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-200">
+        <Play className="w-4 h-4" />
+        <span>Start Exam</span>
       </DialogTrigger>
 
-      <DialogContent className="w-[690px] max-h-[100vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className=""></DialogTitle>
-          <DialogDescription></DialogDescription>
+      <DialogContent className="w-[90vw] max-w-4xl max-h-[95vh] overflow-y-auto p-0">
+        <DialogHeader className="p-6 pb-0">
+          <DialogTitle className="text-2xl font-bold text-slate-900">
+            Exam
+          </DialogTitle>
+          <DialogDescription className="text-slate-600">
+            Answer all questions to complete the exam
+          </DialogDescription>
         </DialogHeader>
 
         {/* Form */}
-        <QuestionForm questions={payload.questions} />
+        <div className="p-6 pt-4">
+          <QuestionForm questions={payload.questions} />
+        </div>
       </DialogContent>
     </Dialog>
   ) : (
-    "No Exam for this subject"
+    <div className="flex items-center justify-center w-full h-10 bg-slate-100 rounded-xl text-slate-600 text-sm">
+      No Exam Available
+    </div>
   );
 }
