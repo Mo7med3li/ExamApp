@@ -1,12 +1,13 @@
 import React from "react";
-
-import QuestionDialog from "./question-dialog";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "@/i18n/navigation";
 
 export default function DiplomaQuizStartCard({
   Exams,
 }: {
   Exams: Exam[] | undefined;
 }) {
+  const router = useRouter();
   return (
     <>
       {Exams?.map((exam) => {
@@ -32,7 +33,15 @@ export default function DiplomaQuizStartCard({
               {/* duration */}
               <span className="text-sm">{exam.duration} Minutes</span>
               {/* actions */}
-              <QuestionDialog exam={exam._id} />
+
+              <Button
+                onClick={() => {
+                  router.push(`dashboard/exam/${exam.title}?id=${exam._id}`);
+                }}
+                className="rounded-lg"
+              >
+                Start
+              </Button>
             </div>
           </section>
         );

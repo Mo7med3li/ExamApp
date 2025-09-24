@@ -10,7 +10,7 @@ type Result = {
 export default function Score({ result, setShowResult }: Result) {
   // state
   const [showDetailedResult, setShowDetailedResult] = useState(false);
-  
+
   if (showDetailedResult) {
     return (
       <DetailedResult
@@ -31,7 +31,7 @@ export default function Score({ result, setShowResult }: Result) {
             result.total === "100%" ? "border-green-600" : "border-red-600"
           } border-2 flex items-center justify-center`}
         >
-          {result.total}
+          {Math.floor(parseFloat(result.total))} %
         </div>
         <div>
           <div className="text-blue-800 text-2xl flex items-center gap-12 ">

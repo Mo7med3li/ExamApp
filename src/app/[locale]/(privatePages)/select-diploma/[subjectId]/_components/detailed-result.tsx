@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 type Result = {
@@ -12,7 +13,8 @@ export default function DetailedResult({
   result,
   setShowDetailedResult,
 }: Result) {
-
+  // Navigation
+  const router = useRouter();
   return (
     <section className="grid grid-cols-2 items-center gap-4   ">
       {result.WrongQuestions.map((question) => {
@@ -41,6 +43,7 @@ export default function DetailedResult({
         className="w-100 text-lg font-medium"
         onClick={() => {
           setShowDetailedResult(false);
+          router.push("/all-exams");
         }}
       >
         close
