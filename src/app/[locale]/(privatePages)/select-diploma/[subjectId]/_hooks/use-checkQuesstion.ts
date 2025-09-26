@@ -8,7 +8,7 @@ export default function useCheckQuestion() {
       const payload = await checkQuestionAction(fields);
       if ("code" in payload) throw new Error(payload.message);
       return payload;
-    }
+    },
   });
-  return { isPending, error, checkQuestios: mutate };
+  return { isPending, error, checkQuestions: mutate };
 }

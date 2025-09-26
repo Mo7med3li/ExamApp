@@ -9,7 +9,7 @@ type ExamDuration = {
   onTimeChange?: (date: Date) => void;
 };
 
-export default function Examduration({
+export default function ExamDuration({
   duration,
   onTimerEnd,
   onTimeChange,
@@ -56,20 +56,20 @@ export default function Examduration({
     <div
       className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-300 ${
         isWarning
-          ? "bg-red-50 text-red-700 border border-red-200"
-          : "bg-blue-50 text-blue-700 border border-blue-200"
+          ? "bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800"
+          : "bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800"
       }`}
     >
       <Clock
-        className={`w-4 h-4 ${isWarning ? "text-red-600" : "text-blue-600"}`}
+        className={`w-4 h-4 ${isWarning ? "text-red-600 dark:text-red-400" : "text-blue-600 dark:text-blue-400"}`}
       />
       <span
-        className={`font-semibold text-sm ${isWarning ? "text-red-700" : "text-blue-700"}`}
+        className={`font-semibold text-sm ${isWarning ? "text-red-700 dark:text-red-400" : "text-blue-700 dark:text-blue-400"}`}
       >
         {timeString}
       </span>
       {isWarning && (
-        <span className="text-xs font-medium text-red-600 animate-pulse">
+        <span className="text-xs font-medium text-red-600 dark:text-red-400 animate-pulse">
           Warning!
         </span>
       )}

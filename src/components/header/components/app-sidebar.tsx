@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import logo from "@/assets/imgs/Final Logo 1.png";
-// import { ModeToggle } from "@/components/common/mode-toggle";
+import { ModeToggle } from "@/components/common/mode-toggle";
 
 interface AppSidebarProps {
   onMobileClose?: () => void;
@@ -51,11 +51,11 @@ export function AppSidebar({ onMobileClose }: AppSidebarProps) {
   };
 
   return (
-    <div className="w-80 bg-white dark:bg-stone-500 border-r border-slate-200/60 dark:border-slate-700/60 flex flex-col h-full transition-colors duration-300">
+    <div className="w-80 bg-slate-50 dark:bg-slate-900 border-r border-slate-200/60 dark:border-slate-700/60 flex flex-col h-full transition-colors duration-300">
       {/* Header */}
       <div className="p-6 border-b border-slate-200/60 dark:border-slate-700/60">
         <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg dark:bg-stone-500">
+          <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 rounded-xl flex items-center justify-center shadow-lg">
             <Image
               alt="Elevate logo"
               src={logo}
@@ -72,7 +72,7 @@ export function AppSidebar({ onMobileClose }: AppSidebarProps) {
               Learning Dashboard
             </p>
           </div>
-          {/* <ModeToggle /> */}
+          <ModeToggle />
         </div>
       </div>
 

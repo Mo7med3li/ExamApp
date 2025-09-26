@@ -8,7 +8,7 @@ import { ArrowRight, BookOpen } from "lucide-react";
 export default function SubjectCard({ subject }: { subject: Subject }) {
   return (
     <Link key={subject._id} href={`/all-exams`}>
-      <div className="group bg-white rounded-2xl border border-slate-200/60 overflow-hidden hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
+      <div className="group bg-white h-[400px] rounded-2xl border border-slate-200/60 overflow-hidden hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
         {/* Image Container */}
         <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
           <Image

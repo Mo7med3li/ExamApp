@@ -55,9 +55,9 @@ export default function DashboardLayout({
         </div>
 
         {/* Main Content Area */}
-        <div className="flex-1 flex flex-col overflow-hidden">
+        <div className="flex-1 flex flex-col overflow-hidden bg-slate-50 dark:bg-slate-900">
           {/* Top Navigation Bar */}
-          <header className="bg-white/80 dark:bg-stone-500 backdrop-blur-lg border-b border-slate-200/60 dark:border-slate-700/60 shadow-sm">
+          <header className="bg-slate-50 dark:bg-slate-900 backdrop-blur-lg border-b border-slate-200/60 dark:border-slate-700/60 shadow-sm">
             <div className="px-6 py-4">
               <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
@@ -76,9 +76,9 @@ export default function DashboardLayout({
 
                 {/* User Profile Quick Access */}
                 <div className="flex items-center space-x-3">
-                  <div className="min-w-16 min-h-16 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-full flex items-center justify-center">
+                  <div className="size-8 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-full flex items-center justify-center">
                     <span className="text-white font-medium text-sm p-1">
-                      {session?.user.firstName}
+                      {session?.user.firstName.slice(0, 1)}
                     </span>
                   </div>
                 </div>
@@ -87,8 +87,8 @@ export default function DashboardLayout({
           </header>
 
           {/* Content Area */}
-          <main className="flex-1 overflow-auto bg-stone-50/50 dark:bg-stone-500">
-            <div className="p-6 lg:p-8">{children}</div>
+          <main className="flex-1 overflow-auto bg-slate-50 dark:bg-slate-900">
+            <div className="p-6">{children}</div>
           </main>
         </div>
       </div>

@@ -55,9 +55,11 @@ export function UserProfileForm() {
   }, [userData, form]);
 
   return (
-    <Card className="w-full dark:bg-stone-500">
+    <Card className="w-full bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
       <CardHeader>
-        <h2 className="text-2xl font-semibold">Profile Settings</h2>
+        <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">
+          Profile Settings
+        </h2>
       </CardHeader>
       <CardContent>
         {!isLoading ? (

@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <main className="grid grid-cols-1 lg:grid-cols-2 w-full min-h-screen dark:bg-slate-600 dark:text-foreground">
+    <main className="grid grid-cols-1 lg:grid-cols-2 w-full min-h-screen dark:bg-slate-900 text-slate-900 dark:text-slate-100">
       {/* Welcome section */}
       <Welcome />
       <section className="lg:col-span-1 flex">
