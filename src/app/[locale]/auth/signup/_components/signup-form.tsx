@@ -68,6 +68,7 @@ export default function SignupForm() {
                           form.formState.errors.firstName &&
                             "focus-visible:border-red-300"
                         )}
+                        placeholder={t("first-name")}
                       />
                     </FormControl>
                     {/* feedback */}
@@ -92,6 +93,7 @@ export default function SignupForm() {
                           form.formState.errors.lastName &&
                             "focus-visible:border-red-300"
                         )}
+                        placeholder={t("last-name")}
                       />
                     </FormControl>
                     {/* Feedback */}
@@ -117,6 +119,7 @@ export default function SignupForm() {
                         form.formState.errors.username &&
                           "focus-visible:border-red-300"
                       )}
+                      placeholder={t("user-name")}
                     />
                   </FormControl>
                   {/* Feedback */}
@@ -140,6 +143,7 @@ export default function SignupForm() {
                         form.formState.errors.email &&
                           "focus-visible:border-red-300"
                       )}
+                      placeholder={t("email")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -158,7 +162,7 @@ export default function SignupForm() {
                       {t("phone-number")}
                     </FormLabel>
                     <FormControl className="w-full">
-                      <Input {...field} />
+                      <Input {...field} placeholder={t("phone-number")} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -181,6 +185,7 @@ export default function SignupForm() {
                         form.formState.errors.password &&
                           "focus-visible:border-red-300"
                       )}
+                      placeholder={t("password")}
                     />
                   </FormControl>
                   <FormMessage />
@@ -203,6 +208,7 @@ export default function SignupForm() {
                         form.formState.errors.rePassword &&
                           "focus-visible:border-red-300"
                       )}
+                      placeholder={t("confirm-password")}
                     />
                   </FormControl>
                   <FormMessage />
