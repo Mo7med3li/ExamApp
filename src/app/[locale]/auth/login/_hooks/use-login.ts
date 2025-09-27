@@ -10,17 +10,17 @@ export default function useLogin() {
   const t = useTranslations();
   const { isPending, error, mutate } = useMutation({
     mutationFn: async (loginFields: loginFields) => {
-      const respone = await signIn("credentials", {
+      const response = await signIn("credentials", {
         callbackUrl: "/dashboard",
         redirect: false,
         email: loginFields.email,
         password: loginFields.password,
       });
-      if (respone?.error) {
-        toast.error(respone.error);
-        throw new Error(respone.error);
+      if (response?.error) {
+        toast.error(response.error);
+        throw new Error(response.error);
       }
-      return respone;
+      return response;
     },
     onSuccess: (data) => {
       setTimeout(() => {

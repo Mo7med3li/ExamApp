@@ -1,5 +1,5 @@
 import React from "react";
-import VerfyCodeForm from "./_components/verfy-codeForm";
+import VerifyCodeForm from "./_components/verfy-codeForm";
 
 export default function page({
   searchParams,
@@ -7,5 +7,5 @@ export default function page({
   searchParams: { email: string | undefined };
 }) {
   // Form
-  return <VerfyCodeForm email={searchParams.email || ""} />;
+  return <VerifyCodeForm email={searchParams.email || ""} />;
 }

@@ -15,7 +15,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { useTranslations } from "next-intl";
-import useverifyCode from "../_hooks/use-verifyCode";
 import {
   InputOTP,
   InputOTPGroup,
@@ -23,13 +22,14 @@ import {
 } from "@/components/ui/input-otp";
 import RegisterLink from "../../_components/register";
 import useForgetPassword from "../../forget-password/_hooks/use-forgetPassword";
+import useVerifyCode from "../_hooks/use-verifyCode";
 
-export default function VerfyCodeForm({ email }: { email: string }) {
+export default function VerifyCodeForm({ email }: { email: string }) {
   // translation
   const t = useTranslations();
 
   // mutation
-  const { isPending, error, verifyCodeFn } = useverifyCode();
+  const { isPending, error, verifyCodeFn } = useVerifyCode();
   const { forgetPasswordFn } = useForgetPassword();
 
   // form

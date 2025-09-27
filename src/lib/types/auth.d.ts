@@ -18,13 +18,13 @@ declare type SignupResponse = {
   user: AppUser;
 };
 
-declare type ForgetPasswordRespone = {
+declare type ForgetPasswordResponse = {
   info: string;
 };
 declare type verifyCodeResponse = {
   status: string;
 };
 
-declare type ResetPasswordRespone = {
+declare type ResetPasswordResponse = {
   token: string;
 };
