@@ -37,7 +37,7 @@ const AccountSidebar = () => {
   const pathName = usePathname();
 
   return (
-    <div className="bg-slate-50 dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-700/60 p-6">
+    <div className="bg-slate-50 dark:bg-zinc-800 rounded-2xl shadow-sm border border-slate-200/60 dark:border-zinc-700/60 p-6">
       <div className="space-y-2">
         {items.map((item) => (
           <Link
@@ -45,8 +45,8 @@ const AccountSidebar = () => {
             className={cn(
               "group flex items-center p-4 rounded-xl transition-all duration-200",
               pathName === item.url
-                ? "bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200/60 dark:border-blue-700/60 shadow-sm"
-                : "hover:bg-slate-50 dark:hover:bg-slate-700/50 hover:shadow-sm",
+                ? "bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-zinc-900/20 dark:to-neutral-900/20 border border-blue-200/60 dark:border-zinc-700/60 shadow-sm"
+                : "hover:bg-slate-50 dark:hover:bg-zinc-700/50 hover:shadow-sm",
               locale === "ar" ? "flex-row-reverse" : ""
             )}
             href={item.url}
@@ -55,7 +55,7 @@ const AccountSidebar = () => {
               className={cn(
                 "w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200",
                 pathName === item.url
-                  ? "bg-gradient-to-br from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 text-white shadow-lg"
+                  ? "bg-gradient-to-br from-blue-600 to-indigo-600 dark:from-zinc-500 dark:to-neutral-500 text-white shadow-lg"
                   : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/30 group-hover:text-blue-600 dark:group-hover:text-blue-400"
               )}
             >
@@ -82,7 +82,7 @@ const AccountSidebar = () => {
               </div>
             </div>
             {pathName === item.url && (
-              <div className="w-2 h-2 bg-blue-600 dark:bg-blue-400 rounded-full animate-pulse"></div>
+              <div className="w-2 h-2 bg-blue-600 dark:bg-zinc-400 rounded-full animate-pulse"></div>
             )}
           </Link>
         ))}

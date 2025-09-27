@@ -55,7 +55,7 @@ export function UserProfileForm() {
   }, [userData, form]);
 
   return (
-    <Card className="w-full bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+    <Card className="w-full bg-white dark:bg-zinc-800 border-slate-200 dark:border-slate-700">
       <CardHeader>
         <h2 className="text-2xl font-semibold text-slate-900 dark:text-slate-100">
           Profile Settings
@@ -150,7 +150,10 @@ export function UserProfileForm() {
 
               <div className="flex flex-col sm:flex-row gap-4 pt-6">
                 <DeleteModel />
-                <Button type="submit" className="sm:ml-auto w-full">
+                <Button
+                  type="submit"
+                  className="sm:ml-auto w-full dark:bg-zinc-900 hover:dark:bg-zinc-600"
+                >
                   Save Changes
                 </Button>
               </div>

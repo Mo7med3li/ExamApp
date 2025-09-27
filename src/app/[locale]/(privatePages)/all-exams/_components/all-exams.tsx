@@ -17,7 +17,7 @@ export default function AllExams() {
         {[...Array(3)].map((_, i) => (
           <div
             key={i}
-            className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 p-6"
+            className="bg-white dark:bg-zinc-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 p-6"
           >
             <div className="flex items-center justify-between">
               {/* Left Side */}

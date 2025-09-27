@@ -5,7 +5,7 @@ import { GraduationCap } from "lucide-react";
 
 export default function Page() {
   return (
-    <div className="space-y-8 bg-slate-50 dark:bg-slate-900">
+    <div className="space-y-8 bg-slate-50 dark:bg-zinc-900">
       {/* Header */}
       <PageHeader
         title="Dashboard"
@@ -14,7 +14,7 @@ export default function Page() {
       />
 
       {/* Diplomas Section */}
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-700/60 overflow-hidden">
+      <div className="bg-white dark:bg-zinc-700 rounded-2xl shadow-sm border border-slate-200/60 dark:border-zinc-700/60 overflow-hidden">
         <div className="p-6 border-b border-slate-200/60 dark:border-slate-700/60">
           <div className="flex items-center justify-between">
             <div>
@@ -25,7 +25,7 @@ export default function Page() {
                 Choose a diploma to start your exam journey
               </p>
             </div>
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 dark:from-black/30 dark:to-zinc-600 rounded-xl flex items-center justify-center">
               <GraduationCap className="w-5 h-5 text-white" />
             </div>
           </div>

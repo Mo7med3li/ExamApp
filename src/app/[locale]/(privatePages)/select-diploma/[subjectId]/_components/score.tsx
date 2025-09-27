@@ -25,9 +25,9 @@ export default function Score({ result, setShowResult }: Result) {
   const isPassing = scorePercentage >= 50;
 
   return (
-    <div className="max-w-4xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200/60 dark:border-slate-700/60 overflow-hidden">
+    <div className="max-w-4xl h-full mx-auto bg-white dark:bg-zinc-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 p-8 text-white text-center">
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-black/30 dark:to-zinc-900 p-8 text-white text-center">
         <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
           <Trophy className="w-10 h-10" />
         </div>
@@ -70,16 +70,16 @@ export default function Score({ result, setShowResult }: Result) {
           <div className="flex-1 space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Correct Answers */}
-              <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-emerald-200/60 dark:border-emerald-700/60 shadow-sm">
+              <div className="bg-white dark:bg-zinc-700 rounded-2xl p-6 border border-emerald-200/60 dark:border-emerald-700/60 shadow-sm">
                 <div className="flex items-center space-x-3 mb-3">
                   <div className="w-10 h-10 bg-emerald-100 dark:bg-emerald-900/30 rounded-xl flex items-center justify-center">
                     <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-slate-900 dark:text-slate-100">
+                    <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">
                       Correct
                     </h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                    <p className="text-sm text-slate-600 dark:text-zinc-400">
                       Right answers
                     </p>
                   </div>
@@ -90,16 +90,16 @@ export default function Score({ result, setShowResult }: Result) {
               </div>
 
               {/* Incorrect Answers */}
-              <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 border border-red-200/60 dark:border-red-700/60 shadow-sm">
+              <div className="bg-white dark:bg-zinc-700 rounded-2xl p-6 border border-red-200/60 dark:border-red-700/60 shadow-sm">
                 <div className="flex items-center space-x-3 mb-3">
                   <div className="w-10 h-10 bg-red-100 dark:bg-red-900/30 rounded-xl flex items-center justify-center">
                     <XCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-slate-900 dark:text-slate-100">
+                    <h3 className="font-semibold text-zinc-900 dark:text-zinc-100">
                       Incorrect
                     </h3>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400">
                       Wrong answers
                     </p>
                   </div>
@@ -139,7 +139,7 @@ export default function Score({ result, setShowResult }: Result) {
 
           <Button
             onClick={() => setShowDetailedResult(true)}
-            className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-blue-500 dark:to-indigo-500 dark:hover:from-blue-600 dark:hover:to-indigo-600 text-white rounded-xl font-medium px-6 py-3"
+            className="flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-black dark:to-zinc-700 dark:hover:to-zinc-600 text-white rounded-xl font-medium px-6 py-3"
           >
             <Eye className="w-4 h-4" />
             <span>View Detailed Results</span>

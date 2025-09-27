@@ -50,7 +50,7 @@ const AccountCard = () => {
   return isLoading ? (
     <ProfileInfoSkeleton />
   ) : (
-    <div className="p-6 space-y-6 bg-slate-50 dark:bg-slate-900">
+    <div className="p-6 space-y-6 bg-slate-50 dark:bg-zinc-900">
       <div className="space-y-2">
         <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
           Account Information
@@ -61,17 +61,17 @@ const AccountCard = () => {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card className="lg:col-span-2 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+        <Card className="lg:col-span-2 bg-white dark:bg-zinc-800 border-slate-200 dark:border-slate-700">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <UserCheck className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+              <UserCheck className="h-5 w-5 text-blue-600 dark:text-zinc-400" />
               Profile Information
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="flex items-start space-x-6">
               <div
-                className="size-20 flex items-center justify-center rounded-full border-2 border-blue-600 dark:border-blue-400 text-white text-2xl font-bold"
+                className="size-20 flex items-center justify-center rounded-full border-2 border-blue-600 dark:border-zinc-400 text-white text-2xl font-bold"
                 style={{ backgroundColor: stringToHslColor(user.email) }}
               >
                 {user.firstName.charAt(0).toUpperCase()}
@@ -79,18 +79,18 @@ const AccountCard = () => {
               <div className="flex-1 space-y-4">
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                    <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
                       Full Name
                     </p>
-                    <p className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                    <p className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                       {user.firstName} {user.lastName}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
+                    <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
                       Username
                     </p>
-                    <p className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                    <p className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
                       @{user.username}
                     </p>
                   </div>
@@ -120,15 +120,15 @@ const AccountCard = () => {
           </CardContent>
         </Card>
 
-        <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+        <Card className="bg-white dark:bg-zinc-800 border-slate-200 dark:border-zinc-700">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Mail className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+              <Mail className="h-5 w-5 text-blue-600 dark:text-zinc-400" />
               Contact Details
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center space-x-3 p-3 rounded-lg bg-slate-50 dark:bg-slate-700">
+            <div className="flex items-center space-x-3 p-3 rounded-lg bg-slate-50 dark:bg-zinc-700">
               <Mail className="h-5 w-5 text-slate-500 dark:text-slate-400" />
               <div>
                 <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
@@ -139,7 +139,7 @@ const AccountCard = () => {
                 </p>
               </div>
             </div>
-            <div className="flex items-center space-x-3 p-3 rounded-lg bg-slate-50 dark:bg-slate-700">
+            <div className="flex items-center space-x-3 p-3 rounded-lg bg-slate-50 dark:bg-zinc-700">
               <Phone className="h-5 w-5 text-slate-500 dark:text-slate-400" />
               <div>
                 <p className="text-sm font-medium text-slate-500 dark:text-slate-400">
@@ -153,7 +153,7 @@ const AccountCard = () => {
           </CardContent>
         </Card>
 
-        <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+        <Card className="bg-white dark:bg-zinc-800 border-slate-200 dark:border-zinc-700">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Shield className="h-5 w-5 text-blue-600 dark:text-blue-400" />
@@ -162,16 +162,16 @@ const AccountCard = () => {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-3">
-              <div className="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-700">
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+              <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-700">
+                <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
                   Account ID
                 </span>
-                <span className="text-sm text-slate-900 dark:text-slate-100 font-mono">
+                <span className="text-sm text-zinc-900 dark:text-zinc-100 font-mono">
                   {user._id}
                 </span>
               </div>
-              <div className="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-700">
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+              <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-700">
+                <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
                   Verification Status
                 </span>
                 <div className="flex items-center gap-2">
@@ -191,8 +191,8 @@ const AccountCard = () => {
                   </span>
                 </div>
               </div>
-              <div className="flex items-center justify-between p-3 rounded-lg bg-slate-50 dark:bg-slate-700">
-                <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+              <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-700">
+                <span className="text-sm font-medium text-slate-700 dark:text-zinc-300">
                   Account Type
                 </span>
                 <Badge

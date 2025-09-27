@@ -15,26 +15,26 @@ export default function page() {
 
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200/60 dark:border-slate-700/60 hover:shadow-md transition-shadow duration-200">
+        <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 shadow-sm border border-slate-200/60 dark:border-slate-700/60 hover:shadow-md transition-shadow duration-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
+              <p className="text-sm font-medium text-slate-600 dark:text-zinc-300">
                 Total Exams
               </p>
               <p className="text-2xl font-bold text-slate-900 dark:text-slate-100 mt-1">
                 4
               </p>
             </div>
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 rounded-xl flex items-center justify-center">
+            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded- dark:from-black/30 dark:to-zinc-300 rounded-lg flex items-center justify-center">
               <BookOpenCheck className="w-6 h-6 text-white" />
             </div>
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200/60 dark:border-slate-700/60 hover:shadow-md transition-shadow duration-200">
+        <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 shadow-sm border border-slate-200/60 dark:border-slate-700/60 hover:shadow-md transition-shadow duration-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
+              <p className="text-sm font-medium text-slate-600 dark:text-zinc-300">
                 Available Now
               </p>
               <p className="text-2xl font-bold text-slate-900 dark:text-slate-100 mt-1">
@@ -47,10 +47,10 @@ export default function page() {
           </div>
         </div>
 
-        <div className="bg-white dark:bg-slate-800 rounded-2xl p-6 shadow-sm border border-slate-200/60 dark:border-slate-700/60 hover:shadow-md transition-shadow duration-200">
+        <div className="bg-white dark:bg-zinc-800 rounded-2xl p-6 shadow-sm border border-slate-200/60 dark:border-slate-700/60 hover:shadow-md transition-shadow duration-200">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
+              <p className="text-sm font-medium text-slate-600 dark:text-zinc-300">
                 Average Time
               </p>
               <p className="text-2xl font-bold text-slate-900 dark:text-slate-100 mt-1">
@@ -65,7 +65,7 @@ export default function page() {
       </div>
 
       {/* Exams Section */}
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-700/60 overflow-hidden">
+      <div className="bg-white dark:bg-zinc-800 rounded-2xl shadow-sm border border-slate-200/60 dark:border-slate-700/60 overflow-hidden">
         <div className="p-6 border-b border-slate-200/60 dark:border-slate-700/60">
           <div className="flex items-center justify-between">
             <div>
@@ -76,7 +76,7 @@ export default function page() {
                 Select an exam to begin your assessment
               </p>
             </div>
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-400 dark:to-blue-500 rounded-xl flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 dark:from-black/40 dark:to-zinc-600 rounded-xl flex items-center justify-center">
               <BookOpenCheck className="w-5 h-5 text-white" />
             </div>
           </div>

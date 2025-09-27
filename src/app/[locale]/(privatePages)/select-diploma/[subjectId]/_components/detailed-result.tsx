@@ -16,9 +16,9 @@ export default function DetailedResult({
   const router = useRouter();
 
   return (
-    <div className="max-w-6xl mx-auto bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200/60 dark:border-slate-700/60 overflow-hidden">
+    <div className="max-w-6xl mx-auto bg-white dark:bg-zinc-800 rounded-2xl shadow-lg border border-slate-200/60 dark:border-slate-700/60 overflow-hidden">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-500 dark:to-indigo-500 p-6 text-white">
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-zinc-900 dark:to-zinc-700 p-6 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
@@ -37,7 +37,7 @@ export default function DetailedResult({
               setShowDetailedResult(false);
               router.push("/all-exams");
             }}
-            className="bg-white/20 hover:bg-white/30 text-white border-white/30 rounded-xl"
+            className="bg-white/20 hover:bg-white/30 dark:bg-zinc-500 dark:hover:bg-zinc-900 text-white border-white/30 rounded-xl"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Exams
@@ -61,10 +61,10 @@ export default function DetailedResult({
         ) : (
           <>
             <div className="mb-6">
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100 mb-2">
+              <h3 className="text-lg font-semibold text-zinc-900 dark:text-slate-100 mb-2">
                 Questions to Review ({result.WrongQuestions.length})
               </h3>
-              <p className="text-slate-600 dark:text-slate-400">
+              <p className="text-slate-600 dark:text-zinc-400">
                 Here are the questions you answered incorrectly along with the
                 correct answers.
               </p>
@@ -75,7 +75,7 @@ export default function DetailedResult({
                 return (
                   <div
                     key={question.QID}
-                    className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 p-6 shadow-sm hover:shadow-md transition-shadow duration-200"
+                    className="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 p-6 shadow-sm hover:shadow-md transition-shadow duration-200"
                   >
                     {/* Question Header */}
                     <div className="flex items-start justify-between mb-4">
@@ -145,7 +145,7 @@ export default function DetailedResult({
 
           <Button
             onClick={() => router.push("/all-exams")}
-            className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-blue-500 dark:to-indigo-500 dark:hover:from-blue-600 dark:hover:to-indigo-600 text-white rounded-xl font-medium px-6 py-3"
+            className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 dark:from-zinc-700 dark:to-neutral-800 dark:hover:from-zinc-600 dark:hover:to-neutral-600 text-white rounded-xl font-medium px-6 py-3"
           >
             Take Another Exam
           </Button>

@@ -14,7 +14,7 @@ const QuizSection = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700 p-4 md:p-6 lg:p-8">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 dark:from-zinc-900 dark:via-slate-800 dark:to-zinc-700 p-4 md:p-6 lg:p-8">
         <div className="max-w-7xl mx-auto">
           <section className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm shadow-2xl border border-white/20 dark:border-slate-700/20 rounded-3xl overflow-hidden">
             <div className="p-6 md:p-10 space-y-4">
@@ -29,8 +29,8 @@ const QuizSection = () => {
   return (
     <div className="p-2">
       <div className="mx-auto">
-        <section className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm shadow-2xl border border-white/20 dark:border-slate-700/20 rounded-3xl overflow-hidden">
-          <div className="bg-slate-100 dark:bg-slate-700 p-4">
+        <section className="bg-white/80 dark:bg-zinc-800 backdrop-blur-sm shadow-2xl border border-white/20 dark:border-slate-700/20 rounded-3xl overflow-hidden">
+          <div className="bg-slate-100 dark:bg-zinc-700 p-4">
             {payload?.questions[0] ? (
               <QuestionForm questions={payload!.questions} />
             ) : (

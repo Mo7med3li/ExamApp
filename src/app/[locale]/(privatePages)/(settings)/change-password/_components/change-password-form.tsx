@@ -45,7 +45,9 @@ const ChangePasswordForm = () => {
           render={({ field }) => (
             <FormItem>
               {/* Field */}
-              <FormLabel>Current Password</FormLabel>
+              <FormLabel className="dark:text-zinc-300">
+                Current Password
+              </FormLabel>
               <FormControl>
                 {/* Input */}
                 <Input
@@ -66,7 +68,7 @@ const ChangePasswordForm = () => {
           render={({ field }) => (
             <FormItem>
               {/* Label */}
-              <FormLabel>New Password</FormLabel>
+              <FormLabel className="dark:text-zinc-300">New Password</FormLabel>
               <FormControl>
                 {/* Field */}
                 <Input
@@ -87,7 +89,9 @@ const ChangePasswordForm = () => {
           render={({ field }) => (
             <FormItem>
               {/* Label */}
-              <FormLabel>Confirm New Password</FormLabel>
+              <FormLabel className="dark:text-zinc-300">
+                Confirm New Password
+              </FormLabel>
               <FormControl>
                 {/* Field */}
                 <Input
@@ -104,7 +108,7 @@ const ChangePasswordForm = () => {
 
         <Button
           type="submit"
-          className="w-full"
+          className="w-full dark:bg-zinc-900 dark:hover:bg-zinc-600"
           disabled={form.formState.isSubmitting || !form.formState.isValid}
           spinner={form.formState.isSubmitting || isPending}
         >
