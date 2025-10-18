@@ -59,14 +59,8 @@ A modern and scalable **online examination system** built with **Next.js 14**, f
 
 yarn install
 
-3-**Create a .env.local file**
-Add your environment variables (example):
 
-NEXTAUTH_SECRET=MG+5fM6PKEAGBCXW9MD6L3L0jXR+EhyXdEH1gH2+ViY=
-NEXTAUTH_URL=http://localhost:3000
-DATABASE_URL=https://exam.elevateegy.com/api/v1
-
-4-**Run the development server**
+3-**Run the development server**
 
 yarn dev
 
