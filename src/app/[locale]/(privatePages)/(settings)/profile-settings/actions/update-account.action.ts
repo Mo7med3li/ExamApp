@@ -6,17 +6,18 @@ import getAuthHeader from "@/lib/utils/get-authHeader";
 export async function updateAccount(values: UpdateProfileFields) {
   // Token
   const token = (await getAuthHeader()).token;
-  const response = await fetch(`${process.env.API}/auth/editProfile`, {
-    method: "PUT",
+  const response = await fetch(`${process.env.API}/users/profile`, {
+    method: "PATCH",
     headers: {
-      token,
+      authorization: `Bearer ${token}`,
       ...JSON_HEADER,
     },
     body: JSON.stringify(values),
   });
   const payload: APIResponse<AppUser> = await response.json();
-  if ("code" in payload) {
+  if (!payload.status) {
+    console.log(payload);
     throw new Error(payload.message);
   }
-  console.log(payload);
+  return payload;
 }

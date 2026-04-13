@@ -8,18 +8,18 @@ export async function changePasswordSubmit(values: ChangePasswordField) {
   // Token
   const token = (await getAuthHeader()).token;
 
-  const response = await fetch(`${process.env.API}/auth/changePassword`, {
-    method: "PATCH",
+  const response = await fetch(`${process.env.API}/users/change-password`, {
+    method: "POST",
     headers: {
-      token,
       ...JSON_HEADER,
+      Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify(values),
   });
 
   const payload = await response.json();
 
-  if ("code" in payload) {
+  if (!payload.status) {
     throw new Error(payload.message);
   }
 

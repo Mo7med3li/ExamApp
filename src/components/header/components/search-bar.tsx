@@ -42,7 +42,7 @@ export default function Searchbar() {
           className="shadow-inputShadow w-full focus-visible:border-main focus-visible:outline-none"
         />
       </div>
-      {session?.data?.user?.role === "admin" ? <AddQuiz /> : ""}
+      {session?.data?.user?.role === "ADMIN" ? <AddQuiz /> : ""}
 
       {/* Image profile */}
       <div>

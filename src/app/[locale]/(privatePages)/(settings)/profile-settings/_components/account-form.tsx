@@ -26,13 +26,14 @@ import useFetchUserData from "../hooks/use-fetch-user-data";
 export function UserProfileForm() {
   const { userData, isLoading } = useFetchUserData();
 
+  const user = userData?.payload.user;
+
   // Form
   const form = useForm<UpdateProfileFields>({
     resolver: zodResolver(updateProfileSchema),
     defaultValues: {
       firstName: "",
       lastName: "",
-      username: "",
       phone: "",
     },
   });
@@ -46,10 +47,9 @@ export function UserProfileForm() {
   useEffect(() => {
     if (userData) {
       form.reset({
-        firstName: userData.user.firstName,
-        lastName: userData.user.lastName,
-        username: userData.user.username,
-        phone: userData.user.phone,
+        firstName: user?.firstName || "",
+        lastName: user?.lastName || "",
+        phone: user?.phone || "",
       });
     }
   }, [userData, form]);
@@ -105,27 +105,19 @@ export function UserProfileForm() {
               </div>
 
               <div className="space-y-2">
-                <FormField
-                  name="username"
-                  control={form.control}
-                  render={({ field }) => (
-                    <FormItem>
-                      {/* Label */}
-                      <FormLabel>Username</FormLabel>
-                      {/* Field */}
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      {/* Feedback */}
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                {/* Label */}
+                <FormLabel>Username</FormLabel>
+                {/* Field */}
+                <FormControl>
+                  <Input value={user?.username || ""} disabled />
+                </FormControl>
+
+                {/* Feedback */}
               </div>
 
               <div className="space-y-2">
                 <FormLabel>Email</FormLabel>
-                <Input value={userData?.user.email} disabled />
+                <Input value={user?.email || ""} disabled />
               </div>
 
               <div className="space-y-2">

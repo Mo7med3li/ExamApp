@@ -7,15 +7,15 @@ export async function deleteAccount() {
   // Token
   const token = (await getAuthHeader()).token;
 
-  const response = await fetch(`${process.env.API}/auth/deleteMe`, {
+  const response = await fetch(`${process.env.API}/users/account`, {
     method: "DELETE",
     headers: {
-      token,
+      authorization: `Bearer ${token}`,
       ...JSON_HEADER,
     },
   });
   const payload: APIResponse<AppUser> = await response.json();
-  if ("code" in payload) {
+  if (!payload.status) {
     throw new Error(payload.message);
   }
 }

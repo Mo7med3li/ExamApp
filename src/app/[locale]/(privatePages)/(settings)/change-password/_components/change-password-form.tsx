@@ -22,9 +22,9 @@ const ChangePasswordForm = () => {
   const form = useForm<ChangePasswordField>({
     resolver: zodResolver(changePasswordSchema),
     defaultValues: {
-      oldPassword: "",
-      password: "",
-      rePassword: "",
+      currentPassword: "",
+      newPassword: "",
+      confirmPassword: "",
     },
   });
 
@@ -41,7 +41,7 @@ const ChangePasswordForm = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         <FormField
           control={form.control}
-          name="oldPassword"
+          name="currentPassword"
           render={({ field }) => (
             <FormItem>
               {/* Field */}
@@ -64,7 +64,7 @@ const ChangePasswordForm = () => {
 
         <FormField
           control={form.control}
-          name="password"
+          name="newPassword"
           render={({ field }) => (
             <FormItem>
               {/* Label */}
@@ -85,7 +85,7 @@ const ChangePasswordForm = () => {
 
         <FormField
           control={form.control}
-          name="rePassword"
+          name="confirmPassword"
           render={({ field }) => (
             <FormItem>
               {/* Label */}

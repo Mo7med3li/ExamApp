@@ -78,7 +78,7 @@ export default function DashboardLayout({
                 <div className="flex items-center space-x-3">
                   <div className="size-8 bg-gradient-to-br from-emerald-500 to-blue-600 rounded-full dark:from-black/15 dark:to-zinc-500 flex items-center justify-center">
                     <span className="text-white font-medium text-sm p-1">
-                      {session?.user.firstName.slice(0, 1)}
+                      {session?.user?.firstName?.slice(0, 1)}
                     </span>
                   </div>
                 </div>
