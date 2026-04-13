@@ -11,14 +11,14 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials", // This is the name that will be displayed on the sign-in form (e.g. "Sign in with...")
       credentials: {
         //*fields for the sign-in form
-        email: {},
+        username: {},
         password: {},
       }, // The name of the form fields for the credentials provider,
       authorize: async (credentials) => {
-        const response = await fetch(`${process.env.API!}/auth/signin`, {
+        const response = await fetch(`${process.env.API!}/auth/login`, {
           method: "POST",
           body: JSON.stringify({
-            email: credentials?.email,
+            username: credentials?.username,
             password: credentials?.password,
           }),
           headers: {
@@ -26,14 +26,14 @@ export const authOptions: NextAuthOptions = {
           },
         });
         const payload: APIResponse<LoginResponse> = await response.json();
-        if ("code" in payload) {
+        if (!payload.status) {
           throw new Error(payload.message);
         }
 
         return {
-          id: payload.user._id,
-          token: payload.token,
-          user: payload.user,
+          id: payload.payload.user?.id,
+          token: payload.payload.token,
+          user: payload.payload.user,
         };
       },
     }),
@@ -54,7 +54,7 @@ export const authOptions: NextAuthOptions = {
 
       return token;
     },
-    //* session data want to show not senstive it might used in client side
+    //* session data want to show not sensitive it might used in client side
     session: ({ session, token }) => {
       session.user = token.user;
       return session;
