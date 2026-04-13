@@ -1,5 +1,5 @@
 "use client";
-import { GraduationCap, BookOpen, Settings, LogOut } from "lucide-react";
+import { GraduationCap, BookOpen, Settings, LogOut, Info } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
 import { useTranslations } from "use-intl";
@@ -31,6 +31,12 @@ export function AppSidebar({ onMobileClose }: AppSidebarProps) {
       url: "/all-exams",
       icon: BookOpen,
       description: "View all exams",
+    },
+    {
+      title: "User Submitted Exams",
+      url: "/dashboard/users-exams",
+      icon: Info,
+      description: "Users submitted exams",
     },
     {
       title: t("account-settings"),
@@ -89,7 +95,7 @@ export function AppSidebar({ onMobileClose }: AppSidebarProps) {
                 pathName === item.url
                   ? "bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-zinc-900/20 dark:to-neutral-900/20 border border-blue-200/60 dark:border-zinc-700/60 shadow-sm"
                   : "hover:bg-slate-50 dark:hover:bg-slate-700/50 hover:shadow-sm",
-                locale === "ar" ? "flex-row-reverse" : ""
+                locale === "ar" ? "flex-row-reverse" : "",
               )}
             >
               <div
@@ -97,7 +103,7 @@ export function AppSidebar({ onMobileClose }: AppSidebarProps) {
                   "w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-200",
                   pathName === item.url
                     ? "bg-gradient-to-br from-blue-600 to-indigo-600 dark:from-black/30 dark:to-zinc-600 text-white shadow-lg"
-                    : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-zinc-400 group-hover:bg-blue-100 dark:group-hover:bg-zinc-900/30 group-hover:text-blue-600 dark:group-hover:text-zinc-400"
+                    : "bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-zinc-400 group-hover:bg-blue-100 dark:group-hover:bg-zinc-900/30 group-hover:text-blue-600 dark:group-hover:text-zinc-400",
                 )}
               >
                 <item.icon className="w-5 h-5" />
@@ -105,7 +111,7 @@ export function AppSidebar({ onMobileClose }: AppSidebarProps) {
               <div
                 className={cn(
                   "ml-3 flex-1",
-                  locale === "ar" ? "ml-0 mr-3 text-right" : ""
+                  locale === "ar" ? "ml-0 mr-3 text-right" : "",
                 )}
               >
                 <div
@@ -113,7 +119,7 @@ export function AppSidebar({ onMobileClose }: AppSidebarProps) {
                     "font-medium transition-colors duration-200",
                     pathName === item.url
                       ? "text-blue-900 dark:text-blue-100"
-                      : "text-slate-900 dark:text-zinc-100 group-hover:text-zinc-900 dark:group-hover:text-zinc-100"
+                      : "text-slate-900 dark:text-zinc-100 group-hover:text-zinc-900 dark:group-hover:text-zinc-100",
                   )}
                 >
                   {item.title}
@@ -142,7 +148,7 @@ export function AppSidebar({ onMobileClose }: AppSidebarProps) {
           <div
             className={cn(
               "ml-3 flex-1 text-left",
-              locale === "ar" ? "ml-0 mr-3 text-right" : ""
+              locale === "ar" ? "ml-0 mr-3 text-right" : "",
             )}
           >
             <div className="font-medium text-zinc-900 dark:text-zinc-100 group-hover:text-red-900 dark:group-hover:text-red-100">
