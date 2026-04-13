@@ -1,44 +1,63 @@
 type Subject = {
-  _id: string;
-  name: string;
-  icon: string;
+  id: string;
+  title: string;
+  description: string;
+  image: string;
   createdAt: string;
+  updatedAt: string;
 };
 
 type Metadata = {
-  currentPage: number;
-  numberOfPages: number;
+  page: number;
   limit: number;
+  total: number;
+  totalPages: number;
 };
 
 declare type SubjectsResponse = {
+  data: Subject[];
   metadata: Metadata;
-  subjects: Subject[];
 };
 
 declare type Exam = {
-  _id: string;
+  id: string;
   title: string;
+  description: string;
+  image: string;
+  immutable: boolean;
   duration: number;
-  subject: string;
-  numberOfQuestions: number;
-  active: boolean;
+  diplomaId: string;
   createdAt: string;
+  updatedAt: string;
+  diploma: {
+    id: string;
+    title: string;
+  };
+  _count: {
+    questions: number;
+  };
 };
+
 declare type ExamResponse = {
   metadata: Metadata;
-  exams: Exam[];
+  data: Exam[];
+};
+
+declare type Question = {
+  id: string;
+  text: string;
+  examId: string;
+  immutable: boolean;
+  createdAt: string;
+  updatedAt: string;
+  answers: {
+    id: string;
+    text: string;
+  }[];
 };
 
 type QuestionResponse = {
-  _id: string;
-  question: string;
-  answers: Answer[];
-  type: "single_choice";
-  correct: string;
-  subject: Subject;
-  exam: Exam;
-  createdAt: string;
+  questions: Question[];
 };
 
 type Answer = {
@@ -47,23 +66,32 @@ type Answer = {
 };
 
 declare type CheckResponse = {
-  correct: number;
-  wrong: number;
-  total: string;
-  WrongQuestions: {
-    QID: string;
-    Question: string;
-    inCorrectAnswer: string;
-    correctAnswer: string;
-    // answers: {};
-  }[];
-  correctQuestions: {
-    QID: string;
-    Question: string;
-    inCorrectAnswer: string;
-    correctAnswer: string;
-    // answers: {};
-  }[];
+  payload: {
+    submission: {
+      id: string;
+      examId: string;
+      examTitle: string;
+      score: number;
+      totalQuestions: number;
+      correctAnswers: number;
+      wrongAnswers: number;
+      startedAt: string;
+      submittedAt: string;
+    };
+    analytics: {
+      questionId: string;
+      questionText: string;
+      selectedAnswer: {
+        id: string;
+        text: string;
+      };
+      isCorrect: boolean;
+      correctAnswer: {
+        id: string;
+        text: string;
+      };
+    }[];
+  };
 };
 
 declare type UserDataResponse = {

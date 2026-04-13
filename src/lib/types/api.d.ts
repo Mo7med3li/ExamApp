@@ -1,10 +1,19 @@
-declare type SuccessfullRespone<T> = {
-  message: "success";
+declare type SuccessfulResponse<T> = {
+  status: true;
+  code: number;
+  message: string;
+  payload: T;
 } & T;
 
 declare type ErrorResponse = {
-  message: string;
+  status: false;
   code: number;
+  message: string;
+  errors: {
+    path: string[];
+    message: string;
+    messages: string[];
+  }[];
 };
 
-declare type APIResponse<T> = SuccessfullRespone<T> | ErrorResponse;
+declare type APIResponse<T> = SuccessfulResponse<T> | ErrorResponse;
