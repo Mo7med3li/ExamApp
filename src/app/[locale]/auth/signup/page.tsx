@@ -1,9 +1,6 @@
 import React from "react";
-import SignupForm from "./_components/signup-form";
+import SignupFlow from "./_components/signup-flow";
 
 export default function page() {
-  return (
-    // form
-    <SignupForm />
-  );
+  return <SignupFlow />;
 }

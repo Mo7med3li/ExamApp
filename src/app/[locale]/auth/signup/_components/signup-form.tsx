@@ -19,8 +19,13 @@ import { useTranslations } from "next-intl";
 import useRegister from "../_hooks/use-register";
 import { cn } from "@/lib/utils";
 
-export default function SignupForm() {
-  // mutatuin
+interface SignupFormProps {
+  email: string;
+  onBack: () => void;
+}
+
+export default function SignupForm({ email, onBack }: SignupFormProps) {
+  // mutation
   const { isPending, error, register } = useRegister();
 
   // translation
@@ -32,9 +37,9 @@ export default function SignupForm() {
       username: "",
       firstName: "",
       lastName: "",
-      email: "",
+      email: email,
       password: "",
-      rePassword: "",
+      confirmPassword: "",
       phone: "",
     },
     resolver: zodResolver(registerSchema),
@@ -44,7 +49,14 @@ export default function SignupForm() {
   };
   return (
     <div className=" w-full max-w-md sm:max-w-lg rounded-md flex flex-col gap-4 p-4 sm:p-6 shadow-cardShadow">
-      <h2 className="text-2xl font-bold text-foreground">{t("sign-up")}</h2>
+      <div className="text-center mb-4">
+        <h2 className="text-2xl font-bold text-foreground mb-2">
+          {t("complete-registration")}
+        </h2>
+        <p className="text-muted-foreground">
+          {t("email-verified")}: {email}
+        </p>
+      </div>
       <Form {...form}>
         <FormProvider {...form}>
           <form
@@ -66,7 +78,7 @@ export default function SignupForm() {
                         {...field}
                         className={cn(
                           form.formState.errors.firstName &&
-                            "focus-visible:border-red-300"
+                            "focus-visible:border-red-300",
                         )}
                         placeholder={t("first-name")}
                       />
@@ -91,7 +103,7 @@ export default function SignupForm() {
                         {...field}
                         className={cn(
                           form.formState.errors.lastName &&
-                            "focus-visible:border-red-300"
+                            "focus-visible:border-red-300",
                         )}
                         placeholder={t("last-name")}
                       />
@@ -117,7 +129,7 @@ export default function SignupForm() {
                       {...field}
                       className={cn(
                         form.formState.errors.username &&
-                          "focus-visible:border-red-300"
+                          "focus-visible:border-red-300",
                       )}
                       placeholder={t("user-name")}
                     />
@@ -128,23 +140,14 @@ export default function SignupForm() {
               )}
             />
 
-            {/* email */}
+            {/* email - hidden but still in form */}
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("email-0")}</FormLabel>
+                <FormItem className="hidden">
                   <FormControl>
-                    <Input
-                      {...field}
-                      type="email"
-                      className={cn(
-                        form.formState.errors.email &&
-                          "focus-visible:border-red-300"
-                      )}
-                      placeholder={t("email")}
-                    />
+                    <Input {...field} type="hidden" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -183,7 +186,7 @@ export default function SignupForm() {
                       type="password"
                       className={cn(
                         form.formState.errors.password &&
-                          "focus-visible:border-red-300"
+                          "focus-visible:border-red-300",
                       )}
                       placeholder={t("password")}
                     />
@@ -196,7 +199,7 @@ export default function SignupForm() {
             {/* Confirm password */}
             <FormField
               control={form.control}
-              name="rePassword"
+              name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>{t("confirm-password")}</FormLabel>
@@ -205,8 +208,8 @@ export default function SignupForm() {
                       {...field}
                       type="password"
                       className={cn(
-                        form.formState.errors.rePassword &&
-                          "focus-visible:border-red-300"
+                        form.formState.errors.confirmPassword &&
+                          "focus-visible:border-red-300",
                       )}
                       placeholder={t("confirm-password")}
                     />
@@ -231,6 +234,15 @@ export default function SignupForm() {
               }
             >
               {t("create-account")}
+            </Button>
+
+            <Button
+              type="button"
+              variant="outline"
+              className="w-full"
+              onClick={onBack}
+            >
+              {t("back")}
             </Button>
             <div className="text-center">
               <p className="text-sm text-muted-foreground">
