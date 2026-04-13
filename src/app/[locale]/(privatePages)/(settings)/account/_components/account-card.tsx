@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -18,7 +19,7 @@ import ProfileInfoSkeleton from "@/components/skeleton/account/account-info.skel
 
 function getRoleConfig(role: string) {
   switch (role.toLowerCase()) {
-    case "admin":
+    case "ADMIN":
       return { variant: "destructive" as const, icon: Crown };
     default:
       return { variant: "outline" as const, icon: User };
@@ -29,8 +30,10 @@ const AccountCard = () => {
   // Hooks
   const { userData, isLoading } = useFetchUserData();
 
+  console.log(userData);
+
   //   Check if not info
-  if (!userData?.user) {
+  if (!userData?.payload.user) {
     return (
       <div className="p-6">
         <div className="text-center py-12">
@@ -43,7 +46,7 @@ const AccountCard = () => {
   }
 
   //   Variables
-  const user = userData.user;
+  const user = userData.payload.user;
   const roleConfig = getRoleConfig(user.role);
   const RoleIcon = roleConfig.icon;
 
@@ -72,7 +75,7 @@ const AccountCard = () => {
             <div className="flex items-start space-x-6">
               <div
                 className="size-20 flex items-center justify-center rounded-full border-2 border-blue-600 dark:border-zinc-400 text-white text-2xl font-bold"
-                style={{ backgroundColor: stringToHslColor(user.email) }}
+                style={{ backgroundColor: stringToHslColor(user.email || "") }}
               >
                 {user.firstName.charAt(0).toUpperCase()}
               </div>
@@ -104,15 +107,15 @@ const AccountCard = () => {
                     {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
                   </Badge>
                   <Badge
-                    variant={user.isVerified ? "default" : "destructive"}
+                    variant={user.emailVerified ? "default" : "destructive"}
                     className="flex items-center gap-1"
                   >
-                    {user.isVerified ? (
+                    {user.emailVerified ? (
                       <CheckCircle className="h-3 w-3" />
                     ) : (
                       <XCircle className="h-3 w-3" />
                     )}
-                    {user.isVerified ? "Verified" : "Unverified"}
+                    {user.emailVerified ? "Verified" : "Unverified"}
                   </Badge>
                 </div>
               </div>
@@ -167,7 +170,7 @@ const AccountCard = () => {
                   Account ID
                 </span>
                 <span className="text-sm text-zinc-900 dark:text-zinc-100 font-mono">
-                  {user._id}
+                  {user.id}
                 </span>
               </div>
               <div className="flex items-center justify-between p-3 rounded-lg bg-zinc-50 dark:bg-zinc-700">
@@ -175,19 +178,19 @@ const AccountCard = () => {
                   Verification Status
                 </span>
                 <div className="flex items-center gap-2">
-                  {user.isVerified ? (
+                  {user.emailVerified ? (
                     <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-400" />
                   ) : (
                     <XCircle className="h-4 w-4 text-red-600 dark:text-red-400" />
                   )}
                   <span
                     className={`text-sm font-medium ${
-                      user.isVerified
+                      user.emailVerified
                         ? "text-green-600 dark:text-green-400"
                         : "text-red-600 dark:text-red-400"
                     }`}
                   >
-                    {user.isVerified ? "Verified" : "Pending Verification"}
+                    {user.emailVerified ? "Verified" : "Pending Verification"}
                   </span>
                 </div>
               </div>

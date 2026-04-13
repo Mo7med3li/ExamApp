@@ -7,18 +7,18 @@ export async function GET(req: NextRequest) {
   if (!token?.token) {
     return NextResponse.json(
       { message: "Unauthorized: token not provided" },
-      { status: 401 }
+      { status: 401 },
     );
   }
-  const response = await fetch(`${process.env.API}/auth/profileData`, {
+  const response = await fetch(`${process.env.API}/users/profile`, {
     headers: {
-      token: token?.token,
+      Authorization: `Bearer ${token?.token}`,
       ...JSON_HEADER,
     },
   });
   const payload: APIResponse<AppUser> = await response.json();
-  if ("code" in payload) {
-    throw new Error(payload.message);
+  if (!payload.status) {
+    throw new Error("Failed to fetch user data");
   }
 
   return NextResponse.json(payload);
