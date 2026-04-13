@@ -1,53 +1,30 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import SubjectCard from "./subject-card";
+import React, { useState } from "react";
+import SubjectCard from "./diploma-card";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Loader2 } from "lucide-react";
+import useFetchDiplomas from "../_hooks/use-fetch-diplomas";
 
 export default function SubjectList() {
-  // States
-  const [subjects, setSubjects] = useState<Subject[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { payload, isLoading } = useFetchDiplomas();
+
   const [visibleCount, setVisibleCount] = useState(4);
   const [loadingMore, setLoadingMore] = useState(false);
 
   // Effects
-  useEffect(() => {
-    const loadSubjects = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch("/api/get-subjects");
-        if (!response.ok) {
-          throw new Error("Failed to fetch subjects");
-        }
-        const payload =
-          (await response.json()) as APIResponse<SubjectsResponse>;
-
-        if ("code" in payload) {
-          throw new Error(payload.message);
-        }
-
-        setSubjects(payload.subjects || []);
-      } catch (error) {
-        console.error("Error loading subjects:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadSubjects();
-  }, []);
 
   const handleLoadMore = () => {
     setLoadingMore(true);
     setTimeout(() => {
-      setVisibleCount((prev) => Math.min(prev + 4, subjects.length));
+      setVisibleCount((prev) =>
+        Math.min(prev + 4, payload?.payload.data.length || 0),
+      );
       setLoadingMore(false);
     }, 500);
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="col-span-full flex items-center justify-center py-12">
         <div className="flex flex-col items-center gap-4 text-slate-600">
@@ -58,7 +35,7 @@ export default function SubjectList() {
     );
   }
 
-  if (!subjects.length) {
+  if (!payload?.payload?.data?.length) {
     return (
       <div className="col-span-full flex items-center justify-center py-16">
         <div className="text-center">
@@ -74,13 +51,13 @@ export default function SubjectList() {
     );
   }
 
-  const visibleSubjects = subjects.slice(0, visibleCount);
-  const hasMore = visibleCount < subjects.length;
+  const visibleSubjects = payload?.payload?.data?.slice(0, visibleCount);
+  const hasMore = visibleCount < payload?.payload?.data?.length;
 
   return (
     <>
-      {visibleSubjects.map((subject) => (
-        <SubjectCard key={subject._id} subject={subject} />
+      {visibleSubjects?.map((subject) => (
+        <SubjectCard key={subject.id} subject={subject} />
       ))}
 
       {hasMore && (
@@ -98,7 +75,8 @@ export default function SubjectList() {
             ) : (
               <>
                 <ChevronDown className="w-5 h-5 mr-2 group-hover:translate-y-1 transition-transform duration-300" />
-                Load More ({subjects.length - visibleCount} remaining)
+                Load More ({payload?.payload?.data?.length - visibleCount}{" "}
+                remaining)
               </>
             )}
 

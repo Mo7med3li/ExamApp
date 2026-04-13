@@ -7,14 +7,14 @@ import { ArrowRight, BookOpen } from "lucide-react";
 
 export default function SubjectCard({ subject }: { subject: Subject }) {
   return (
-    <Link key={subject._id} href={`/all-exams`}>
+    <Link key={subject.id} href={`/select-diploma/${subject.id}`}>
       <div className="group bg-white dark:bg-zinc-300 h-[400px] rounded-2xl border border-slate-200/60 overflow-hidden hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300 hover:-translate-y-1">
         {/* Image Container */}
         <div className="relative h-48 overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
           <Image
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            src={subject.icon}
-            alt={`${subject.name} diploma`}
+            src={subject.image}
+            alt={`${subject.title} diploma`}
             width={400}
             height={400}
             quality={100}
@@ -37,7 +37,7 @@ export default function SubjectCard({ subject }: { subject: Subject }) {
           <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
               <h3 className="text-lg font-semibold text-slate-900 group-hover:text-blue-600 transition-colors duration-200 mb-2">
-                {subject.name}
+                {subject.title}
               </h3>
               <p className="text-sm text-slate-600 line-clamp-2">
                 Explore comprehensive exams and assessments for this diploma
