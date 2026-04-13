@@ -3,7 +3,7 @@ import { ResetPasswordField } from "@/lib/schemas/auth.schema";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { resetPasswordSubmit } from "../_actions/set-password.action";
+import { resetPasswordSubmit } from "../_actions/reset-password.action";
 
 export default function useResetPassword() {
   // translation
@@ -21,6 +21,7 @@ export default function useResetPassword() {
       toast.success(t("password-changed-successfully"));
       setTimeout(() => {
         router.push("/auth/login");
+        localStorage.removeItem("email");
       }, 1000);
     },
     onError: (error) => {

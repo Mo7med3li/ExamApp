@@ -18,21 +18,26 @@ import {
 } from "@/lib/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
-import useResetPassword from "../_hooks/use-setPassword";
+import useResetPassword from "../_hooks/use-resetPassword";
 import { cn } from "@/lib/utils";
+import { Link } from "@/i18n/navigation";
+import useForgetPassword from "../../forget-password/_hooks/use-forgetPassword";
 
-export default function SetPasswordForm() {
+export default function ResetPasswordForm() {
   // translation
   const t = useTranslations();
 
   // mutation
   const { isPending, error, resetPasswordFn } = useResetPassword();
 
+  const { forgetPasswordFn } = useForgetPassword();
+
   // form
   const form = useForm<ResetPasswordField>({
     defaultValues: {
-      email: "",
+      token: "",
       newPassword: "",
+      confirmPassword: "",
     },
     resolver: zodResolver(resetPasswordSchema),
   });
@@ -53,19 +58,21 @@ export default function SetPasswordForm() {
             {/* Email */}
             <FormField
               control={form.control}
-              name="email"
+              name="token"
               render={({ field }) => (
                 <FormItem>
                   {/* label */}
-                  <FormLabel>{t("email-0")}</FormLabel>
+                  <FormLabel>Token</FormLabel>
                   {/* field */}
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder={t("email")}
+                      placeholder={
+                        "Enter the token that provided at the email link"
+                      }
                       className={cn(
-                        form.formState.errors.email &&
-                          "focus-visible:border-red-300"
+                        form.formState.errors.token &&
+                          "focus-visible:border-red-300",
                       )}
                     />
                   </FormControl>
@@ -81,16 +88,42 @@ export default function SetPasswordForm() {
               render={({ field }) => (
                 <FormItem>
                   {/* label */}
-                  <FormLabel>{t("password")}</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   {/* field */}
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder={t("create-password")}
+                      placeholder="Create password"
                       type="password"
                       className={cn(
                         form.formState.errors.newPassword &&
-                          "focus-visible:border-red-300"
+                          "focus-visible:border-red-300",
+                      )}
+                    />
+                  </FormControl>
+                  {/* feedback */}
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* confirm password */}
+
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                  {/* label */}
+                  <FormLabel>{t("confirm-password")}</FormLabel>
+                  {/* field */}
+                  <FormControl>
+                    <Input
+                      {...field}
+                      placeholder={t("confirm-password")}
+                      type="password"
+                      className={cn(
+                        form.formState.errors.confirmPassword &&
+                          "focus-visible:border-red-300",
                       )}
                     />
                   </FormControl>
@@ -111,6 +144,24 @@ export default function SetPasswordForm() {
             >
               {t("set-password")}
             </Button>
+
+            <div className="text-end">
+              <p className="text-base text-muted-foreground">
+                {t("receive-code")}
+                <Link
+                  className="text-primary text-base px-1"
+                  href={""}
+                  onClick={() => {
+                    const email = localStorage.getItem("email");
+                    if (email) {
+                      forgetPasswordFn({ email });
+                    }
+                  }}
+                >
+                  {t("resend")}
+                </Link>
+              </p>
+            </div>
           </form>
         </FormProvider>
       </Form>
