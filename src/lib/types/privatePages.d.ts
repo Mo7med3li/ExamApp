@@ -122,3 +122,34 @@ declare type ExamSubmissionsResponse = {
   data: ExamSubmissions[];
   metadata: Metadata;
 };
+
+export interface AnalyticsItem {
+  questionId: string;
+  questionText: string;
+  selectedAnswer: {
+    id: string;
+    text: string;
+  };
+  isCorrect: boolean;
+  correctAnswer: {
+    id: string;
+    text: string;
+  };
+}
+
+export interface Submission {
+  id: string;
+  examId: string;
+  examTitle: string;
+  score: number;
+  totalQuestions: number;
+  correctAnswers: number;
+  wrongAnswers: number;
+  startedAt: string;
+  submittedAt: string;
+}
+
+export interface SubmissionDetailedProps {
+  submission: Submission;
+  analytics: AnalyticsItem[];
+}

@@ -22,6 +22,7 @@ import StatCard from "./submission-state-card";
 import EmptyState from "./empty-state";
 import LoadingState from "@/lib/skeleton/submission/submission.skeleton";
 import { useRouter } from "@/i18n/navigation";
+import { ExamSubmissions } from "@/lib/types/privatePages";
 
 /* ─────────────────────────────── helpers ────────────────────────────────── */
 
