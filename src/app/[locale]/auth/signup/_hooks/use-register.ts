@@ -20,10 +20,8 @@ export default function useRegister() {
   } = useMutation({
     mutationFn: async (registerFields: RegisterFields) => {
       const result = await submitRegister(registerFields);
-      if (!result.success) {
-        throw new Error(result.message);
-      }
-      return result.payload;
+
+      return result;
     },
 
     onSuccess: () => {
