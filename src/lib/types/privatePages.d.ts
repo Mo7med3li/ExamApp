@@ -98,3 +98,27 @@ declare type UserDataResponse = {
   message: string;
   user: AppUser;
 };
+
+declare type ExamSubmissions = {
+  id: string;
+  userId: string;
+  examId: string;
+  score: number;
+  totalQuestions: number;
+  correctAnswers: number;
+  wrongAnswers: number;
+  startedAt: string;
+  submittedAt: string;
+  createdAt: string;
+  updatedAt: string;
+  exam: {
+    id: string;
+    title: string;
+    duration: number;
+  };
+};
+
+declare type ExamSubmissionsResponse = {
+  data: ExamSubmissions[];
+  metadata: Metadata;
+};
