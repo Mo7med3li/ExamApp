@@ -1,5 +1,5 @@
 import React from "react";
-import SubjectList from "./_components/subject-list";
+import SubjectList from "./_components/diploma-list";
 import PageHeader from "../_components/page-header";
 import { GraduationCap } from "lucide-react";
 

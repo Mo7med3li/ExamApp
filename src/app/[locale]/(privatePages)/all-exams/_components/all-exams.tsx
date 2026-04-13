@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import { useAllExams } from "../../select-diploma/[subjectId]/_hooks/use-allExams";
-import DiplomaQuizStartCard from "../../select-diploma/[subjectId]/_components/diploma-quizStart-card";
+import { useAllExams } from "../../select-diploma/[diplomaId]/_hooks/use-all-exams";
+import DiplomaQuizStartCard from "../../select-diploma/[diplomaId]/_components/diploma-quizStart-card";
 import { Skeleton } from "@/components/ui/skeleton";
+import PaginationComponent from "@/components/common/styled-pagination";
 
 export default function AllExams() {
   // Hooks
@@ -62,8 +63,12 @@ export default function AllExams() {
 
   return (
     <div className="flex flex-col gap-4">
-      {Array.isArray(Exams?.exams) && Exams.exams.length > 0 ? (
-        <DiplomaQuizStartCard Exams={Exams?.exams} />
+      {Array.isArray(Exams?.payload?.data) &&
+      Exams?.payload?.data.length > 0 ? (
+        <>
+          <DiplomaQuizStartCard Exams={Exams?.payload?.data} />
+          <PaginationComponent metaData={Exams?.payload?.metadata} />
+        </>
       ) : (
         <div className="flex items-center justify-center py-16">
           <div className="text-center">

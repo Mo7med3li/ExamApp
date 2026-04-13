@@ -3,14 +3,13 @@
 import getAuthHeader from "@/lib/utils/get-authHeader";
 
 export async function getQuestions(id: string) {
-  const respone = await fetch(`${process.env.API}/questions?exam=${id}`, {
+  const response = await fetch(`${process.env.API}/questions?exam=${id}`, {
     headers: {
       ...(await getAuthHeader()),
     },
   });
 
-  const payload: APIResponse<{ questions: QuestionResponse[] }> =
-    await respone.json();
+  const payload: APIResponse<QuestionResponse> = await response.json();
 
   if ("code" in payload) {
     throw new Error(payload.message);

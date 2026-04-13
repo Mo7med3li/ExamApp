@@ -7,17 +7,29 @@ export async function GET(req: NextRequest) {
   if (!token?.token) {
     return NextResponse.json(
       { message: "Unauthorized: token not provided" },
-      { status: 401 }
+      { status: 401 },
     );
   }
-  const respone = await fetch(`${process.env.API}/exams`, {
-    headers: {
-      token: token?.token,
-      ...JSON_HEADER,
+  const { searchParams } = new URL(req.url);
+
+  const params = searchParams.size
+    ? (Object.fromEntries(searchParams.entries()) as unknown as {
+        page?: number;
+      })
+    : undefined;
+  const page = params?.page || 1;
+
+  const response = await fetch(
+    `${process.env.API}/exams?page=${page}&limit=5`,
+    {
+      headers: {
+        Authorization: `Bearer ${token?.token}`,
+        ...JSON_HEADER,
+      },
     },
-  });
-  const payload: APIResponse<ExamResponse> = await respone.json();
-  if ("code" in payload) {
+  );
+  const payload: APIResponse<ExamResponse> = await response.json();
+  if (!payload.status) {
     throw new Error(payload.message);
   }
 
