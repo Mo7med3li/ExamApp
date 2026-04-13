@@ -29,7 +29,7 @@ export function LoginForm() {
 
   // form
   const form = useForm<loginFields>({
-    defaultValues: { email: "", password: "" },
+    defaultValues: { username: "", password: "" },
     resolver: zodResolver(loginSchema),
   });
 
@@ -52,20 +52,20 @@ export function LoginForm() {
           >
             {/* email */}
             <FormField
-              name="email"
+              name="username"
               control={form.control}
               render={({ field }) => (
                 <FormItem>
                   {/* label */}
-                  <FormLabel>{t("email-0")}</FormLabel>
+                  <FormLabel>{t("username")}</FormLabel>
                   {/* field */}
                   <FormControl>
                     <Input
                       {...field}
-                      placeholder={t("email")}
+                      placeholder={t("username")}
                       className={cn(
-                        form.formState.errors.email &&
-                          "focus-visible:border-red-300"
+                        form.formState.errors.username &&
+                          "focus-visible:border-red-300",
                       )}
                     />
                   </FormControl>
@@ -90,7 +90,7 @@ export function LoginForm() {
                       type="password"
                       className={cn(
                         form.formState.errors.password &&
-                          "focus-visible:border-red-300"
+                          "focus-visible:border-red-300",
                       )}
                     />
                   </FormControl>

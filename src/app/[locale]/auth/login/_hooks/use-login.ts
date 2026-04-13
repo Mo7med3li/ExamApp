@@ -13,7 +13,7 @@ export default function useLogin() {
       const response = await signIn("credentials", {
         callbackUrl: "/dashboard",
         redirect: false,
-        email: loginFields.email,
+        username: loginFields.username,
         password: loginFields.password,
       });
       if (response?.error) {
