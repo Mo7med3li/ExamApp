@@ -1,6 +1,7 @@
 "use client";
 import QuestionForm from "@/app/[locale]/(privatePages)/select-diploma/[diplomaId]/_components/questions-form";
 import useQuestion from "@/app/[locale]/(privatePages)/select-diploma/[diplomaId]/_hooks/use-questions";
+import { Question } from "@/lib/types/privatePages";
 import { useSearchParams } from "next/navigation";
 
 const QuizSection = () => {

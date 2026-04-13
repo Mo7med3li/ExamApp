@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 import DetailedResult from "./detailed-result";
 import { Trophy, CheckCircle, XCircle, Eye, ArrowLeft } from "lucide-react";
+import { CheckResponse } from "@/lib/types/privatePages";
 
 type Result = {
   result: CheckResponse;

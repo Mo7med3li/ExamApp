@@ -1,6 +1,7 @@
 "use client";
 import { BookOpenCheck, Clock, Target } from "lucide-react";
 import { useAllExams } from "../../select-diploma/[diplomaId]/_hooks/use-all-exams";
+import { Exam } from "@/lib/types/privatePages";
 
 const ExamStats = () => {
   const { Exams } = useAllExams();
@@ -46,7 +47,7 @@ const ExamStats = () => {
             </p>
             <p className="text-2xl font-bold text-slate-900 dark:text-slate-100 mt-1">
               {Exams?.payload?.data?.reduce(
-                (acc, exam) => acc + exam.duration,
+                (acc: number, exam: Exam) => acc + exam.duration,
                 0,
               )}
               min

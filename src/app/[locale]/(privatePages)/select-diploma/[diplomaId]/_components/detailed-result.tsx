@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { CheckCircle, XCircle, ArrowLeft, BookOpen } from "lucide-react";
+import { CheckResponse } from "@/lib/types/privatePages";
 
 type Result = {
   result: CheckResponse;

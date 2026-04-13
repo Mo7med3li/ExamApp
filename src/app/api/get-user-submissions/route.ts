@@ -1,4 +1,5 @@
 import { JSON_HEADER } from "@/lib/Constants/api.constant";
+import { ExamSubmissionsResponse } from "@/lib/types/privatePages";
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 

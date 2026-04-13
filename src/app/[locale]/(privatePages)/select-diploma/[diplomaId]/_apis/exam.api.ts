@@ -1,3 +1,4 @@
+import { ExamResponse } from "@/lib/types/privatePages";
 import getAuthHeader from "@/lib/utils/get-authHeader";
 export async function fetchExams(diplomaId: string, page: number = 1) {
   const token = (await getAuthHeader()).token; // Replace with your actual token

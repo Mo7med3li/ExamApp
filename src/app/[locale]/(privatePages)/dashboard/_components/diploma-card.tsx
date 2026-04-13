@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import React from "react";
 import { ArrowRight, BookOpen } from "lucide-react";
+import { Subject } from "@/lib/types/privatePages";
 
 export default function SubjectCard({ subject }: { subject: Subject }) {
   return (

@@ -18,6 +18,7 @@ import ExamDuration from "./exam-duration";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import useSubmitExam from "../_hooks/use-submit-exam";
 import { useSearchParams } from "next/navigation";
+import { CheckResponse, Question } from "@/lib/types/privatePages";
 // types
 type QuestionsFormProps = {
   questions: Question[];

@@ -1,3 +1,4 @@
+import { QuestionResponse } from "@/lib/types/privatePages";
 import { useQuery } from "@tanstack/react-query";
 
 export default function useQuestion(id: string) {

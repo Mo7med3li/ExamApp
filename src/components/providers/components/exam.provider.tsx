@@ -4,6 +4,7 @@ import { useAllExams } from "@/app/[locale]/(privatePages)/select-diploma/[diplo
 // context/ExamContext.tsx
 
 import { createContext, useContext, useState, ReactNode } from "react";
+import { Exam } from "@/lib/types/privatePages";
 
 type ExamContextType = {
   searchExamsList: Exam[];

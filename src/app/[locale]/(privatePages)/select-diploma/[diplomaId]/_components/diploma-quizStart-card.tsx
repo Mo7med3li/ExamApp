@@ -5,6 +5,7 @@ import { useRouter } from "@/i18n/navigation";
 import { Clock, FileText, Play } from "lucide-react";
 import EmptyExam from "./empty-exam";
 import { Badge } from "@/components/ui/badge";
+import { Exam } from "@/lib/types/privatePages";
 // import Image from "next/image";
 
 export default function DiplomaQuizStartCard({

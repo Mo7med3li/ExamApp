@@ -1,5 +1,6 @@
 // import getAuthHeader from "@/lib/utils/get-authHeader";
 
+import { QuestionResponse } from "@/lib/types/privatePages";
 import getAuthHeader from "@/lib/utils/get-authHeader";
 
 export async function getQuestions(id: string) {
@@ -11,7 +12,7 @@ export async function getQuestions(id: string) {
 
   const payload: APIResponse<QuestionResponse> = await response.json();
 
-  if ("code" in payload) {
+  if (!payload.status) {
     throw new Error(payload.message);
   }
   return payload;

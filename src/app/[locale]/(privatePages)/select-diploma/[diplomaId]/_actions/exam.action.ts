@@ -3,6 +3,7 @@
 import { JSON_HEADER } from "@/lib/Constants/api.constant";
 import { AnswersFields } from "@/lib/schemas/exam.schema";
 import getAuthHeader from "@/lib/utils/get-authHeader";
+import { CheckResponse } from "@/lib/types/privatePages";
 
 export async function submitExamAction(
   fields: AnswersFields,
