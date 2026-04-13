@@ -17,10 +17,11 @@ export default function useForgetPassword() {
     mutationFn: async (forgetPasswordField: ForgetPasswordField) => {
       return await submitForgetPassword(forgetPasswordField);
     },
-    onSuccess: (data, forgetPasswordField) => {
+    onSuccess: (data, variables) => {
       toast.success(t("sending-code-to-email"));
       setTimeout(() => {
-        router.push(`/auth/verify-code?email=${forgetPasswordField.email}`);
+        router.push(`/auth/set-password`);
+        localStorage.setItem("email", variables.email);
       }, 1000);
     },
     onError: (error) => {

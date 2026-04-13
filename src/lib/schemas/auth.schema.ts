@@ -1,9 +1,6 @@
 import z from "zod";
 export const loginSchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: "please enter your email" })
-    .email("Enter Valid Email"),
+  username: z.string().min(1, { message: "please enter your username" }),
   password: z
     .string({ required_error: "please enter your password" })
     .min(1, "please enter your password"),
@@ -39,10 +36,10 @@ export const registerSchema = z
       .string({ required_error: "Password is required" })
       .min(1, "Password is required")
       .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{9,}$/,
-        "Password must be at least 8 characters include at least 1 upper, 1 lower, and number."
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        "Password must be at least 8 characters include at least 1 upper, 1 lower, and number.",
       ),
-    rePassword: z
+    confirmPassword: z
       .string({ required_error: "Re-enter your password" })
       .min(1, "Re-enter your password"),
 
@@ -51,9 +48,9 @@ export const registerSchema = z
       .min(1, "Phone number is required"),
     // .refine((value) => isValidPhoneNumber(value), "Invalid phone number"),
   })
-  .refine((values) => values.password === values.rePassword, {
+  .refine((values) => values.password === values.confirmPassword, {
     message: "password do not match",
-    path: ["rePassword"],
+    path: ["confirmPassword"],
   });
 
 export type RegisterFields = z.infer<typeof registerSchema>;
@@ -77,41 +74,75 @@ export const verifyCodeSchema = z.object({
 
 export type VerifyCodeField = z.infer<typeof verifyCodeSchema>;
 
-export const resetPasswordSchema = z.object({
-  email: z
-    .string({ required_error: "Email is required" })
-    .min(1, "Email is required")
-    .email("Enter valid email"),
-  newPassword: z
-    .string({ required_error: "Password is required" })
-    .min(1, "Password is required")
-    .regex(
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{9,}$/,
-      "Password must be at least 8 characters include at least 1 upper, 1 lower, and number."
-    ),
-});
+export const resetPasswordSchema = z
+  .object({
+    token: z
+      .string({ required_error: "Token is required" })
+      .min(1, "Token is required"),
+    newPassword: z
+      .string({ required_error: "Password is required" })
+      .min(1, "Password is required")
+      .regex(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        "Password must be at least 8 characters include at least 1 upper, 1 lower, and number.",
+      ),
+    confirmPassword: z
+      .string({ required_error: "Confirm password is required" })
+      .min(1, "Confirm password is required"),
+  })
+  .refine((values) => values.newPassword === values.confirmPassword, {
+    message: "New passwords do not match",
+    path: ["confirmPassword"],
+  });
 
 export type ResetPasswordField = z.infer<typeof resetPasswordSchema>;
 
 export const changePasswordSchema = z
   .object({
-    oldPassword: z
+    currentPassword: z
       .string({ required_error: "Current password is required" })
       .min(1, "Current password is required"),
-    password: z
+    newPassword: z
       .string({ required_error: "New password is required" })
       .min(1, "New password is required")
       .regex(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{9,}$/,
-        "Password must be at least 8 characters include at least 1 upper, 1 lower, and number."
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        "Password must be at least 8 characters include at least 1 upper, 1 lower, and number.",
       ),
-    rePassword: z
+    confirmPassword: z
       .string({ required_error: "Please confirm your new password" })
       .min(1, "Please confirm your new password"),
   })
-  .refine((values) => values.password === values.rePassword, {
+  .refine((values) => values.newPassword === values.confirmPassword, {
     message: "New passwords do not match",
-    path: ["confirmNewPassword"],
+    path: ["confirmPassword"],
   });
 
 export type ChangePasswordField = z.infer<typeof changePasswordSchema>;
+
+export const sendEmailVerificationSchema = z.object({
+  email: z
+    .string({ required_error: "Email is required" })
+    .min(1, "Email is required")
+    .email("Enter valid email"),
+});
+
+export type SendEmailVerificationField = z.infer<
+  typeof sendEmailVerificationSchema
+>;
+
+export const confirmEmailVerificationSchema = z.object({
+  email: z
+    .string({ required_error: "Email is required" })
+    .min(1, "Email is required")
+    .email("Enter valid email"),
+  code: z
+    .string({ required_error: "Verification code is required" })
+    .min(1, "Verification code is required")
+    .regex(/^\d+$/, { message: "Code must contain only numbers" })
+    .length(6, { message: "Code must be 6 digits long" }),
+});
+
+export type ConfirmEmailVerificationField = z.infer<
+  typeof confirmEmailVerificationSchema
+>;
