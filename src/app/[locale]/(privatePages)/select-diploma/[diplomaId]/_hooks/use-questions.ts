@@ -6,9 +6,8 @@ export default function useQuestion(id: string) {
     queryKey: ["Questions", id],
     queryFn: async () => {
       const response = await fetch(`/api/questions/${id}`);
-      const payload: APIResponse<{ questions: QuestionResponse[] }> =
-        await response.json();
-      if ("code" in payload) {
+      const payload: APIResponse<QuestionResponse> = await response.json();
+      if (!payload.status) {
         throw new Error(payload.message);
       }
       return payload;

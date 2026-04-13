@@ -21,8 +21,7 @@ export default function Score({ result, setShowResult }: Result) {
     );
   }
 
-  const scorePercentage = Math.floor(parseFloat(result.total));
-  const isPassing = scorePercentage >= 50;
+  const isPassing = result.payload.submission?.score >= 50;
 
   return (
     <div className="max-w-4xl h-full mx-auto bg-white dark:bg-zinc-800 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 overflow-hidden">
@@ -50,7 +49,7 @@ export default function Score({ result, setShowResult }: Result) {
                     : "bg-gradient-to-br from-red-500 to-red-600 text-white shadow-lg"
                 }`}
               >
-                {scorePercentage}%
+                {result.payload.submission.score}%
               </div>
             </div>
 
@@ -85,7 +84,7 @@ export default function Score({ result, setShowResult }: Result) {
                   </div>
                 </div>
                 <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
-                  {result.correct}
+                  {result.payload.submission.correctAnswers}
                 </div>
               </div>
 
@@ -105,7 +104,7 @@ export default function Score({ result, setShowResult }: Result) {
                   </div>
                 </div>
                 <div className="text-3xl font-bold text-red-600 dark:text-red-400">
-                  {result.wrong}
+                  {result.payload.submission.wrongAnswers}
                 </div>
               </div>
             </div>

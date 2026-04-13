@@ -13,57 +13,76 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AnswersFields, ExamSchema } from "@/lib/schemas/exam.schema";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Button } from "@/components/ui/button";
-import useCheckQuestion from "../_hooks/use-checkQuesstion";
 import Score from "./score";
 import ExamDuration from "./exam-duration";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import useSubmitExam from "../_hooks/use-submit-exam";
+import { useSearchParams } from "next/navigation";
 // types
 type QuestionsFormProps = {
-  questions: QuestionResponse[];
+  questions: Question[];
+  examId: string;
 };
 
-export default function QuestionForm({ questions }: QuestionsFormProps) {
+export default function QuestionForm({
+  questions,
+  examId,
+}: QuestionsFormProps) {
   // Form
   const form = useForm<AnswersFields>({
     resolver: zodResolver(ExamSchema),
+    defaultValues: {
+      examId: examId,
+      answers: [],
+      startedAt: new Date().toISOString(),
+    },
   });
 
   // state
   const [step, setStep] = useState(0);
   const [answer, setAnswer] = useState("");
-  const [result, setResult] =
-    useState<SuccessfullRespone<CheckResponse> | null>(null);
+  const [result, setResult] = useState<CheckResponse | null>(null);
   const [showResult, setShowResult] = useState(false);
 
+  // Get time from URL
+  const searchParams = useSearchParams();
+  const time = searchParams.get("time");
+
   // Mutation
-  const { isPending, checkQuestions } = useCheckQuestion();
+  const { isPending, error, submitExam } = useSubmitExam();
 
   // variable
   const currentQuestion = questions[step];
 
   // Functions
   const onSubmit: SubmitHandler<AnswersFields> = (values) => {
-    checkQuestions(values, {
+    submitExam(values, {
       onSuccess: (data) => {
         setResult(data);
         setShowResult(true);
-        data.WrongQuestions.forEach((question) => {
-          let questionIndex: number | null = null;
-          // find wrong questions id
-          form.getValues("answers").find((answer, j) => {
-            if (answer.questionId === question.QID) {
-              questionIndex = j;
-              return true;
-            } else {
-              return false;
-            }
-          });
-          if (questionIndex) {
-            form.setError(`answers.${questionIndex}`, {
-              message: question.correctAnswer,
+        // Handle wrong answers from analytics
+        data.payload.analytics.forEach((analytic) => {
+          if (!analytic.isCorrect) {
+            let questionIndex: number | null = null;
+            // find wrong questions id
+            form.getValues("answers").find((answer, j) => {
+              if (answer.questionId === analytic.questionId) {
+                questionIndex = j;
+                return true;
+              } else {
+                return false;
+              }
             });
+            if (questionIndex !== null) {
+              form.setError(`answers.${questionIndex}`, {
+                message: `Correct answer: ${analytic.correctAnswer}`,
+              });
+            }
           }
         });
+      },
+      onError: (error) => {
+        console.error("Submission failed:", error);
       },
     });
   };
@@ -75,6 +94,7 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
   return (
     <div className="max-w-4xl mx-auto bg-blue-100 dark:bg-zinc-900 rounded-2xl border border-slate-200/60 overflow-hidden">
       {/* Header */}
+
       <div className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:bg-gradient-to-r dark:from-zinc-800 dark:to-zinc-900 p-3 text-white">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
@@ -91,14 +111,10 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
 
           {/* Exam duration */}
           <div className="flex items-center space-x-3">
-            <ExamDuration
-              duration={questions[0]?.exam.duration ?? 0}
-              onTimeChange={(date) => form.setValue("time", date.getMinutes())}
-            />
+            <ExamDuration duration={time ? Number(time) : 20} />
           </div>
         </div>
       </div>
-
       {/* Progress Bar */}
       <div className="px-6 py-4 bg-slate-50 border-b dark:bg-zinc-500 border-slate-200">
         <div className="flex items-center justify-between mb-2">
@@ -116,7 +132,6 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
           ></div>
         </div>
       </div>
-
       {/* Form Content */}
       <div className="p-6">
         <Form {...form}>
@@ -133,7 +148,7 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
                   {/* Question */}
                   <div className="mb-6">
                     <FormLabel className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white leading-relaxed block">
-                      {currentQuestion?.question}
+                      {currentQuestion?.text}
                     </FormLabel>
                   </div>
 
@@ -145,20 +160,20 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
                       onValueChange={(value) => {
                         setAnswer(value);
                         field.onChange({
-                          questionId: currentQuestion?._id,
-                          correct: value,
+                          questionId: currentQuestion?.id,
+                          answerId: value,
                         });
                       }}
-                      name={currentQuestion?._id}
+                      name={currentQuestion?.id}
                       className="space-y-4"
                     >
                       {currentQuestion?.answers.map((answerOption, index) => (
-                        <FormItem key={answerOption.key}>
+                        <FormItem key={answerOption.id}>
                           <div className="group">
                             <div className="flex items-center space-x-4 p-5 rounded-2xl border-2 border-slate-200 bg-white dark:bg-zinc-400 hover:border-blue-300 dark:hover:border-zinc-200 hover:bg-blue-50/50 transition-all duration-200 cursor-pointer">
                               <FormControl>
                                 <RadioGroupItem
-                                  value={answerOption.key}
+                                  value={answerOption.id}
                                   className="w-5 h-5 border-2 border-slate-300 text-blue-600 focus:ring-blue-500"
                                 />
                               </FormControl>
@@ -170,7 +185,7 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
                                   </span>
                                 </div>
                                 <FormLabel className="text-lg font-medium text-slate-900 cursor-pointer flex-1 leading-relaxed">
-                                  {answerOption.answer}
+                                  {answerOption.text}
                                 </FormLabel>
                               </div>
                             </div>
@@ -186,6 +201,13 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
               )}
             />
 
+            {/* Error Display */}
+            {error && (
+              <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-600 text-sm">Error: {error.message}</p>
+              </div>
+            )}
+
             {/* Navigation Buttons */}
             <div className="flex items-center justify-between pt-6 border-t border-slate-200">
               <Button
@@ -195,10 +217,10 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
                 className="flex items-center space-x-2 px-6 py-3 rounded-xl font-medium border-slate-300 text-slate-700 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={() => {
                   const previousAnswer = form.getValues(`answers.${step - 1}`);
-                  if (!previousAnswer?.correct) {
+                  if (!previousAnswer?.answerId) {
                     setAnswer("");
                   } else {
-                    setAnswer(previousAnswer.correct);
+                    setAnswer(previousAnswer.answerId);
                   }
                   setStep((prev) => prev - 1);
                 }}
@@ -218,18 +240,19 @@ export default function QuestionForm({ questions }: QuestionsFormProps) {
                 disabled={(() => {
                   if (isPending) return true;
                   const currentAnswer = form.getValues(`answers.${step}`);
-                  return !currentAnswer?.correct;
+                  return !currentAnswer?.answerId;
                 })()}
                 className="flex items-center space-x-2 px-6 py-3 rounded-xl font-medium bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-black dark:to-zinc-950 dark:hover:from-black dark:hover:to-zinc-700 hover:from-blue-700 hover:to-indigo-700 text-white disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={() => {
-                  if (step === (questions.length ?? 0) - 1) return;
-                  const nextAnswer = form.getValues(`answers.${step + 1}`);
-                  if (!nextAnswer?.correct) {
-                    setAnswer("");
-                  } else {
-                    setAnswer(nextAnswer.correct);
+                  if (step < (questions.length ?? 0) - 1) {
+                    const nextAnswer = form.getValues(`answers.${step + 1}`);
+                    if (!nextAnswer?.answerId) {
+                      setAnswer("");
+                    } else {
+                      setAnswer(nextAnswer.answerId);
+                    }
+                    setStep((prev) => prev + 1);
                   }
-                  setStep((prev) => prev + 1);
                 }}
               >
                 <span>

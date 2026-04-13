@@ -47,7 +47,7 @@ export default function QuestionDialog({ exam }: QuestionDialogProps) {
 
         {/* Form */}
         <div className="p-6 pt-4">
-          <QuestionForm questions={payload.questions} />
+          <QuestionForm examId={exam} questions={payload.questions} />
         </div>
       </DialogContent>
     </Dialog>

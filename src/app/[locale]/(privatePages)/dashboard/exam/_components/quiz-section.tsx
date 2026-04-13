@@ -1,6 +1,6 @@
 "use client";
-import QuestionForm from "@/app/[locale]/(privatePages)/select-diploma/[subjectId]/_components/questions-form";
-import useQuestion from "@/app/[locale]/(privatePages)/select-diploma/[subjectId]/_hooks/use-questions";
+import QuestionForm from "@/app/[locale]/(privatePages)/select-diploma/[diplomaId]/_components/questions-form";
+import useQuestion from "@/app/[locale]/(privatePages)/select-diploma/[diplomaId]/_hooks/use-questions";
 import { useSearchParams } from "next/navigation";
 
 const QuizSection = () => {
@@ -26,13 +26,14 @@ const QuizSection = () => {
       </div>
     );
   }
+  const questions = payload?.payload.questions || ([] as Question[]);
   return (
     <div className="p-2">
       <div className="mx-auto">
         <section className="bg-white/80 dark:bg-zinc-800 backdrop-blur-sm shadow-2xl border border-white/20 dark:border-slate-700/20 rounded-3xl overflow-hidden">
           <div className="bg-slate-100 dark:bg-zinc-700 p-4">
-            {payload?.questions[0] ? (
-              <QuestionForm questions={payload!.questions} />
+            {questions[0] ? (
+              <QuestionForm questions={questions} examId={examId!} />
             ) : (
               "There is no exam for this subject"
             )}
