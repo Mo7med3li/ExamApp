@@ -33,9 +33,7 @@ declare type Exam = {
     id: string;
     title: string;
   };
-  _count: {
-    questions: number;
-  };
+  questionsCount: number;
 };
 
 declare type ExamResponse = {
